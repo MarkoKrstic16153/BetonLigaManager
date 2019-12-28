@@ -1,6 +1,6 @@
 import { typeDefs } from "./graphql-schema";
 import { ApolloServer } from "apollo-server";
-var neo4j = require('neo4j-driver')
+var neo4j = require("neo4j-driver");
 import { makeAugmentedSchema } from "neo4j-graphql-js";
 import dotenv from "dotenv";
 
@@ -25,9 +25,9 @@ const schema = makeAugmentedSchema({
  * with fallback to defaults
  */
 var driver = neo4j.driver(
-  'neo4j://localhost:7474',
-  neo4j.auth.basic('neo4j', 'root')
-)
+  "bolt://localhost:7687",
+  neo4j.auth.basic("neo4j", "root")
+);
 
 /*
  * Create a new ApolloServer instance, serving the GraphQL schema
