@@ -6,8 +6,8 @@ const GET_IGRAC = gql`
   {
     Igrac {
       ime
-      god_rodjenja
-      broj_telefona
+      godRodjenja
+      brojTelefona
       opis
     }
   }
@@ -27,7 +27,7 @@ const Igrac = () => {
           <p>First name : {data.Igrac[0].ime}</p>
           <p>Last name : {data.Igrac[0].god_rodjenja}</p>
           <p>Number : {data.Igrac[0].broj_telefona}</p>
-      <p>Opis : {data.Igrac[0].opis}</p>
+          <p>Opis : {data.Igrac[0].opis}</p>
           {console.log(data.Igrac)}
         </div>
       )}
