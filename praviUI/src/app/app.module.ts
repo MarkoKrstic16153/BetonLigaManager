@@ -15,6 +15,7 @@ import { DodajigracaComponent } from './components/dodajigraca/dodajigraca.compo
 import { DodajstadionComponent } from './components/dodajstadion/dodajstadion.component';
 import { DodajtimComponent } from './components/dodajtim/dodajtim.component';
 import { DodajutakmicuComponent } from './components/dodajutakmicu/dodajutakmicu.component';
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DodajutakmicuComponent } from './components/dodajutakmicu/dodajutakmicu
     DodajutakmicuComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     GraphQLModule,
