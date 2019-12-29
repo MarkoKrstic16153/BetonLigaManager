@@ -1,1 +1,43 @@
-<p>dodajstadion works!</p>
+<div class="form-group">
+    <label for="nazivControl">Naziv :</label>
+   <input 
+       type ="text" 
+       name="nazivControl"
+       class="form-control" 
+       [formControl]="nazivControl"/>
+</div>
+<div class="form-group">
+    <label for="kapacitetControl">Kapacitet :</label>
+   <input 
+       type ="text" 
+       name="kapacitetControl"
+       class="form-control" 
+       [formControl]="kapacitetControl"/>
+</div>
+<div class="form-group">
+    <label for="adresaControl">Adresa :</label>
+   <input 
+       type ="text" 
+       name="adresaControl"
+       class="form-control" 
+       [formControl]="adresaControl"/>
+</div>
+<div class="form-group">
+    <label for="opisControl">Opis :</label>
+   <input 
+       type ="text" 
+       name="opisControl"
+       class="form-control" 
+       [formControl]="opisControl"/>
+</div>
+<div class="form-group" *ngIf="timovi">
+    <label for="timControl">Izaberite Tim :</label>
+    <select [formControl]="timControl">
+        <option *ngFor="let tim of timovi" [value] ="tim.naziv">{{tim.naziv}}</option>
+    </select>
+</div>
+<button (click)="dodajStadion()">
+    Dodaj Stadion
+</button>
+<button (click)="goBack()">Nazad</button>
+

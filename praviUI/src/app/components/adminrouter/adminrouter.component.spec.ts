@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimoviComponent } from './timovi.component';
+import { AdminrouterComponent } from './adminrouter.component';
 
-describe('TimoviComponent', () => {
-  let component: TimoviComponent;
-  let fixture: ComponentFixture<TimoviComponent>;
+describe('AdminrouterComponent', () => {
+  let component: AdminrouterComponent;
+  let fixture: ComponentFixture<AdminrouterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimoviComponent ]
+      declarations: [ AdminrouterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimoviComponent);
+    fixture = TestBed.createComponent(AdminrouterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

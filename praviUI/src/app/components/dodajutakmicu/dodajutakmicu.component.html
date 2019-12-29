@@ -1,1 +1,106 @@
-<p>dodajutakmicu works!</p>
+<div class="form-group">
+    <label for="vremeControl">Vreme odigravanja utakmice :</label>
+   <input 
+       type ="text" 
+       name="vremeControl"
+       class="form-control" 
+       [formControl]="vremeControl"/>
+</div>
+<div class="form-group">
+    <label for="datumControl">Datum odigravanja utakmice :</label>
+   <input 
+       type ="text" 
+       name="datumControl"
+       class="form-control" 
+       [formControl]="datumControl"/>
+</div>
+<div class="form-group">
+    <label for="nazivControl">Naziv utakmice :</label>
+   <input 
+       type ="text" 
+       name="nazivControl"
+       class="form-control" 
+       [formControl]="nazivControl"/>
+</div>
+<div class="form-group">
+    <label for="opisControl">Opis utakmice :</label>
+   <input 
+       type ="text" 
+       name="opisControl"
+       class="form-control" 
+       [formControl]="opisControl"/>
+</div>
+<div>
+    <div class="form-group" *ngIf="timovi">
+        <label for="timDomaciControl">Domaci tim :</label>
+        <select [formControl]="timDomaciControl" (change)='timoviSelectChange()'>
+            <option *ngFor="let tim of timovi" [value] ="tim.naziv">{{tim.naziv}}</option>
+        </select>
+    </div>
+    <div class="form-group" *ngIf="timovi">
+        <label for="timGostiControl">Gostujuci tim :</label>
+        <select [formControl]="timGostiControl" (change)='timoviSelectChange()'>
+            <option *ngFor="let tim of timovi" [value] ="tim.naziv">{{tim.naziv}}</option>
+        </select>
+    </div>
+    <div *ngIf="daLiEkipeNisuIzabrane()">Ekipe Moraju Biti Selektovane</div>
+    <div *ngIf="daLiSuEkipeIste()">Ekipe Moraju Biti Razlicite</div>
+</div>
+<div *ngIf="!(daLiEkipeNisuIzabrane() || daLiSuEkipeIste())">
+<div class="form-group" *ngIf="sviIgraciDomaci">
+    <label for="">Izaberite igrace domacih :</label>
+    <select [formControl]="igraciDomaciControl">
+        <option *ngFor="let igrac of sviIgraciDomaci" [value] ="igrac.Igrac.ime+' '+igrac.Igrac.prezime +' '+ igrac.Igrac.brojDresa">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</option>
+    </select>
+    <button *ngIf="izabraniDomaci.length<5" (click)="dodajIgracaDomacih()">Dodaj igraca domacih</button>
+    <ul *ngIf="izabraniDomaci.length>0">
+        <div>Trenutni Sastav Domacih : </div>
+        <li *ngFor="let ig of izabraniDomaci">
+            {{ig}} <button (click)="izbaciIzTima(ig,izabraniDomaci)">Izbaci</button> <button *ngIf="ekipeSetovane()" (click)="dajGolDomaci(ig)">Postigo Gol</button>
+        </li>
+    </ul>
+</div>
+<div class="form-group" *ngIf="sviIgraciGosti">
+    <label for="">Izaberite igrace gostujucih :</label>
+    <select [formControl]="igraciGostiControl">
+        <option *ngFor="let igrac of sviIgraciGosti" [value] ="igrac.Igrac.ime+' '+ igrac.Igrac.prezime +' '+igrac.Igrac.brojDresa">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</option>
+    </select>
+    <button *ngIf="izabraniGosti.length<5" (click)="dodajIgracaGostujucih()">Dodaj igraca gostujucih</button>
+    <ul *ngIf="izabraniGosti.length>0">
+        <div>Trenutni Sastav Gostiju : </div>
+        <li *ngFor="let ig of izabraniGosti">
+            {{ig}} <button (click)="izbaciIzTima(ig,izabraniGosti)">Izbaci</button> <button *ngIf="ekipeSetovane()" (click)="dajGolGosti(ig)">Postigo Gol</button>
+        </li>
+    </ul>
+</div>
+<div *ngIf="strelciDomaci.length>0">
+    <div>Strelci Prvog Tima :</div>
+    <ul>
+        <li *ngFor="let ig of strelciDomaci">
+            {{ig}} 
+        </li>
+    </ul>
+</div>
+<div *ngIf="strelciGosti.length>0">
+    <div>Strelci Drugog Tima :</div>
+    <ul>
+        <li *ngFor="let ig of strelciGosti">
+            {{ig}}
+        </li>
+    </ul>
+</div>
+<div class="form-group">
+    <label for="vremeGolControl">Vreme postignutog gola :</label>
+   <input 
+       type ="text" 
+       name="vremeGolControl"
+       class="form-control" 
+       [formControl]="vremeGolControl"/>
+</div>
+<div>Trenutni Rezultat : {{domaciGolovi}} {{gostiGolovi}}</div>
+<button (click)="dodajUtakmicu()">
+    Dodaj Utakmicu
+</button>
+</div>
+<button (click)="goBack()">Nazad</button>
+

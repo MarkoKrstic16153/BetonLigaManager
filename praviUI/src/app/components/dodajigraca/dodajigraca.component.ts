@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import gql from 'graphql-tag';
-import { QueryRef, Apollo } from 'apollo-angular';
-import { TimoviService } from 'src/app/services/TimoviService';
-import { IgracComponent } from '../igrac/igrac.component';
-import { Igrac } from 'src/app/models/Igrac';
-import { IgracService } from 'src/app/services/IgracService';
+import { TimoviService } from 'src/services/TimoviService';
+import { IgracService } from 'src/services/IgracService';
+import { Igrac } from 'src/models/Igrac';
 
 @Component({
   selector: 'app-dodajigraca',

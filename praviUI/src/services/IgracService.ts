@@ -47,4 +47,33 @@ export class IgracService {
             }
         });
     }
+    getIgraciTim(nazivTima:string):any{
+        let GET_IGRACI_TIM = gql`
+        query (
+            $nazivTima:String
+            )
+        {
+            Tim(filter:{
+                naziv:$nazivTima
+            }){
+                igraci{
+                Igrac
+                {
+                    ime,
+                    prezime,
+                    brojDresa,
+                    godRodjenja,
+                    brojTelefona,
+                    pozicija,
+                    opis
+                }
+                }
+            }
+        }`;
+        this.query = this.apollo.watchQuery({
+            query: GET_IGRACI_TIM,
+            variables: {nazivTima:nazivTima}
+          });
+        return this.query.valueChanges;
+    }
 }

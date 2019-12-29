@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LigaComponent } from './liga.component';
+import { PretragaigracComponent } from './pretragaigrac.component';
 
-describe('LigaComponent', () => {
-  let component: LigaComponent;
-  let fixture: ComponentFixture<LigaComponent>;
+describe('PretragaigracComponent', () => {
+  let component: PretragaigracComponent;
+  let fixture: ComponentFixture<PretragaigracComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LigaComponent ]
+      declarations: [ PretragaigracComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LigaComponent);
+    fixture = TestBed.createComponent(PretragaigracComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

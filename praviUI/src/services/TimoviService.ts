@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'apollo-link';
-import { ApolloQueryResult } from 'apollo-client';
 import gql from 'graphql-tag';
 import { Apollo, QueryRef } from 'apollo-angular';
+import { Tim } from '../models/Tim';
 
 @Injectable({providedIn: 'root'})
 export class TimoviService {
@@ -20,6 +19,9 @@ export class TimoviService {
             variables: {}
           });
       return this.query.valueChanges;  
+    }
+    postTim(noviTim:Tim){
+
     }
     
 }

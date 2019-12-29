@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { TimoviService } from 'src/services/TimoviService';
+import { StadionService } from 'src/services/StadionService';
+import { Stadion } from 'src/models/Stadion';
 
 @Component({
   selector: 'app-dodajstadion',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DodajstadionComponent implements OnInit {
 
-  constructor() { }
+  timovi:any[]=[];
+  adresaControl:FormControl=new FormControl('',Validators.required);
+  kapacitetControl:FormControl=new FormControl('',Validators.required);
+  nazivControl:FormControl=new FormControl('',Validators.required);
+  opisControl:FormControl=new FormControl('',Validators.required);
+  timControl:FormControl=new FormControl('',Validators.required);
+
+  constructor(private timService:TimoviService,private stadionService:StadionService) { }
 
   ngOnInit() {
+    this.timService.getAllTimovi().subscribe((podaci)=>{this.timovi=podaci.data.Tim;console.log(this.timovi)});
+  }
+
+  dodajStadion(){
+    let noviStadion:Stadion = {adresa:this.adresaControl.value,kapacitet:this.kapacitetControl.value,naziv:this.nazivControl.value,opis:this.opisControl.value};
+    console.log(noviStadion);
+    console.log(this.timControl.value);
+    this.stadionService.addStadion();
   }
 
 }
