@@ -8,6 +8,12 @@ type Liga {
 type Tim {
   naziv: String
   opis: String
+  postignutiGolovi: Int
+  primljeniGolovi: Int
+  brojPobeda: Int
+  brojPoraza: Int
+  nereseno: Int
+  brojPoenaTabela: Int
   liga: [NASTUPA_U]
   igraci: [NASTUPA_ZA]
   utakmica: [IGRA]
@@ -24,6 +30,10 @@ type Igrac {
   opis: String
   tim: [NASTUPA_ZA]
   golovi: [POSTIGO_GOL]
+  utakmice: [UCESTVUJE]
+}
+input _IgracInput {
+  brojTelefona: String!
 }
 
 type Utakmica {
@@ -34,18 +44,22 @@ type Utakmica {
   stadion: [ODIGRANA_NA]
   liga: [ODIGRANA]
   golovi: [POSTIGO_GOL]
-  ucesnici: [IGRA]
+  timovi: [IGRA]
+  igraci: [UCESTVUJE]
+}
+input _UtakmicaInput {
+  datum: String!
+  vreme: String!
 }
 
 type Stadion {
   naziv: String
-  kapacitet: String
+  kapacitet: Int
   adresa: String
   opis: String
   tim: [IGRA_NA]
   utakmica: [ODIGRANA_NA]
 }
-
 type NASTUPA_U @relation(name: "NASTUPA_U") {
   from: Tim
   to: Liga
@@ -87,4 +101,8 @@ type IGRA_NA @relation(name: "IGRA_NA") {
 type ODIGRANA_NA @relation(name: "ODIGRANA_NA") {
   from: Utakmica
   to: Stadion
+}
+type UCESTVUJE @relation(name: "UCESTVUJE") {
+  from: Igrac
+  to: Utakmica
 }
