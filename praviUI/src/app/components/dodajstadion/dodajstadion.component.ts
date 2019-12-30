@@ -29,7 +29,8 @@ export class DodajstadionComponent implements OnInit {
     let noviStadion:Stadion = {adresa:this.adresaControl.value,kapacitet:this.kapacitetControl.value,naziv:this.nazivControl.value,opis:this.opisControl.value};
     console.log(noviStadion);
     console.log(this.timControl.value);
-    this.stadionService.addStadion();
+    this.stadionService.createStadion(noviStadion);
+    this.stadionService.addStadionTim(this.timControl.value,noviStadion.naziv);
   }
 
   goBack(){

@@ -20,9 +20,9 @@ export class DodajtimComponent implements OnInit {
   }
 
   dodajTim(){
-    let noviTim : Tim = {opis:this.opisControl.value,naziv:this.nazivControl.value};
+    let noviTim : Tim = {opis:this.opisControl.value,naziv:this.nazivControl.value,brojPobeda :0,brojPoenaTabela:0,brojPoraza:0,nereseno:0,postignutiGolovi:0,primljeniGolovi:0};
     console.log(noviTim);
-    this.timService.postTim(noviTim);
+    this.timService.createTim(noviTim);
   }
 
   goBack(){
