@@ -7,21 +7,19 @@ import { Tim } from "../models/Tim";
 export class TimoviService {
   query: QueryRef<any>;
   constructor(private apollo: Apollo) {}
-  getAllTimovi(): any {
+  getAllTimovi() {
     const GET_TIMOVI_QUERY = gql`
       query {
         Tim {
           naziv
         }
-      }
-    `;
+      }`;
     this.query = this.apollo.watchQuery({
-      query: GET_TIMOVI_QUERY,
-      variables: {}
+      query: GET_TIMOVI_QUERY
     });
     return this.query.valueChanges;
   }
-  createTim(noviTim: Tim): any {
+  createTim(noviTim: Tim) {
     let CREATE_TIM = gql`
       mutation napraviTim($nazivTima: String!, $opis: String!) {
       CreateTim(
@@ -46,20 +44,19 @@ export class TimoviService {
       }
     });
   }
-  getTim(nazivTima: String): any {
+  getTim(nazivTima: String) {
     let GET_TIM = gql`
       query GET_TIM($nazivTima: String) {
         Tim(filter: { naziv_contains: $nazivTima }) {
-          naziv
-          opis
-          postignutiGolovi
-          primljeniGolovi
-          brojPobeda
-          brojPoraza
+          naziv,
+          opis,
+          postignutiGolovi,
+          primljeniGolovi,
+          brojPobeda,
+          brojPoraza,
           nereseno
         }
-      }
-    `;
+      }`;
     this.query = this.apollo.watchQuery({
       query: GET_TIM,
       variables: {
@@ -69,32 +66,32 @@ export class TimoviService {
     return this.query.valueChanges;
   }
 
-  updateTim(Tim: Tim): any {
+  updateTim(Tim: Tim) {
     let UPDATE_TIM = gql`
       mutation UPDATE_TIM(
-        $nazivTima: String!
-        $postignutiGolovi: Int
-        $primljeniGolovi: Int
-        $brojPobeda: Int
-        $brojPoraza: Int
-        $nereseno: Int
-        $brojPoenaTabela: Int
+        $nazivTima:String!,
+        $postignutiGolovi:Int,
+        $primljeniGolovi:Int,
+        $brojPobeda:Int,
+        $brojPoraza:Int,
+        $nereseno:Int,
+        $brojPoenaTabela:Int,
       ) {
         UpdateTim(
-          naziv: $nazivTima
-          postignutiGolovi: $postignutiGolovi
-          primljeniGolovi: $primljeniGolovi
-          brojPobeda: $brojPobeda
-          brojPoraza: $brojPoraza
-          nereseno: $nereseno
-          brojPoenaTabela: $brojPoenaTabela
+          naziv:$nazivTima,
+          postignutiGolovi:$postignutiGolovi,
+          primljeniGolovi:$primljeniGolovi,
+          brojPobeda:$brojPobeda,
+          brojPoraza:$brojPoraza,
+          nereseno:$nereseno,
+          brojPoenaTabela:$brojPoenaTabela,
         ) {
-          naziv
-          postignutiGolovi
-          primljeniGolovi
-          brojPobeda
-          brojPoraza
-          nereseno
+          naziv,
+          postignutiGolovi,
+          primljeniGolovi,
+          brojPobeda,
+          brojPoraza,
+          nereseno,
           brojPoenaTabela
         }
       }
@@ -112,27 +109,27 @@ export class TimoviService {
       }
     });
   }
-  getSortTimovi(): any {
+  getSortTimovi() {
     const GET_ALL_TEAMS_SORT_POINTS = gql`
       query {
         Tim(orderBy: brojPoenaTabela_desc) {
-          naziv
-          brojPoenaTabela
-          brojPobeda
-          nereseno
-          brojPoraza
-          postignutiGolovi
+          naziv,
+          brojPoenaTabela,
+          brojPobeda,
+          nereseno,
+          brojPoraza,
+          postignutiGolovi,
           primljeniGolovi
         }
-      }
-    `;
+      }`;
     this.query = this.apollo.watchQuery({
       query: GET_ALL_TEAMS_SORT_POINTS,
       variables: {}
     });
     return this.query.valueChanges;
   }
-  addTimLiga(nazivTima: String, nazivLige: String):any{
+
+  addTimLiga(nazivTima: String, nazivLige: String){
     let ADD_TIM_LIGA = gql`
         mutation ADD_TIM_LIGA($nazivTima:String!,$nazivLige:String!) {
           AddTimLiga(from:{naziv:$nazivTima},to:{naziv:$nazivLige})

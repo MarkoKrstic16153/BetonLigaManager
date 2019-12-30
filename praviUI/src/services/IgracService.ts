@@ -11,7 +11,7 @@ export class IgracService {
     constructor(private apollo: Apollo) { 
 
     }
-    addIgrac(noviIgrac:Igrac,tim:string):any{
+    addIgrac(noviIgrac:Igrac,tim:string){
         let ADD_IGRAC = gql`
         mutation dodajIgraca(
             $ime:String!,
@@ -47,26 +47,22 @@ export class IgracService {
             }
         });
     }
-    getIgraciTim(nazivTima:string):any{
+    getIgraciTim(nazivTima:string){
         let GET_IGRACI_TIM = gql`
-        query (
-            $nazivTima:String
-            )
+        query ($nazivTima:String!)
         {
-            Tim(filter:{
-                naziv:$nazivTima
-            }){
+            Tim(filter:{naziv:$nazivTima}){
                 igraci{
-                Igrac
-                {
-                    ime,
-                    prezime,
-                    brojDresa,
-                    godRodjenja,
-                    brojTelefona,
-                    pozicija,
-                    opis
-                }
+                    Igrac
+                    {
+                        ime,
+                        prezime,
+                        brojDresa,
+                        godRodjenja,
+                        brojTelefona,
+                        pozicija,
+                        opis
+                    }
                 }
             }
         }`;
@@ -102,7 +98,10 @@ export class IgracService {
     addIgracGol(brojTelefonaIgraca:String,datumUtakmice:String,vremeUtakmice:String,vremeGola:String){
         let ADD_IGRAC_GOL_UTAKMICA=gql`
         mutation ADD_IGRAC_GOL_UTAKMICA($brojTelefonaIgraca:String!,$datumUtakmice:String!,$vremeUtakmice:String!,$vremeGola:String!){
-        AddIgracGolovi(from:{brojTelefona:$brojTelefonaIgraca},to:{datum:$datumUtakmice,vreme:$vremeUtakmice},data:{vreme:$vremeGola})
+            AddIgracGolovi(
+                from:{brojTelefona:$brojTelefonaIgraca},
+                to:{datum:$datumUtakmice,vreme:$vremeUtakmice},
+                data:{vreme:$vremeGola})
             {
                 from{
                     ime,
@@ -235,10 +234,12 @@ export class IgracService {
         query TOP_ISKUSTVO{
         Igrac(filter:{utakmice_not:null}){
             ime,
-            utakmice{
-                Utakmica{
+            utakmice
+            {
+                Utakmica
+                {
                     naziv
-            }
+                }
             }
         }
         }`;

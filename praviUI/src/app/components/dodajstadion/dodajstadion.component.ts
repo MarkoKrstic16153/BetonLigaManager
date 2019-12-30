@@ -31,9 +31,9 @@ export class DodajstadionComponent implements OnInit {
     console.log(noviStadion.kapacitet);
     
     console.log(this.timControl.value);
-    this.stadionService.createStadion(noviStadion).subscribe((data)=>{
-      console.log("USO Sam");
-      });
+    this.stadionService.createStadion(noviStadion).subscribe(data=>{
+      this.stadionService.addStadionTim(this.timControl.value,noviStadion.naziv).subscribe(data=>{});
+    });
   }
 
   goBack(){

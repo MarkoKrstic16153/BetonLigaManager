@@ -7,12 +7,7 @@ export class UtakmicaService {
   query: QueryRef<any>;
   constructor(private apollo: Apollo) {}
 
-  createUtakmica(
-    nazivUtakmice: String,
-    datumUtakmice: String,
-    vremeUtakmice: String,
-    opisUtakmice: String
-  ) {
+  createUtakmica(nazivUtakmice: String,datumUtakmice: String,vremeUtakmice: String,opisUtakmice: String) {
     let CREATE_UTAKMICA = gql`
       mutation CREATE_UTAKMICA(
         $nazivUtakmice: String!S
@@ -40,35 +35,29 @@ export class UtakmicaService {
       }
     });
   }
-  addTeamToUtakmica(
-    nazivTima: String,
-    datumUtakmice: String,
-    vremeUtakmice: String,
-    uloga: String,
-    golovi: String
-  ) {
+  addTeamToUtakmica(nazivTima: String, datumUtakmice: String,vremeUtakmice: String, uloga: String,golovi: String){
     let ADD_TIM_TO_UTAKMICA = gql`
       mutation ADD_TIM_TO_UTAKMICA(
-        $nazivTima: String!
-        $datumUtakmice: String!
-        $vremeUtakmice: String!
-        $uloga: String!
+        $nazivTima: String!,
+        $datumUtakmice: String!,
+        $vremeUtakmice: String!,
+        $uloga: String!,
         $golovi: String!
       ) {
         AddTimUtakmica(
-          from: { naziv: $nazivTima }
-          to: { datum: $datumUtakmice, vreme: $vremeUtakmice }
+          from: { naziv: $nazivTima },
+          to: { datum: $datumUtakmice, vreme: $vremeUtakmice },
           data: { uloga: $uloga, golovi: $golovi }
         ) {
           from {
             naziv
             opis
-          }
+          },
           to {
             naziv
             datum
             vreme
-          }
+          },
           uloga
           golovi
         }
@@ -85,30 +74,25 @@ export class UtakmicaService {
       }
     });
   }
-  addUtakmicaStadion(
-    datumUtakmice: String,
-    vremeUtakmice: String,
-    nazivStadiona: String
-  ) {
+  addUtakmicaStadion(datumUtakmice: String,vremeUtakmice: String,nazivStadiona: String) {
     let ADD_UTAKMICA_STADION = gql`
       mutation ADD_UTAKMICA_STADION(
-        $datumUtakmice: String!
-        $vremeUtakmice: String!
+        $datumUtakmice: String!,
+        $vremeUtakmice: String!,
         $nazivStadiona: String!
       ) {
         AddUtakmicaStadion(
-          from: { datum: $datumUtakmice, vreme: $vremeUtakmice }
+          from: { datum: $datumUtakmice, vreme: $vremeUtakmice },
           to: { naziv: $nazivStadiona }
         ) {
           from {
             datum
-          }
+          },
           to {
             naziv
           }
         }
-      }
-    `;
+      }`;
     return this.apollo.mutate({
       mutation: ADD_UTAKMICA_STADION,
       variables: {
@@ -122,19 +106,18 @@ export class UtakmicaService {
     let GET_GOLOVI_UTAKMICE = gql`
       query GET_GOLOVI_UTAKMICE {
         Utakmica {
-          datum
-          vreme
+          datum,
+          vreme,
           golovi {
-            vreme
+            vreme,
             Igrac {
-              ime
-              prezime
+              ime,
+              prezime,
               brojDresa
             }
           }
         }
-      }
-    `;
+      }`;
     return this.apollo.watchQuery({
       query: GET_GOLOVI_UTAKMICE
     }).valueChanges;
