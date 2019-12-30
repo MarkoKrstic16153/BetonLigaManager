@@ -22,7 +22,9 @@ export class DodajtimComponent implements OnInit {
   dodajTim(){
     let noviTim : Tim = {opis:this.opisControl.value,naziv:this.nazivControl.value,brojPobeda :0,brojPoenaTabela:0,brojPoraza:0,nereseno:0,postignutiGolovi:0,primljeniGolovi:0};
     console.log(noviTim);
-    this.timService.createTim(noviTim);
+    this.timService.createTim(noviTim).subscribe(data=>{
+    this.timService.addTimLiga(noviTim.naziv,"Beton1").subscribe(data=>{});
+    });
   }
 
   goBack(){

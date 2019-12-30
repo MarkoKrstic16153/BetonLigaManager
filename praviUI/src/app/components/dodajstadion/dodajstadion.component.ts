@@ -26,11 +26,14 @@ export class DodajstadionComponent implements OnInit {
   }
 
   dodajStadion(){
-    let noviStadion:Stadion = {adresa:this.adresaControl.value,kapacitet:this.kapacitetControl.value,naziv:this.nazivControl.value,opis:this.opisControl.value};
+    let noviStadion:Stadion = {adresa:this.adresaControl.value,kapacitet:Number(this.kapacitetControl.value),naziv:this.nazivControl.value,opis:this.opisControl.value};
     console.log(noviStadion);
+    console.log(noviStadion.kapacitet);
+    
     console.log(this.timControl.value);
-    this.stadionService.createStadion(noviStadion);
-    this.stadionService.addStadionTim(this.timControl.value,noviStadion.naziv);
+    this.stadionService.createStadion(noviStadion).subscribe((data)=>{
+      console.log("USO Sam");
+      });
   }
 
   goBack(){

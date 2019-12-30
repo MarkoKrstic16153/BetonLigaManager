@@ -9,25 +9,11 @@ export class StadionService {
   constructor(private apollo: Apollo) {}
   createStadion(noviStadion: Stadion): any {
     let CREATE_STADION = gql`
-      mutation CREATE_STADION(
-        $nazivStadiona: String!
-        $kapacitet: Int!
-        $adresa: String!
-        $opisStadiona: String!
-      ) {
-        CreateStadion(
-          naziv: $nazivStadiona
-          kapacitet: $kapacitet
-          adresa: $adresa
-          opis: $opisStadiona
-        ) {
+      mutation napraviStadion($nazivStadiona: String!,$kapacitet: Int!,$adresa: String!,$opisStadiona: String!){
+        CreateStadion(naziv: $nazivStadiona,kapacitet: $kapacitet,adresa: $adresa,opis: $opisStadiona){
           naziv
-          kapacitet
-          adresa
-          opis
         }
-      }
-    `;
+      }`;
     return this.apollo.mutate({
       mutation: CREATE_STADION,
       variables: {
@@ -72,16 +58,18 @@ export class StadionService {
   }
   addStadionTim(nazivTima: String, nazivStadiona: String): any {
     const ADD_STADION_TIM = gql`
-            mutation AddStadionTim(from:{naziv:$nazivTima},to:{naziv:$nazivStadiona})
+            mutation ADD_STADION_TIM($nazivTima: String!, $nazivStadiona: String!)
+            { AddStadionTim(from:{naziv:$nazivTima},to:{naziv:$nazivStadiona})
             {
                 from{
                         naziv
-                }
+                },
                 to{
                     naziv,
                     kapacitet  
                 }
-            } `;
+            } 
+            }`;
     return this.apollo.mutate({
       mutation: ADD_STADION_TIM,
       variables: {

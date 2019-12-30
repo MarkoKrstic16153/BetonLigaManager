@@ -1,6 +1,6 @@
 export interface Stadion{
     adresa:string;
-    kapacitet:string;
+    kapacitet:number;
     naziv:string;
     opis:string;
 }

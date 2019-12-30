@@ -23,26 +23,25 @@ export class TimoviService {
   }
   createTim(noviTim: Tim): any {
     let CREATE_TIM = gql`
-      mutation CREATE_TIM($nazivTima: String!, $opis: String!) {
-        CreateTim(
-          naziv: $nazivTima
-          opis: $opis
-          postignutiGolovi: 0
-          primljeniGolovi: 0
-          brojPobeda: 0
-          brojPoraza: 0
-          brojPoenaTabela: 0
+      mutation napraviTim($nazivTima: String!, $opis: String!) {
+      CreateTim(
+          naziv: $nazivTima,
+          opis: $opis,
+          postignutiGolovi: 0,
+          primljeniGolovi: 0,
+          brojPobeda: 0,
+          brojPoraza: 0,
+          brojPoenaTabela: 0,
           nereseno: 0
         ) {
-          naziv
+          naziv,
           opis
         }
-      }
-    `;
+      }`;
     return this.apollo.mutate({
       mutation: CREATE_TIM,
       variables: {
-        naziv: noviTim.naziv,
+        nazivTima: noviTim.naziv,
         opis: noviTim.opis
       }
     });
@@ -133,17 +132,19 @@ export class TimoviService {
     });
     return this.query.valueChanges;
   }
-  addTimLiga(nazivTima: String, nazivLige: String): any {
-    const ADD_TIM_LIGA = gql`
-        mutation AddTimLiga(from:{naziv:$nazivTima},to:{naziv:$nazivLige})
+  addTimLiga(nazivTima: String, nazivLige: String):any{
+    let ADD_TIM_LIGA = gql`
+        mutation ADD_TIM_LIGA($nazivTima:String!,$nazivLige:String!) {
+          AddTimLiga(from:{naziv:$nazivTima},to:{naziv:$nazivLige})
             {
                 from{
-                naziv
-                }
+                  naziv
+                },
                 to{
-                naziv
+                  naziv
                 }
-            }`;
+            }
+        }`;
     return this.apollo.mutate({
       mutation: ADD_TIM_LIGA,
       variables: {
