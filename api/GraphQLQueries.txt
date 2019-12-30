@@ -1,5 +1,5 @@
-mutation ADD_IGRAC_U_TIM($brojTelefonaIgraca:String!,$imeTima:String!){
-  AddIgracTim(from:{brojTelefona:$brojTelefonaIgraca},to:{naziv:$imeTima})
+mutation ADD_IGRAC_U_TIM($brojTelefonaIgraca:String!,$nazivTima:String!){
+  AddIgracTim(from:{brojTelefona:$brojTelefonaIgraca},to:{naziv:$nazivTima})
   {
     from{
       ime,
@@ -11,14 +11,14 @@ mutation ADD_IGRAC_U_TIM($brojTelefonaIgraca:String!,$imeTima:String!){
     }
   }
 }
-mutation ADD_IGRAC_U_UTAKMICU($brojTelefonaIgraca:String!,$datum:String!,$vreme:String!){
-  AddIgracUtakmice(from:{brojTelefona:$brojTelefonaIgraca},to:{datum:$datum,vreme:$vreme})
+mutation ADD_IGRAC_U_UTAKMICU($brojTelefonaIgraca:String!,$datumUtakmice:String!,$vremeUtakmice:String!){
+  AddIgracUtakmice(from:{brojTelefona:$brojTelefonaIgraca},to:{datum:$datumUtakmice,vreme:$vremeUtakmice})
   {
     from{
       ime,
       prezime,
       brojTelefona
-    }
+    },
     to{
       naziv,
       datum,
@@ -79,8 +79,8 @@ query GET_IGRAC_BY_NUMBER($brojDresa:String!){
     brojTelefona
   }
 }
-mutation ADD_STADION_TIM($imeTima:String!,$imeStadiona:String!){
-  AddStadionTim(from:{naziv:$imeTima},to:{naziv:$imeStadiona}){
+mutation ADD_STADION_TIM($nazivTima:String!,$nazivStadiona:String!){
+  AddStadionTim(from:{naziv:$nazivTima},to:{naziv:$nazivStadiona}){
     from{
       naziv
     }
@@ -90,16 +90,16 @@ mutation ADD_STADION_TIM($imeTima:String!,$imeStadiona:String!){
     }
   } 
 }
-mutation CREATE_STADION($naziv:String!,$kapacitet:Int!,$adresa:String!,$opis:String!){
-  CreateStadion(naziv:$naziv,kapacitet:$kapacitet,adresa:$adresa,opis:$opis)
+mutation CREATE_STADION($nazivStadiona:String!,$kapacitet:Int!,$adresa:String!,$opisStadiona:String!){
+  CreateStadion(naziv:$nazivStadiona,kapacitet:$kapacitet,adresa:$adresa,opis:$opisStadiona)
   {
     naziv,
     kapacitet,
     adresa
   }
 }
-mutation ADD_UTAKMICA_STADION($datumUtakmice:String!,$vremeUtakmice:String!,$naziv:String!){
-  AddUtakmicaStadion(from:{datum:$datumUtakmice,vreme:$vremeUtakmice},to:{naziv:$naziv})
+mutation ADD_UTAKMICA_STADION($datumUtakmice:String!,$vremeUtakmice:String!,$nazivStadiona:String!){
+  AddUtakmicaStadion(from:{datum:$datumUtakmice,vreme:$vremeUtakmice},to:{naziv:$nazivStadiona})
   {
     from{
       datum
@@ -119,8 +119,8 @@ query GET_STADION_BY_NAME($nazivStadiona:String!){
     adresa
   }
 }
-mutation ADD_TIM_LIGA($imeTima:String!, $imeLige:String!){
-  AddTimLiga(from:{naziv:$imeTima},to:{naziv:$imeLige})
+mutation ADD_TIM_LIGA($nazivTima:String!, $nazivLige:String!){
+  AddTimLiga(from:{naziv:$nazivTima},to:{naziv:$nazivLige})
   {
     from{
       naziv
@@ -161,8 +161,8 @@ mutation CREATE_UTAKMICA($nazivUtakmice:String!,$datumUtakmice:String!,$vremeUta
     naziv
   }
 }
-mutation ADD_TIM_TO_UTAKMICA($imeTima:String!,$datumUtakmice:String!,$vremeUtakmice:String!,$uloga:String!,$golovi:String!){
-  AddTimUtakmica(from:{naziv:$imeTima},to:{datum:$datumUtakmice,vreme:$vremeUtakmice},data:{uloga:$uloga,golovi:$golovi})
+mutation ADD_TIM_TO_UTAKMICA($nazivTima:String!,$datumUtakmice:String!,$vremeUtakmice:String!,$uloga:String!,$golovi:String!){
+  AddTimUtakmica(from:{naziv:$nazivTima},to:{datum:$datumUtakmice,vreme:$vremeUtakmice},data:{uloga:$uloga,golovi:$golovi})
   {
     from{
       naziv,
@@ -177,15 +177,15 @@ mutation ADD_TIM_TO_UTAKMICA($imeTima:String!,$datumUtakmice:String!,$vremeUtakm
     golovi
   }
 }
-mutation CREATE_TIM( $naziv:String!,$opis:String!){
-    CreateTim(naziv:$naziv,opis:$opis,postignutiGolovi:0,primljeniGolovi:0,brojPobeda:0,brojPoraza:0,brojPoenaTabela:0,nereseno:0)
+mutation CREATE_TIM( $nazivTima:String!,$opisTima:String!){
+    CreateTim(naziv:$nazivTima,opis:$opisTima,postignutiGolovi:0,primljeniGolovi:0,brojPobeda:0,brojPoraza:0,brojPoenaTabela:0,nereseno:0)
     {
       naziv,
       opis
     }
 }
-query GET_TIM($naziv:String){
- Tim(filter:{ naziv_contains:$naziv})
+query GET_TIM($nazivTima:String){
+ Tim(filter:{ naziv_contains:$nazivTima})
   {
     naziv,
     opis,
@@ -197,9 +197,9 @@ query GET_TIM($naziv:String){
    
   }
 }
-mutation UPDATE_TIM($naziv:String!,$postignutiGolovi:Int,$primljeniGolovi:Int,$brojPobeda:Int,$brojPoraza:Int,$nereseno:Int,$brojPoenaTabela:Int){
+mutation UPDATE_TIM($nazivTima:String!,$postignutiGolovi:Int,$primljeniGolovi:Int,$brojPobeda:Int,$brojPoraza:Int,$nereseno:Int,$brojPoenaTabela:Int){
   UpdateTim(
-    naziv:$naziv,
+    naziv:$nazivTima,
     postignutiGolovi:$postignutiGolovi,
     primljeniGolovi:$primljeniGolovi,
     brojPobeda:$brojPobeda,
@@ -245,8 +245,8 @@ query GET_STADION_UTAKMICE{
     }
   }
 }
-query GET_GOLOVI_UTAKMICA{
-  Utakmica(first:3){
+query GET_GOLOVI_UTAKMICE{
+  Utakmica{
     datum,
     vreme,
     golovi{
