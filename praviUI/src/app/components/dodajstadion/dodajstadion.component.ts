@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { TimoviService } from 'src/services/TimoviService';
 import { StadionService } from 'src/services/StadionService';
 import { Stadion } from 'src/models/Stadion';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dodajstadion',
@@ -18,7 +19,7 @@ export class DodajstadionComponent implements OnInit {
   opisControl:FormControl=new FormControl('',Validators.required);
   timControl:FormControl=new FormControl('',Validators.required);
 
-  constructor(private timService:TimoviService,private stadionService:StadionService) { }
+  constructor(private timService:TimoviService,private stadionService:StadionService,private location:Location) { }
 
   ngOnInit() {
     this.timService.getAllTimovi().subscribe((podaci)=>{this.timovi=podaci.data.Tim;console.log(this.timovi)});
@@ -29,6 +30,10 @@ export class DodajstadionComponent implements OnInit {
     console.log(noviStadion);
     console.log(this.timControl.value);
     this.stadionService.addStadion();
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

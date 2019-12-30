@@ -1,7 +1,9 @@
 <h2>Pretrazite Vase omiljene stadione</h2>
-<div>Pretrazite po imenu : 
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoImenu" [modPretrage]="modImeStadiona" [obsPretrage]="obsImeStadiona"></app-smart-search-bar>
 </div>
-<div>Pretrazite po timu kome on pripada :
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoTimu" [modPretrage]="modImeTima" [obsPretrage]="obsImeTimStadiona"></app-smart-search-bar>
 </div> 
 <div>Stadioni sa najvise utakmica :
     <ul>

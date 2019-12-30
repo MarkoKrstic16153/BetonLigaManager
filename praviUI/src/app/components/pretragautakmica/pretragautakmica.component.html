@@ -1,11 +1,14 @@
 <h2>Pretrazite najinteresantnije utakmice</h2>
-<div>Pretrazite po timu :
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoImenuTima" [modPretrage]="modImeTima" [obsPretrage]="obsImeTimaUtakmice"></app-smart-search-bar>
 </div>
-<div>Pretrazite po domacinu : 
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoImenuDomacina" [modPretrage]="modImeTimaDomaci" [obsPretrage]="obsImeDomacinaUtakmice"></app-smart-search-bar>
 </div>
-<div>Pretrazite po gostu :
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoImenuGosta" [modPretrage]="modImeTimaGosti" [obsPretrage]="obsImeGostaUtakmice"></app-smart-search-bar>
 </div> 
-<button>Pretrazite to gostu i domacinu</button>
+<button>Pretrazite po gostu i domacinu zajedno</button>
 <div>Utakmice sa najvise golova :
     <ul>
     </ul>
@@ -14,3 +17,6 @@
     <ul>
     </ul>
 </div>
+<button (click)="goBack()">
+    Nazad
+</button>

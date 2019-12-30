@@ -4,6 +4,7 @@ import { TimoviService } from 'src/services/TimoviService';
 import { IgracService } from 'src/services/IgracService';
 import { UtakmicaService } from 'src/services/UtakmicaService';
 import { StadionService } from 'src/services/StadionService';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dodajutakmicu',
@@ -39,7 +40,8 @@ export class DodajutakmicuComponent implements OnInit {
   constructor(private timService:TimoviService,
               private igracService:IgracService,
               private utakmicaService : UtakmicaService,
-              private stadionService : StadionService) { }
+              private stadionService : StadionService,
+              private location:Location) { }
 
   ngOnInit() {
     this.timService.getAllTimovi().subscribe((podaci)=>{this.timovi=podaci.data.Tim;console.log(this.timovi)});
@@ -112,5 +114,9 @@ export class DodajutakmicuComponent implements OnInit {
         console.log(this.sviIgraciGosti)
       });
     }
+  }
+
+  goBack(){
+    this.location.back();
   }
 }

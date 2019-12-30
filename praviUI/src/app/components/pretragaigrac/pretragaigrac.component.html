@@ -1,11 +1,15 @@
 <h2>Pretrazite Vase omiljene igrace</h2>
-<div>Pretrazite po imenu : 
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoImenu" [modPretrage]="modImeIgraca" [obsPretrage]="obsImeIgraca"></app-smart-search-bar>
 </div>
-<div>Pretrazite po broju dresa :
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoDresu" [modPretrage]="modBrojDresaIgraca" [obsPretrage]="obsBrojDresaIgraca"></app-smart-search-bar>
 </div> 
-<div>Pretrazite po timu :
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoTimu" [modPretrage]="modTimIgraca" [obsPretrage]="obsTimIgraca"></app-smart-search-bar>
 </div>
-<div>Pretrazite po poziciji :
+<div>
+    <app-smart-search-bar [titlePretrage]="pretragaPoPoziciji" [modPretrage]="modPozicijaIgraca" [obsPretrage]="obsPozicijaIgraca"></app-smart-search-bar>
 </div>
 <div>Najbolji strelci :
     <ul>

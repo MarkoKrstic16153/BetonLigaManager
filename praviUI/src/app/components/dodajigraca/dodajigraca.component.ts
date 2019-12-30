@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { TimoviService } from 'src/services/TimoviService';
 import { IgracService } from 'src/services/IgracService';
 import { Igrac } from 'src/models/Igrac';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dodajigraca',
@@ -23,7 +24,7 @@ export class DodajigracaComponent implements OnInit {
   pozicijaControl:FormControl=new FormControl('',Validators.required);
   timControl:FormControl=new FormControl('',Validators.required);
 
-  constructor(private timService:TimoviService,private igracService:IgracService){
+  constructor(private timService:TimoviService,private igracService:IgracService,private location:Location){
   }
 
   ngOnInit() {
@@ -44,6 +45,9 @@ export class DodajigracaComponent implements OnInit {
        this.igracService.addIgrac(noviIgrac,this.timControl.value).subscribe((data)=>{
          console.log(data);
        });
+  }
+  goBack(){
+    this.location.back();
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TimoviService } from 'src/services/TimoviService';
 import { Tim } from 'src/models/Tim';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dodajtim',
@@ -12,7 +13,7 @@ export class DodajtimComponent implements OnInit {
   
   nazivControl:FormControl=new FormControl('',Validators.required);
   opisControl:FormControl=new FormControl('',Validators.required);
-  constructor(private timService:TimoviService) { }
+  constructor(private timService:TimoviService,private location:Location) { }
 
   ngOnInit() {
     
@@ -22,6 +23,10 @@ export class DodajtimComponent implements OnInit {
     let noviTim : Tim = {opis:this.opisControl.value,naziv:this.nazivControl.value};
     console.log(noviTim);
     this.timService.postTim(noviTim);
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

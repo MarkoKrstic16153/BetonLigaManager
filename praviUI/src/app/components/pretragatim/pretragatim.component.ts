@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Observable } from 'apollo-link';
 
 @Component({
   selector: 'app-pretragatim',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pretragatim.component.css']
 })
 export class PretragatimComponent implements OnInit {
-
-  constructor() { }
+  pretragaPoImenu:string="Pretrazite po imenu tima : ";
+  modImeTima:string="imetima";
+  obsImeTima:Observable<any>;
+  constructor(private location:Location) { }
 
   ngOnInit() {
+  }
+  goBack(){
+    this.location.back();
   }
 
 }
