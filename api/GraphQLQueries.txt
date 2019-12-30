@@ -184,10 +184,8 @@ mutation CREATE_TIM( $naziv:String!,$opis:String!){
       opis
     }
 }
-query BROJ_GOLOVA($naziv:String){
- Tim(filter:{
-    naziv_contains:$naziv
-  })
+query GET_TIM($naziv:String){
+ Tim(filter:{ naziv_contains:$naziv})
   {
     naziv,
     opis,
@@ -197,5 +195,87 @@ query BROJ_GOLOVA($naziv:String){
     brojPoraza,
     nereseno
    
+  }
+}
+mutation UPDATE_TIM($naziv:String!,$postignutiGolovi:Int,$primljeniGolovi:Int,$brojPobeda:Int,$brojPoraza:Int,$nereseno:Int,$brojPoenaTabela:Int){
+  UpdateTim(
+    naziv:$naziv,
+    postignutiGolovi:$postignutiGolovi,
+    primljeniGolovi:$primljeniGolovi,
+    brojPobeda:$brojPobeda,
+  	brojPoraza:$brojPoraza,
+  	nereseno:$nereseno,
+  	brojPoenaTabela:$brojPoenaTabela
+  )
+  {
+    naziv,
+    postignutiGolovi,
+    primljeniGolovi,
+    brojPobeda,
+    brojPoraza,
+    nereseno,
+    brojPoenaTabela
+  }
+}
+query GET_ALL_TEAMS_SORT_POINTS{
+  Tim(orderBy:brojPoenaTabela_desc){
+    naziv,
+    brojPoenaTabela,
+    brojPobeda,
+    nereseno,
+    brojPoraza,
+    postignutiGolovi,
+    primljeniGolovi
+  }
+}
+query GET_ALL_TEAMS{
+  Tim{
+    naziv,
+    opis
+  }
+}
+query GET_STADION_UTAKMICE{
+  Stadion{
+    naziv,
+    utakmica{
+      Utakmica{
+        datum,
+        vreme
+      }
+    }
+  }
+}
+query GET_GOLOVI_UTAKMICA{
+  Utakmica(first:3){
+    datum,
+    vreme,
+    golovi{
+      vreme,
+      Igrac{
+        ime,
+        prezime,
+        brojDresa
+      }
+    }
+  }
+}
+query GET_HOME_UTAKMICE($nazivTima:String!){
+  Tim(filter:{naziv:$nazivTima}){
+    utakmica(filter:{uloga:"domacin"}){
+      Utakmica{
+        datum,
+        vreme
+      }
+    }
+  }
+}
+query GET_AWAY_UTAKMICE($nazivTima:String!){
+  Tim(filter:{naziv:$nazivTima}){
+    utakmica(filter:{uloga:"gost"}){
+      Utakmica{
+        datum,
+        vreme
+      }
+    }
   }
 }
