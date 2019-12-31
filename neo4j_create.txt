@@ -18,7 +18,7 @@ CREATE (Tim2:Tim {naziv:'Kalac', opis:''})
 CREATE (Igrac6:Igrac {ime:'Lazar', prezime:'Petrovic',brojDresa:'1', godRodjenja:1990, brojTelefona:'065249919',pozicija:'golman', opis:''})
 CREATE (Igrac7:Igrac {ime:'Stefan', prezime:'Lazarevic',brojDresa:'2', godRodjenja:1997, brojTelefona:'069819681',pozicija:'odbranbeni', opis:''})
 CREATE (Igrac8:Igrac {ime:'Jovan' , prezime:'Nikolic',brojDresa:'3', godRodjenja:1995, brojTelefona:'06024151561',pozicija:'napadac', opis:''})
-CREATE (Igrac9:Igrac {ime:'Dragan', prezime:'Nikolic',brojDresa:'4', godRodjenja:1997, brojTelefona:'0664556887',pozicija:'napadac', opis:''})
+CREATE (Igrac9:Igrac {ime:'Dragan', prezime:'Nikolic',brojDresa:'4', godRodjenja:1997, brojTelefona:'06645666887',pozicija:'napadac', opis:''})
 CREATE (Igrac10:Igrac {ime:'Aleksandar', prezime:'Nikolic', brojDresa:'5', godRodjenja:1992, brojTelefona:'063261944',pozicija:'izmena', opis:''})
 
 CREATE

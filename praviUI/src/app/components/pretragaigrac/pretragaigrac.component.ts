@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { IgracService } from 'src/services/IgracService';
 import { TimoviService } from 'src/services/TimoviService';
+import { Igrac } from 'src/models/Igrac';
 
 @Component({
   selector: 'app-pretragaigrac',
@@ -22,10 +23,17 @@ export class PretragaigracComponent implements OnInit {
   obsBrojDresaIgraca:Observable<any>;
   obsTimIgraca:Observable<any>;
   obsPozicijaIgraca:Observable<any>;
+  obsTopStrelci:Observable<any>;
+  topStrelci:Object[];
   constructor(private location:Location,private igracService:IgracService,private timService:TimoviService) { }
 
   ngOnInit() {
     this.obsTimIgraca=this.timService.getAllTimovi();
+    this.igracService.getTopStrelci().subscribe(({data,loading})=>{
+      this.topStrelci=data.Igrac;
+      console.log(this.topStrelci);
+      
+    });
   }
   goBack(){
     this.location.back();

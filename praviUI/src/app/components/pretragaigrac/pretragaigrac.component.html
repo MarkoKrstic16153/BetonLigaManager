@@ -12,7 +12,13 @@
     <app-smart-search-bar [titlePretrage]="pretragaPoPoziciji" [modPretrage]="modPozicijaIgraca" [obsPretrage]="obsPozicijaIgraca"></app-smart-search-bar>
 </div>
 <div>Najbolji strelci :
-    <ul>
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let igrac of topStrelci">
+            <a [routerLink]="[ '/pretraziigrace/igrac/', igrac.brojTelefona ]">{{igrac.ime}} </a>
+            Broj golova:{{igrac.golovi.length}}
+        </li>
     </ul>
 </div> 
 <div>Najiskusniji igraci: 

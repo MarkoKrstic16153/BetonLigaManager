@@ -6,8 +6,7 @@ import { variable } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({providedIn: 'root'})
 export class IgracService {
-    query: QueryRef<any>; 
-
+    query: QueryRef<any>;
     constructor(private apollo: Apollo) { 
 
     }
@@ -168,12 +167,13 @@ export class IgracService {
             }
         }
         }`;
-        return this.apollo.watchQuery({
+        this.query= this.apollo.watchQuery({
             query:GET_IGRAC_STARTS_WITH,
             variables:{
                 pocetakImena:pocetakImena
             }
-        }).valueChanges;
+        });
+        return this.query.valueChanges;
     }
     getIgracByPosition(pozicija:String)
     {
@@ -187,12 +187,13 @@ export class IgracService {
             brojTelefona
         }
         }`;
-        return this.apollo.watchQuery({
+        this.query= this.apollo.watchQuery({
             query:GET_IGRAC_BY_POSITION,
             variables:{
                 pozicija:pozicija
             }
-        }).valueChanges;
+        });
+        return this.query.valueChanges;
     }
     getIgracByNumber(brojDresa:String)
     {
@@ -206,12 +207,13 @@ export class IgracService {
             brojTelefona
         }
         }`;
-        return this.apollo.watchQuery({
+        this.query= this.apollo.watchQuery({
             query:GET_IGRAC_BY_NUMBER,
             variables:{
                 brojDresa:brojDresa
             }
-        }).valueChanges;
+        });
+        return this.query.valueChanges;
     }
     getTopStrelci()
     {
@@ -219,14 +221,16 @@ export class IgracService {
         query TOP_STRELCI{
         Igrac(filter:{golovi_not:null}){
             ime,
+            brojTelefona,
             golovi{
                 vreme
             }
         }
         }`;
-        return this.apollo.watchQuery({
+        this.query= this.apollo.watchQuery({
             query:TOP_STRELCI
-        }).valueChanges;
+        });
+        return this.query.valueChanges;
     }
     getTopIskustvo()
     {
@@ -243,9 +247,10 @@ export class IgracService {
             }
         }
         }`;
-        return this.apollo.watchQuery({
+        this.query= this.apollo.watchQuery({
             query:TOP_ISKUSTVO
-        }).valueChanges;
+        });
+        return this.query.valueChanges;
     }
 
 }

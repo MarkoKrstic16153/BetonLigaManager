@@ -118,8 +118,9 @@ export class UtakmicaService {
           }
         }
       }`;
-    return this.apollo.watchQuery({
+    this.query= this.apollo.watchQuery({
       query: GET_GOLOVI_UTAKMICE
-    }).valueChanges;
+    });
+    return this.query.valueChanges;
   }
 }

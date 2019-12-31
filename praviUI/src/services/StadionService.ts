@@ -52,10 +52,11 @@ export class StadionService {
         }
       }
     `;
-    return this.apollo.watchQuery({
+    this.query= this.apollo.watchQuery({
       query: TOP_KAPACITET_STADION,
       variables: {}
     });
+    return this.query.valueChanges;
   }
   addStadionTim(nazivTima: String, nazivStadiona: String) {
     const ADD_STADION_TIM = gql`
@@ -92,9 +93,10 @@ export class StadionService {
                 }
             }
         }`;
-    return this.apollo.watchQuery({
+    this.query= this.apollo.watchQuery({
       query: GET_STADION_UTAKMICE,
       variables: {}
     });
+    return this.query.valueChanges;
   }
 }
