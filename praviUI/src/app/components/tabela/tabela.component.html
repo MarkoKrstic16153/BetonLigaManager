@@ -1,3 +1,29 @@
 <h2>Trenutno stanje u Beton Ligi</h2>
-<div>Tabela</div>
+<h1 *ngIf="loading">Tabela se ucitava sacekajte</h1>
+<table *ngIf="!loading" class="table table-hover">
+<thead class="thead-dark">
+    <tr>
+      <th class="text-center" scope="col">#</th>
+      <th class="text-center text-uppercase" scope="col">Naziv</th>
+      <th class="text-center text-uppercase" scope="col">Poeni</th>
+      <th class="text-center text-uppercase" scope="col">Pobede</th>
+      <th class="text-center text-uppercase" scope="col">Neresno</th>
+      <th class="text-center text-uppercase" scope="col">Porazi</th>
+      <th class="text-center text-uppercase" scope="col">Postignuti golovi</th>
+      <th class="text-center text-uppercase" scope="col">Primljeni golovi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tim of timovi; let i=index" [ngClass]="i==0?'bg-primary':i==1?'bg-secondary':'bg-info'">
+      <th class="text-center font-weight-bold" scope="row">{{i+1}}</th>
+      <td class="text-center font-weight-bold text-uppercase">{{tim.naziv}}</td>
+      <td class="text-center font-weight-bold">{{tim.brojPoenaTabela}}</td>
+      <td class="text-center font-weight-bold">{{tim.brojPobeda}}</td>
+      <td class="text-center font-weight-bold">{{tim.nereseno}}</td>
+      <td class="text-center font-weight-bold">{{tim.brojPoraza}}</td>
+      <td class="text-center font-weight-bold">{{tim.postignutiGolovi}}</td>
+      <td class="text-center font-weight-bold">{{tim.primljeniGolovi}}</td>
+    </tr>
+  </tbody>
+</table>
 <button (click)="goBack()">Nazad</button>
