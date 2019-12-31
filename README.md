@@ -1,8 +1,12 @@
-# GRANDstack Starter
+# Beton Liga Manager
 
-This project is a starter for building a [GRANDstack](https://grandstack.io) (GraphQL, Angular, Apollo, Neo4j Database) application. There are two components to the starter, the UI application (a React app) and the API app (GraphQL server).
+This project is a built with [GRANDstack](https://grandstack.io) (GraphQL, Angular, Apollo, Neo4j Database). There are two components, the UI application (a Angluar app) and the API app (GraphQL server).
 
-[![](grandStack.jpg)]
+### Dobrodosli u Beton Liga Manager-a, sajt koji je dizajniran da omoguci lako pretrazivanje igraca, timova i desavanja u lokalnoj prijateljskoj amaterskoj fudbalskoj ligi.
+### Isto tako, ova platforma ima mogucnost dodavanja novih timova, igraca, utakmica, stadiona... 
+### Ovo je veb sajt koje ce vam pruziti uvid u najtacniju i najopsezniju statistiku koju ste videli za vasu omiljenu ligu i prikazati najinteresantnije podatke vezane za nju koji ce, biti zabavni kako igracima u ligi tako i posmatracima i navijacima.
+### Svet amaterskog malog fudbala je na klik od tebe, istrazi ga slobodno!
+![](grandStack.jpg)
 ## Neo4j
 ### Local setup
 1. [Download Neo4j Server](https://neo4j.com/download-center/#community)
@@ -18,8 +22,8 @@ This project is a starter for building a [GRANDstack](https://grandstack.io) (Gr
 *Install dependencies*
 
 ```
-(cd ./PraviUI && npm install)
-(cd ./api && npm install)
+cd ./PraviUI && npm install
+cd ./api && npm install
 ```
 
 *Start API server*
