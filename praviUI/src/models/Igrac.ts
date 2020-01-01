@@ -2,8 +2,8 @@ export interface Igrac{
     ime:string;
     prezime:string;
     brojDresa:string;
-    godRodjenja:string;
-    brojTelefona:number;
+    godRodjenja:String;
+    brojTelefona:String;
     opis:string;
     pozicija:string;
 }
