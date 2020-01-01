@@ -2,8 +2,8 @@ CREATE (Beton1:Liga {naziv:'Beton1', opis:''})
 CREATE (Tim1:Tim {naziv:'Gorica', opis:''})
 CREATE (Igrac1:Igrac {ime:'Marko', prezime:'Petrovic',brojDresa:'1', godRodjenja:1992, brojTelefona:'0664499445',pozicija:'golman', opis:''})
 CREATE (Igrac2:Igrac {ime:'Petar', prezime:'Lazarevic',brojDresa:'2', godRodjenja:1997, brojTelefona:'0664495445',pozicija:'odbranbeni', opis:''})
-CREATE (Igrac3:Igrac {ime:'Jovan' , prezime:'Nikolic',brojDresa:'3', godRodjenja:1999, brojTelefona:'0664475445',pozicija:'napadac', opis:''})
-CREATE (Igrac4:Igrac {ime:'Dragan', prezime:'Nikolic',brojDresa:'4', godRodjenja:1997, brojTelefona:'0664556887',pozicija:'napadac', opis:''})
+CREATE (Igrac3:Igrac {ime:'Jovan' , prezime:'Antic',brojDresa:'3', godRodjenja:1999, brojTelefona:'0664475445',pozicija:'napadac', opis:''})
+CREATE (Igrac4:Igrac {ime:'Dragan', prezime:'Markovic',brojDresa:'4', godRodjenja:1997, brojTelefona:'0664556887',pozicija:'napadac', opis:''})
 CREATE (Igrac5:Igrac {ime:'Dejan', prezime:'Nikolic', brojDresa:'5', godRodjenja:1992, brojTelefona:'0664455445',pozicija:'izmena', opis:''})
 
 CREATE
@@ -19,7 +19,7 @@ CREATE (Igrac6:Igrac {ime:'Lazar', prezime:'Petrovic',brojDresa:'1', godRodjenja
 CREATE (Igrac7:Igrac {ime:'Stefan', prezime:'Lazarevic',brojDresa:'2', godRodjenja:1997, brojTelefona:'069819681',pozicija:'odbranbeni', opis:''})
 CREATE (Igrac8:Igrac {ime:'Jovan' , prezime:'Nikolic',brojDresa:'3', godRodjenja:1995, brojTelefona:'06024151561',pozicija:'napadac', opis:''})
 CREATE (Igrac9:Igrac {ime:'Dragan', prezime:'Nikolic',brojDresa:'4', godRodjenja:1997, brojTelefona:'06645666887',pozicija:'napadac', opis:''})
-CREATE (Igrac10:Igrac {ime:'Aleksandar', prezime:'Nikolic', brojDresa:'5', godRodjenja:1992, brojTelefona:'063261944',pozicija:'izmena', opis:''})
+CREATE (Igrac10:Igrac {ime:'Aleksandar', prezime:'Djordjevic', brojDresa:'5', godRodjenja:1992, brojTelefona:'0632619442',pozicija:'izmena', opis:''})
 
 CREATE
 (Igrac6)-[:NASTUPA_ZA ]->(Tim2),

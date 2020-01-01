@@ -48,7 +48,7 @@ export class IgracService {
     }
     getIgraciTim(nazivTima:string){
         let GET_IGRACI_TIM = gql`
-        query ($nazivTima:String!)
+        query GET_IGRACI_TIM($nazivTima:String!)
         {
             Tim(filter:{naziv:$nazivTima}){
                 igraci{
@@ -175,11 +175,11 @@ export class IgracService {
         });
         return this.query.valueChanges;
     }
-    getIgracByPosition(pozicija:String)
+    getIgracByPosition(pozicija:String,brojTelefona?:String)
     {
         let GET_IGRAC_BY_POSITION=gql`
-        query GET_IGRAC_BY_POSITION($pozicija:String!){
-        Igrac(filter:{pozicija:$pozicija})
+        query GET_IGRAC_BY_POSITION($pozicija:String!,$brojTelefonaIgraca:String){
+        Igrac(filter:{pozicija:$pozicija,brojTelefona_not:$brojTelefonaIgraca})
         {
             ime,
             prezime,
@@ -190,27 +190,65 @@ export class IgracService {
         this.query= this.apollo.watchQuery({
             query:GET_IGRAC_BY_POSITION,
             variables:{
-                pozicija:pozicija
+                pozicija:pozicija,
+                brojTelefonaIgraca:brojTelefona||null
             }
         });
         return this.query.valueChanges;
     }
-    getIgracByNumber(brojDresa:String)
+    getIgracByNumber(brojDresa:String,brojTelefona?:String)
     {
         let GET_IGRAC_BY_NUMBER=gql`
-        query GET_IGRAC_BY_NUMBER($brojDresa:String!){
-        Igrac(filter:{brojDresa:$brojDresa})
-        {
+        query GET_IGRAC_BY_NUMBER($brojDresa:String!,$brojTelefonaIgraca:String){
+        Igrac(filter:{
+            brojDresa:$brojDresa,brojTelefona_not:$brojTelefonaIgraca})
+            {
             ime,
             prezime,
             brojDresa,
             brojTelefona
-        }
+            }
         }`;
         this.query= this.apollo.watchQuery({
             query:GET_IGRAC_BY_NUMBER,
             variables:{
-                brojDresa:brojDresa
+                brojDresa:brojDresa,
+                brojTelefonaIgraca:brojTelefona||null
+            }
+        });
+        return this.query.valueChanges;
+    }
+    getIgrac(brojTelefonaIgraca:String)
+    {
+        let GET_IGRAC=gql`
+        query GET_IGRAC($brojTelefonaIgraca:String!){
+            Igrac(filter:{brojTelefona:$brojTelefonaIgraca})
+            {
+                ime,
+                prezime,
+                brojDresa,
+                brojTelefona,
+                opis,
+                pozicija,
+                tim{
+                  Tim{
+                    naziv
+                  }
+                },
+                utakmice{
+                  Utakmica{
+                    naziv
+                  }
+                },
+              golovi{
+                vreme
+              }
+            }
+            }`;
+        this.query= this.apollo.watchQuery({
+            query:GET_IGRAC,
+            variables:{
+                brojTelefonaIgraca:brojTelefonaIgraca
             }
         });
         return this.query.valueChanges;
