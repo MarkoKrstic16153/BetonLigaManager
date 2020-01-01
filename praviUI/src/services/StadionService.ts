@@ -82,21 +82,62 @@ export class StadionService {
   }
   getStadionUtakmice() {
     const GET_STADION_UTAKMICE = gql`
-        query query GET_STADION_UTAKMICE{
+        query GET_STADION_UTAKMICE{
             Stadion{
                 naziv,
                 utakmica{
-                Utakmica{
-                    datum,
-                    vreme
-                }
+                  Utakmica{
+                      datum,
+                      vreme
+                  }
                 }
             }
         }`;
     this.query= this.apollo.watchQuery({
-      query: GET_STADION_UTAKMICE,
-      variables: {}
+      query: GET_STADION_UTAKMICE
     });
     return this.query.valueChanges;
+  }
+  getStadionStartsWith(word:String){
+    let GET_STADION_STARTS_WITH=gql`
+    query GET_STADION_STARTS_WITH($word:String!){
+      Stadion(filter:{naziv_starts_with:$word}){
+        naziv,
+        kapacitet,
+        adresa,
+        opis,
+        tim{
+          Tim{
+            naziv
+          }
+        }
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:GET_STADION_STARTS_WITH
+    });
+    return this.query.valueChanges;
+  }
+  getStadionTim(nazivTima:String){
+    let GET_STADION_TIM=gql`
+    query GET_STADION_TIM($nazivTima:String!){
+      Tim(filter:{naziv:$nazivTima}){
+        naziv,
+        stadion{
+          Stadion{
+            naziv,
+            kapacitet,
+            adresa,
+            opis
+          }
+        }
+      }
+    }`;
+    this.apollo.mutate({
+      mutation:GET_STADION_TIM,
+      variables:{
+        nazivTima:nazivTima
+      }
+    })
   }
 }

@@ -150,4 +150,62 @@ export class TimoviService {
       }
     });
   }
+  getAllHomeUtakmice(nazivTima:String)
+  {
+    let GET_HOME_UTAKMICE=gql`
+    query GET_HOME_UTAKMICE($nazivTima:String!){
+      Tim(filter:{naziv:$nazivTima}){
+        utakmica(filter:{uloga:"domacin"}){
+          Utakmica{
+            datum,
+            vreme
+          }
+        }
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:GET_HOME_UTAKMICE,
+      variables:{nazivTima:nazivTima}
+    });
+    return this.query.valueChanges;
+  }
+  getAllAwayUtakmice(nazivTima:String)
+  {
+    let GET_AWAY_UTAKMICE=gql`
+    query GET_AWAY_UTAKMICE($nazivTima:String!){
+      Tim(filter:{naziv:$nazivTima}){
+        utakmica(filter:{uloga:"gost"}){
+          Utakmica{
+            datum,
+            vreme
+          }
+        }
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:GET_AWAY_UTAKMICE,
+      variables:{nazivTima:nazivTima}
+    })
+  }
+  getAllUtakmice(nazivTima:String)
+  {
+    let GET_ALL_UTAKMICE=gql`
+    query GET_ALL_UTAKMICE($nazivTima:String!){
+      Tim(filter:{naziv:$nazivTima}){
+        utakmica{
+          Utakmica{
+            naziv
+          }
+        }
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:GET_ALL_UTAKMICE,
+      variables:{nazivTima:nazivTima}
+    })
+  }
+  getAllHomeAwayUtakmice(domacin:String,gost:String)
+  {
+    //TODO
+  }
 }

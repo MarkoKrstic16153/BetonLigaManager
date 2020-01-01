@@ -279,3 +279,95 @@ query GET_AWAY_UTAKMICE($nazivTima:String!){
     }
   }
 }
+query GET_IGRAC($brojTelefonaIgraca:String!){
+  Igrac(filter:{brojTelefona:$brojTelefonaIgraca})
+  {
+      ime,
+      prezime,
+      brojDresa,
+      brojTelefona,
+      pozicija,
+      tim{
+        Tim{
+          naziv
+        }
+      },
+      utakmice{
+        Utakmica{
+          naziv
+        }
+      },
+    golovi{
+      vreme
+    }
+  }
+}
+query GET_IGRACI_TIM($nazivTima:String!){
+    Tim(filter:{naziv:$nazivTima}){
+      naziv,
+      igraci{
+          Igrac
+          {
+              ime,
+              prezime,
+              brojDresa,
+              godRodjenja,
+              brojTelefona,
+              pozicija,
+              opis
+          }
+      }
+    }
+}
+query GET_STADION_STARTS_WITH($word:String!){
+  Stadion(filter:{naziv_starts_with:$word}){
+    naziv,
+    kapacitet,
+    adresa,
+    opis,
+    tim{
+      Tim{
+        naziv
+      }
+    }
+  }
+}
+mutation CREATE_STADION($nazivStadiona:String!,$kapacitet:Int!,$adresa:String!,$opisStadiona:String!){
+  CreateStadion(naziv:$nazivStadiona,kapacitet:$kapacitet,adresa:$adresa,opis:$opisStadiona){
+   	naziv,
+    kapacitet
+  }
+}
+query GET_STADION_TIM($nazivTima:String!){
+  Tim(filter:{naziv:$nazivTima}){
+    naziv,
+    stadion{
+      Stadion{
+        naziv,
+        kapacitet,
+        adresa,
+        opis
+      }
+    }
+  }
+}
+query GET_STADION_UTAKMICE{
+  Stadion{
+    naziv,
+    utakmica{
+      Utakmica{
+        datum,
+        vreme
+      }
+    }
+  }
+}
+query GET_ALL_UTAKMICE($nazivTima:String!){
+  Tim(filter:{naziv:$nazivTima}){
+    utakmica{
+      Utakmica{
+        naziv
+      }
+    }
+  }
+}
