@@ -1,17 +1,24 @@
 <h2>Pretrazite Vase omiljene timove</h2>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoImenu" [modPretrage]="modImeTima" [obsPretrage]="obsImeTima"></app-smart-search-bar>
+    <app-smart-search-bar (onEnter)="pretraziTim($event)"  [titlePretrage]="pretragaPoImenu" [modPretrage]="modImeTima" [obsPretrage]="obsTimovi"></app-smart-search-bar>
 </div>
 <div>Lista svih timova :
-    <ul>
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let tim of listaSvihTimova">
+            <a [routerLink]="[ '/pretrazitimove/tim/', tim.naziv ]">{{tim.naziv}} </a>
+        </li>
     </ul>
 </div> 
 <div>Lideri na tabeli : 
-    <ul>
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let tim of listaLidera">
+            <a [routerLink]="[ '/pretrazitimove/tim/', tim.naziv ]">{{tim.naziv}} </a>
+        </li>
     </ul>
 </div>
-<div>Rezultati koji odgovaraju pretrazi :
-    <ul>
-    </ul>
-</div>
+
 <button (click)="goBack()">Nazad</button>

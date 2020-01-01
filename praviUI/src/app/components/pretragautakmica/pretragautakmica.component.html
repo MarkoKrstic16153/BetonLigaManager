@@ -1,20 +1,32 @@
 <h2>Pretrazite najinteresantnije utakmice</h2>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoImenuTima" [modPretrage]="modImeTima" [obsPretrage]="obsImeTimaUtakmice"></app-smart-search-bar>
+    <app-smart-search-bar (onEnter)="pretraziUtakmiceTima($event)" [titlePretrage]="pretragaPoImenuTima" [modPretrage]="modImeTima" [obsPretrage]="obsImeTimaUtakmice"></app-smart-search-bar>
 </div>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoImenuDomacina" [modPretrage]="modImeTimaDomaci" [obsPretrage]="obsImeDomacinaUtakmice"></app-smart-search-bar>
+    <app-smart-search-bar (onEnter)="pretraziUtakmiceDomacina($event)" [titlePretrage]="pretragaPoImenuDomacina" [modPretrage]="modImeTimaDomaci" [obsPretrage]="obsImeDomacinaUtakmice"></app-smart-search-bar>
 </div>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoImenuGosta" [modPretrage]="modImeTimaGosti" [obsPretrage]="obsImeGostaUtakmice"></app-smart-search-bar>
+    <app-smart-search-bar (onEnter)="pretraziUtakmiceGosta($event)" [titlePretrage]="pretragaPoImenuGosta" [modPretrage]="modImeTimaGosti" [obsPretrage]="obsImeGostaUtakmice"></app-smart-search-bar>
 </div> 
-<button>Pretrazite po gostu i domacinu zajedno</button>
+<button (click)="duplaPretraga()">Pretrazite po gostu i domacinu zajedno</button>
 <div>Utakmice sa najvise golova :
-    <ul>
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let utakmica of utakmiceSaNajviseGolova">
+            <a [routerLink]="[ '/pretraziutakmice/utakmica/', utakmica.vreme ]">{{utakmica.datum}} </a>
+              {{utakmica.vreme}}
+        </li>
     </ul>
 </div> 
-<div>Rezultati koji odgovaraju pretrazi :
-    <ul>
+<div>Rezultati koji odgovaraju pretrazi {{modPretrage}}
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let utakmica of rezultatPretrage">
+            <a [routerLink]="[ '/pretraziutakmice/utakmica/', utakmica.vreme ]">{{utakmica.datum}} </a>
+              {{utakmica.vreme}}
+        </li>
     </ul>
 </div>
 <button (click)="goBack()">

@@ -44,6 +44,7 @@ export class DodajigracaComponent implements OnInit {
       console.log(this.timControl.value);
        this.igracService.addIgrac(noviIgrac,this.timControl.value).subscribe((data)=>{
          console.log(data);
+         this.igracService.addIgracToTim(noviIgrac.brojTelefona,this.timControl.value).subscribe();
        });
   }
   goBack(){

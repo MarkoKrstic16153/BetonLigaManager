@@ -3,7 +3,7 @@ export interface Igrac{
     prezime:string;
     brojDresa:string;
     godRodjenja:string;
-    brojTelefona:number;
+    brojTelefona:string;
     opis:string;
     pozicija:string;
 }

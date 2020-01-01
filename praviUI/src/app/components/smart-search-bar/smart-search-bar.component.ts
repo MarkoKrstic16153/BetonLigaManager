@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -14,6 +14,8 @@ export class SmartSearchBarComponent implements OnInit {
   @Input() titlePretrage:string;
   @Input() modPretrage:string;
   @Input() obsPretrage:Observable<any>;
+  @Output() onEnter: EventEmitter<any> = new EventEmitter<any>();
+
   myControl = new FormControl();
   allPodaci:any[]=[];
   filtriraniPodaci: Observable<any>;
@@ -22,9 +24,6 @@ export class SmartSearchBarComponent implements OnInit {
 
   async ngOnInit() {
       switch(this.modPretrage) { 
-        case 'imeigraca': { 
-           break; 
-        } 
         case 'brojdresaigraca': { 
           break; 
         } 
@@ -32,26 +31,27 @@ export class SmartSearchBarComponent implements OnInit {
           this.subskrajbujSeNaUlaznePodatke();
           break; 
         } 
-        case 'pozicijaigraca': { 
-          break; 
-        } 
         case 'imestadiona': { 
           break; 
         } 
         case 'imetimstadiona': { 
+          this.subskrajbujSeNaUlaznePodatke();
           break; 
         } 
         case 'imetima': { 
-          
+          this.subskrajbujSeNaUlaznePodatke();
           break; 
         } 
         case 'imetimautakmice': { 
+          this.subskrajbujSeNaUlaznePodatke();
           break; 
         }
         case 'imedomacinautakmice': { 
+          this.subskrajbujSeNaUlaznePodatke();
           break; 
         } 
         case 'imegostautakmice': { 
+          this.subskrajbujSeNaUlaznePodatke();
           break; 
         }  
         default: { 
@@ -78,7 +78,7 @@ export class SmartSearchBarComponent implements OnInit {
     if(this.allPodaci[0] && this.allPodaci[0].naziv)
     {
       if(value.length>2)
-        return this.allPodaci.filter(podatak => podatak.naziv.toLowerCase().includes(filterValue));
+        return this.allPodaci.filter(podatak =>podatak.naziv.toLowerCase().includes(filterValue));
     }
     else if(this.allPodaci[0] && this.allPodaci[0].ime)
     {
@@ -86,9 +86,50 @@ export class SmartSearchBarComponent implements OnInit {
       if(value.length>2)
         return this.allPodaci.filter(podatak => podatak.ime.toLowerCase().includes(filterValue));
     }
+    else {
+      console.log("nema nista.");
+      if(value.length>2){
+        console.log(this.allPodaci);
+        return this.allPodaci.filter(podatak => podatak.toLowerCase().includes(filterValue));
+      }
+    }
   }
-
-  pretraziTrenutno(){///TO DO
-    this.router.navigate(["pitanje",this.myControl.value]);
+  prikaz(podatak){///sta prikazuje;
+    console.log(podatak);
+    switch(this.modPretrage) { 
+      case 'brojdresaigraca': { 
+        break; 
+      } 
+      case 'timigraca': { 
+        return podatak.naziv;
+      } 
+      case 'imestadiona': { 
+        break; 
+      } 
+      case 'imetimstadiona': { 
+        return podatak.naziv;
+        break; 
+      } 
+      case 'imetima': { 
+        
+        break; 
+      } 
+      case 'imetimautakmice': { 
+        break; 
+      }
+      case 'imedomacinautakmice': { 
+        break; 
+      } 
+      case 'imegostautakmice': { 
+        break; 
+      }  
+      default: { 
+         console.log("Cudni Mod.");
+         break; 
+      } 
+   } 
+  }
+  pretraziTrenutno(){
+      this.onEnter.emit(this.myControl.value);
   }
 }

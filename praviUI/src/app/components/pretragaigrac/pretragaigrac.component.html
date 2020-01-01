@@ -1,15 +1,23 @@
 <h2>Pretrazite Vase omiljene igrace</h2>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoImenu" [modPretrage]="modImeIgraca" [obsPretrage]="obsImeIgraca"></app-smart-search-bar>
+    <div>Pretrazite Igrace po imenu : </div>
+    <input [formControl]="imeControl" type="text" />
 </div>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoDresu" [modPretrage]="modBrojDresaIgraca" [obsPretrage]="obsBrojDresaIgraca"></app-smart-search-bar>
-</div> 
-<div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoTimu" [modPretrage]="modTimIgraca" [obsPretrage]="obsTimIgraca"></app-smart-search-bar>
+    <div>Pretrazite Igrace po broju dresa : </div>
+    <input [formControl]="dresControl" type="number"/>
 </div>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoPoziciji" [modPretrage]="modPozicijaIgraca" [obsPretrage]="obsPozicijaIgraca"></app-smart-search-bar>
+    <app-smart-search-bar (onEnter)="pretraziIgraceTima($event)" [titlePretrage]="pretragaPoTimu" [modPretrage]="modTimIgraca" [obsPretrage]="obsTimIgraca"></app-smart-search-bar>
+</div>
+<div>
+    <div>Pretrazite Igrace po poziciji : </div>
+    <div class="form-group">
+        <label for="pozicijaControl">Pozicija :</label>
+        <select [formControl]="pozicijaControl">
+            <option *ngFor="let pozicija of pozicije" [value] ="pozicija">{{pozicija}}</option>
+        </select>
+    </div>
 </div>
 <div>Najbolji strelci :
     <ul class="list-group">
@@ -22,11 +30,23 @@
     </ul>
 </div> 
 <div>Najiskusniji igraci: 
-    <ul>
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let igrac of najIskusnijiIgraci">
+            <a [routerLink]="[ '/pretraziigrace/igrac/', igrac.brojTelefona ]">{{igrac.ime}} </a>
+            Broj golova:{{igrac.golovi.length}}
+        </li>
     </ul>
 </div>
-<div>Rezultati koji odgovaraju pretrazi :
-    <ul>
+<div>Rezultati koji odgovaraju pretrazi {{modPretrage}}
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let igrac of rezultatPretrage">
+            Ime : <a [routerLink]="[ '/pretraziigrace/igrac/', igrac.brojTelefona ]">{{igrac.ime}} </a>
+           Prezime: {{igrac.prezime}} Broj dresa :{{igrac.brojDresa}}
+        </li>
     </ul>
 </div>
 <button (click)="goBack()">Nazad</button>

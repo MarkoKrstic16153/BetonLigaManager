@@ -1,20 +1,39 @@
 <h2>Pretrazite Vase omiljene stadione</h2>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoImenu" [modPretrage]="modImeStadiona" [obsPretrage]="obsImeStadiona"></app-smart-search-bar>
+    <div>Pretrazite stadione po imenu : </div>
+    <input [formControl]="imeControl" type="text" />
 </div>
 <div>
-    <app-smart-search-bar [titlePretrage]="pretragaPoTimu" [modPretrage]="modImeTima" [obsPretrage]="obsImeTimStadiona"></app-smart-search-bar>
+    <app-smart-search-bar (onEnter)="pretragaStadiona($event)"  [titlePretrage]="pretragaPoTimu" [modPretrage]="modImeTima" [obsPretrage]="obsImeTimStadiona"></app-smart-search-bar>
 </div> 
 <div>Stadioni sa najvise utakmica :
-    <ul>
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let stadion of najviseKapaciteta">
+            Ime stadiona : <a [routerLink]="[ '/pretrazistadione/stadion/', stadion.naziv ]">{{stadion.naziv}} </a>
+            Kapacitet stadiona : {{stadion.kapacitet}}
+        </li>
     </ul>
 </div> 
 <div>Stadioni sa najvecim kapacitetom : 
-    <ul>
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let stadion of najviseUtakmica">
+            Ime stadiona : <a [routerLink]="[ '/pretrazistadione/stadion/', stadion.naziv ]">{{stadion.naziv}} </a>
+            Kapacitet stadiona : {{stadion.kapacitet}}
+        </li>
     </ul>
 </div>
 <div>Rezultati koji odgovaraju pretrazi :
-    <ul>
+    <ul class="list-group">
+        <li 
+            class="list-item" 
+            *ngFor="let stadion of rezultatPretrage">
+            Ime stadiona : <a [routerLink]="[ '/pretrazistadione/stadion/', stadion.naziv ]">{{stadion.naziv}} </a>
+            Kapacitet stadiona : {{stadion.kapacitet}}
+        </li>
     </ul>
 </div>
 <button (click)="goBack()">Nazad</button>
