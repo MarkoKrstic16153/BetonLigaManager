@@ -194,7 +194,8 @@ export class TimoviService {
     this.query=this.apollo.watchQuery({
       query:GET_AWAY_UTAKMICE,
       variables:{nazivTima:nazivTima}
-    })
+    });
+    return this.query.valueChanges;
   }
   getAllUtakmice(nazivTima:String)
   {
@@ -211,7 +212,8 @@ export class TimoviService {
     this.query=this.apollo.watchQuery({
       query:GET_ALL_UTAKMICE,
       variables:{nazivTima:nazivTima}
-    })
+    });
+    return this.query.valueChanges;
   }
   getAllHomeAwayUtakmice(domacin:String,gost:String)
   {
