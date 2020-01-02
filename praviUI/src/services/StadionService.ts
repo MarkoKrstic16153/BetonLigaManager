@@ -104,7 +104,7 @@ export class StadionService {
     });
     return this.query.valueChanges;
   }
-  getStadionStartsWith(word:String){
+  getStadionStartsWith(word:String):any{
     let GET_STADION_STARTS_WITH=gql`
     query GET_STADION_STARTS_WITH($word:String!){
       Stadion(filter:{naziv_starts_with:$word}){
@@ -124,7 +124,7 @@ export class StadionService {
     });
     return this.query.valueChanges;
   }
-  getTimStadion(nazivTima:String){
+  getTimStadion(nazivTima:String):any{
     let GET_TIM_STADION=gql`
     query GET_TIM_STADION($nazivTima:String!){
       Tim(filter:{naziv:$nazivTima}){

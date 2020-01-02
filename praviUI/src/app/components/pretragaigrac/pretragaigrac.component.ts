@@ -13,7 +13,6 @@ import { FormControl } from '@angular/forms';
 })
 export class PretragaigracComponent implements OnInit {
   pretragaPoTimu:string="Pretrazite po timu :";
-  modTimIgraca:string="timigraca";
   modPretrage:string="";
   imeControl = new FormControl();
   pozicijaControl = new FormControl();

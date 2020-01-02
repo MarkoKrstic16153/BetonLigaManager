@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class PretragatimComponent implements OnInit {
   pretragaPoImenu:string="Pretrazite po imenu tima : ";
-  modImeTima:string="imetima";
   obsTimovi:Observable<any>;
   listaSvihTimova:Object[];
   listaLidera:Object[]=[];

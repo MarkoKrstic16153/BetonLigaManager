@@ -159,7 +159,7 @@ export class TimoviService {
       }
     });
   }
-  getAllHomeUtakmice(nazivTima:String)
+  getAllHomeUtakmice(nazivTima:String):any
   {
     let GET_HOME_UTAKMICE=gql`
     query GET_HOME_UTAKMICE($nazivTima:String!){
@@ -178,7 +178,7 @@ export class TimoviService {
     });
     return this.query.valueChanges;
   }
-  getAllAwayUtakmice(nazivTima:String)
+  getAllAwayUtakmice(nazivTima:String):any
   {
     let GET_AWAY_UTAKMICE=gql`
     query GET_AWAY_UTAKMICE($nazivTima:String!){
@@ -196,7 +196,7 @@ export class TimoviService {
       variables:{nazivTima:nazivTima}
     })
   }
-  getAllUtakmice(nazivTima:String)
+  getAllUtakmice(nazivTima:String):any
   {
     let GET_ALL_UTAKMICE=gql`
     query GET_ALL_UTAKMICE($nazivTima:String!){
@@ -212,9 +212,5 @@ export class TimoviService {
       query:GET_ALL_UTAKMICE,
       variables:{nazivTima:nazivTima}
     })
-  }
-  getAllHomeAwayUtakmice(domacin:String,gost:String)
-  {
-    //TODO
   }
 }

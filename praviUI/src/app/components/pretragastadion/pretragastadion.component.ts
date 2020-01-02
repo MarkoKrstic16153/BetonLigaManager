@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class PretragastadionComponent implements OnInit {
   pretragaPoTimu:string="Pretrazite po timu kome pripada stadiona : ";
-  modImeTima:string="imetimstadiona";
   obsImeStadiona:Observable<any>;
   obsImeTimStadiona:Observable<any>;
   imeControl = new FormControl();
@@ -27,18 +26,19 @@ export class PretragastadionComponent implements OnInit {
     this.obsImeTimStadiona=this.timService.getAllTimovi();
     this.imeControl.valueChanges
     .pipe(
-      startWith('/[a-zA-Z]/'),
       filter(podatak => podatak.length>2)
     ).subscribe((pocetakStadiona)=>{
-      console.log(pocetakStadiona);//get stadion starts with;
+      console.log(pocetakStadiona);
+      this.stadionService.getStadionStartsWith(pocetakStadiona.charAt(0).toUpperCase() + pocetakStadiona.slice(1)).subscribe((data)=>{
+        console.log(data);
+      });
     });
     this.stadionService.topKapacitet().subscribe((data)=>{
-      console.log(data.data.Stadion);
       this.najviseKapaciteta = data.data.Stadion;
     });
-    /*this.stadionService.getStadionUtakmice().subscribe((data)=>{
-      console.log(data);
-    });*/
+    this.stadionService.getStadionUtakmice().subscribe((data)=>{
+      this.najviseUtakmica= data.data.Stadion;
+    });
   }
   goBack(){
     this.location.back();
@@ -46,8 +46,10 @@ export class PretragastadionComponent implements OnInit {
 
   pretragaStadiona($tim){
     console.log($tim);
-    //rutiranje na stranu stadiona na kome igra ovaj tim;
-    //this.router.navigate(['/pretrazitimove/tim/', $tim]);
+    this.stadionService.getTimStadion($tim)/*.subscribe((data)=>{
+      console.log(data);
+    });*/
+    //this.router.navigate(['/pretrazistadione/stadion/', $tim]);
   }
 
 }

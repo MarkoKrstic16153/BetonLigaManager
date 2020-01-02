@@ -12,23 +12,23 @@ import { UtakmicaService } from 'src/services/UtakmicaService';
 })
 export class PretragautakmicaComponent implements OnInit {
   pretragaPoImenuTima:string="Pretrazite po imenu tima : ";
-  modImeTima:string="imetimautakmice";
   pretragaPoImenuDomacina:string="Pretrazite po domacinu : ";
-  modImeTimaDomaci:string="imedomacinautakmice";
   pretragaPoImenuGosta:string="Pretrazite po gostu : ";
-  modImeTimaGosti:string="imegostautakmice";
   obsImeTimaUtakmice:Observable<any>;
   obsImeDomacinaUtakmice:Observable<any>;
   obsImeGostaUtakmice:Observable<any>;
+  obsImeTima:Observable<any>;
+  obsImeDomacina:Observable<any>;
+  obsImeGosta:Observable<any>;
   utakmiceSaNajviseGolova:Object[];
   rezultatPretrage:Object[];
-  gost:string="";
-  domacin:string="";
   modPretrage:string="";
   constructor(private location:Location,private timService:TimoviService,private utakmicaService:UtakmicaService) { }
 
   ngOnInit() {
-    this.obsImeTimaUtakmice=this.obsImeGostaUtakmice=this.obsImeDomacinaUtakmice = this.timService.getAllTimovi();
+    this.obsImeTimaUtakmice= this.timService.getAllTimovi();
+    this.obsImeGostaUtakmice= this.timService.getAllTimovi();
+    this.obsImeDomacinaUtakmice = this.timService.getAllTimovi();
     this.utakmicaService.getGoloviUtakmice().subscribe((data)=>{
       this.utakmiceSaNajviseGolova=data.data.Utakmica;
     });
@@ -37,22 +37,30 @@ export class PretragautakmicaComponent implements OnInit {
     this.location.back();
   }
   pretraziUtakmiceTima($tim){
-    console.log($tim);
+    this.rezultatPretrage=[];
     this.modPretrage=" po nazivu tima : ";
-  }
-  pretraziUtakmiceGosta($tim){
-    this.gost=$tim;
-    this.modPretrage=" po nazivu gosta : ";
+    this.obsImeTima=this.timService.getAllUtakmice($tim);
+    this.obsImeTima.subscribe((data)=>{
+      console.log(data.data.Tim);
+    });
   }
   pretraziUtakmiceDomacina($tim){
-    this.domacin=$tim;
+    this.rezultatPretrage=[];
     this.modPretrage=" po nazivu domacina : ";
+    this.obsImeDomacina=this.timService.getAllHomeUtakmice($tim);
+    this.obsImeDomacina.subscribe((data)=>{
+      let pomNiz=data.data.Tim[0].utakmica;
+      pomNiz.forEach(element => {
+        this.rezultatPretrage.push(element.Utakmica);
+      });
+    });
   }
-  duplaPretraga(){
-    if(this.domacin!="" && this.gost!="" && this.domacin!=this.gost)
-    {
-      console.log('moze pretraga');
-      this.modPretrage=" po nazivu domacina i gosta : ";
-    }
+  pretraziUtakmiceGosta($tim){
+    this.rezultatPretrage=[];
+    this.modPretrage=" po nazivu gosta : ";
+    this.obsImeGosta=this.timService.getAllAwayUtakmice($tim);
+    this.obsImeGosta.subscribe((data)=>{
+      console.log(data)
+    });
   }
 }
