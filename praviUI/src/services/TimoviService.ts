@@ -167,7 +167,8 @@ export class TimoviService {
         utakmica(filter:{uloga:"domacin"}){
           Utakmica{
             datum,
-            vreme
+            vreme,
+            naziv
           }
         }
       }
@@ -186,7 +187,8 @@ export class TimoviService {
         utakmica(filter:{uloga:"gost"}){
           Utakmica{
             datum,
-            vreme
+            vreme,
+            naziv
           }
         }
       }
@@ -204,7 +206,9 @@ export class TimoviService {
       Tim(filter:{naziv:$nazivTima}){
         utakmica{
           Utakmica{
-            naziv
+            naziv,
+            datum,
+            vreme
           }
         }
       }

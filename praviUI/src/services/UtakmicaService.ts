@@ -108,6 +108,7 @@ export class UtakmicaService {
         Utakmica {
           datum,
           vreme,
+          naziv
           golovi {
             vreme,
             Igrac {

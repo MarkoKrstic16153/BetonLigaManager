@@ -13,8 +13,8 @@
         <li 
             class="list-item" 
             *ngFor="let utakmica of utakmiceSaNajviseGolova">
-            <a [routerLink]="[ '/pretraziutakmice/utakmica/', utakmica.vreme ]">{{utakmica.datum}} </a>
-              {{utakmica.vreme}}
+            Naziv : {{utakmica.naziv}}<a [routerLink]="[ '/pretraziutakmice/utakmica/', utakmica.vreme ]">, Datum : {{utakmica.datum}} </a>
+            , Vreme : {{utakmica.vreme}} , Broj golova : {{utakmica.golovi.length}}
         </li>
     </ul>
 </div> 
@@ -23,8 +23,8 @@
         <li 
             class="list-item" 
             *ngFor="let pod of rezultatPretrage">
-            <a [routerLink]="[ '/pretraziutakmice/utakmica/', pod.datum ]">{{pod.datum}} </a>
-              {{pod.vreme}}
+            Naziv : {{pod.naziv}} <a [routerLink]="[ '/pretraziutakmice/utakmica/', pod.datum ]">, Datum : {{pod.datum}} </a>
+             , Vreme : {{pod.vreme}}
         </li>
     </ul>
 </div>

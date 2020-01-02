@@ -146,6 +146,7 @@ export class StadionService {
         nazivTima:nazivTima
       }
     })
+    return this.query.valueChanges;
   }
   getSlicnePoKapacitetu(minKapacitet:Number,maxKapacitet:Number,nazivStadiona?:String){
     let GET_PO_KAPACITETU=gql`

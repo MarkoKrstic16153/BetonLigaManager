@@ -30,7 +30,7 @@ export class PretragastadionComponent implements OnInit {
     ).subscribe((pocetakStadiona)=>{
       console.log(pocetakStadiona);
       this.stadionService.getStadionStartsWith(pocetakStadiona.charAt(0).toUpperCase() + pocetakStadiona.slice(1)).subscribe((data)=>{
-        console.log(data);
+        console.log(data);//ne radi;
       });
     });
     this.stadionService.topKapacitet().subscribe((data)=>{
@@ -46,10 +46,10 @@ export class PretragastadionComponent implements OnInit {
 
   pretragaStadiona($tim){
     console.log($tim);
-    this.stadionService.getTimStadion($tim)/*.subscribe((data)=>{
-      console.log(data);
-    });*/
-    //this.router.navigate(['/pretrazistadione/stadion/', $tim]);
+    this.stadionService.getTimStadion($tim).subscribe((data)=>{
+      console.log(data.data.Stadion);
+      this.router.navigate(['/pretrazistadione/stadion/', data.data.Stadion[0].naziv]);//zasto ide test1 stadion kod svih, treba da bude samo jedan;pogledaj console log;
+    });
   }
 
 }

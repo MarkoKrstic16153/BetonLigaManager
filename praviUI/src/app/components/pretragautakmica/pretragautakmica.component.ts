@@ -31,6 +31,7 @@ export class PretragautakmicaComponent implements OnInit {
     this.obsImeDomacinaUtakmice = this.timService.getAllTimovi();
     this.utakmicaService.getGoloviUtakmice().subscribe((data)=>{
       this.utakmiceSaNajviseGolova=data.data.Utakmica;
+      console.log(this.utakmiceSaNajviseGolova);
     });
   }
   goBack(){
@@ -41,7 +42,11 @@ export class PretragautakmicaComponent implements OnInit {
     this.modPretrage=" po nazivu tima : ";
     this.obsImeTima=this.timService.getAllUtakmice($tim);
     this.obsImeTima.subscribe((data)=>{
-      console.log(data.data.Tim);
+      console.log(data.data.Tim[0].utakmica);
+      let pomNiz=data.data.Tim[0].utakmica;
+      pomNiz.forEach(element => {
+        this.rezultatPretrage.push(element.Utakmica);
+      });
     });
   }
   pretraziUtakmiceDomacina($tim){
@@ -60,7 +65,10 @@ export class PretragautakmicaComponent implements OnInit {
     this.modPretrage=" po nazivu gosta : ";
     this.obsImeGosta=this.timService.getAllAwayUtakmice($tim);
     this.obsImeGosta.subscribe((data)=>{
-      console.log(data)
+      let pomNiz=data.data.Tim[0].utakmica;
+      pomNiz.forEach(element => {
+        this.rezultatPretrage.push(element.Utakmica);
+      });
     });
   }
 }
