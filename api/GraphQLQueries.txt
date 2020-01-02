@@ -371,3 +371,10 @@ query GET_ALL_UTAKMICE($nazivTima:String!){
     }
   }
 }
+query GET_PO_KAPACITETU($minKapacitet:Int!,$maxKapacitet:Int!,$nazivStadiona:String){
+  Stadion(filter:{kapacitet_gte:$minKapacitet,kapacitet_lte:$maxKapacitet,naziv_not:$nazivStadiona}){
+    naziv,
+    kapacitet,
+    adresa
+  }
+}

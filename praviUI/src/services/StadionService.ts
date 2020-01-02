@@ -29,9 +29,15 @@ export class StadionService {
     let GET_STADION = gql`
       query GET_STADION($nazivStadiona: String) {
         Stadion(filter: { naziv_contains: $nazivStadiona }) {
-          naziv
-          kapacitet
-          adresa
+          naziv,
+          kapacitet,
+          adresa,
+          opis,
+          tim{
+            Tim{
+              naziv
+            }
+          }
         }
       }
     `;
@@ -118,9 +124,9 @@ export class StadionService {
     });
     return this.query.valueChanges;
   }
-  getStadionTim(nazivTima:String){
-    let GET_STADION_TIM=gql`
-    query GET_STADION_TIM($nazivTima:String!){
+  getTimStadion(nazivTima:String){
+    let GET_TIM_STADION=gql`
+    query GET_TIM_STADION($nazivTima:String!){
       Tim(filter:{naziv:$nazivTima}){
         naziv,
         stadion{
@@ -134,10 +140,29 @@ export class StadionService {
       }
     }`;
     this.apollo.mutate({
-      mutation:GET_STADION_TIM,
+      mutation:GET_TIM_STADION,
       variables:{
         nazivTima:nazivTima
       }
     })
+  }
+  getSlicnePoKapacitetu(minKapacitet:Number,maxKapacitet:Number,nazivStadiona?:String){
+    let GET_PO_KAPACITETU=gql`
+    query GET_PO_KAPACITETU($minKapacitet:Int!,$maxKapacitet:Int!,$nazivStadiona:String){
+      Stadion(filter:{kapacitet_gte:$minKapacitet,kapacitet_lte:$maxKapacitet,naziv_not:$nazivStadiona}){
+        naziv,
+        kapacitet,
+        adresa
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:GET_PO_KAPACITETU,
+      variables:{
+        minKapacitet:minKapacitet,
+        maxKapacitet:maxKapacitet,
+        nazivStadiona:nazivStadiona
+      }
+    });
+    return this.query.valueChanges;
   }
 }

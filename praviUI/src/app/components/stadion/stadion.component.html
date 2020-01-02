@@ -1,10 +1,16 @@
-<h3>Ime Stadiona</h3>
-<div>Tim kome pripada : tim</div>
-<div>Kapacitet stadiona :kap</div>
-<div>Adresa stadiona : adr</div>
-<div>Opis stadiona: opis</div>
-<h4>Slicni stadioni po kapacitetu :
-    <ul>
-    </ul>
-</h4>
+<div *ngIf="loadingStadion">Stadion se ucitava</div>
+<div *ngIf="!loadingStadion">
+    <h3>{{stadion.naziv}}</h3>
+    <div>Tim kome pripada : {{stadion.tim[0].Tim.naziv}}</div>
+    <div>Kapacitet stadiona :{{stadion.kapacitet}}</div>
+    <div>Adresa stadiona : {{stadion.adresa}}</div>
+    <div>Opis stadiona: {{stadion.opis}}</div>
+    <h4>Slicni stadioni po kapacitetu :
+        <ul *ngIf="!loadingSlicni">
+            <li *ngFor="let stadion of slicniStadioni">
+                <a [routerLink]="[ '/pretrazistadione/stadion', stadion.naziv ]">{{stadion.naziv}}</a>
+            </li>
+        </ul>
+    </h4>
+</div>
 <button (click)="goBack()">Nazad</button>

@@ -10,7 +10,7 @@
     <ul class="list-group">
         <li 
             class="list-item" 
-            *ngFor="let stadion of najviseKapaciteta">
+            *ngFor="let stadion of najviseUtakmica">
             Ime stadiona : <a [routerLink]="[ '/pretrazistadione/stadion/', stadion.naziv ]">{{stadion.naziv}} </a>
             Kapacitet stadiona : {{stadion.kapacitet}}
         </li>
@@ -20,7 +20,7 @@
     <ul class="list-group">
         <li 
             class="list-item" 
-            *ngFor="let stadion of najviseUtakmica">
+            *ngFor="let stadion of najviseKapaciteta">
             Ime stadiona : <a [routerLink]="[ '/pretrazistadione/stadion/', stadion.naziv ]">{{stadion.naziv}} </a>
             Kapacitet stadiona : {{stadion.kapacitet}}
         </li>

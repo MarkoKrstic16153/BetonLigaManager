@@ -1,16 +1,23 @@
-<h3>Ime tima</h3>
-<div>Opis tima : opis</div>
-<div>Broj nastupa : </div>
-<div>Broj pobeda : </div>
-<div>Broj neresenih : </div>
-<div>Broj poraza : </div>
-<div>Trenutna pozicija na tabeli : </div>
-<div>Trenutni broj poena : </div>
-<div>Trenutni broj postiglih golova : </div>
-<div>Trenutni broj primljenjih golova : </div>
-<div>Lista igraca : </div>
-<h4>Slicni timovi rangu na tabeli :
-    <ul>
-    </ul>
-</h4>
+<div *ngIf="!loadingTim">
+    <h3>{{tim.naziv}}</h3>
+    <div>Opis tima : {{tim.opis}}</div>
+    <div>Broj nastupa : {{tim.brojPobeda+tim.brojPoraza+tim.nereseno}} </div>
+    <div>Broj pobeda : {{tim.brojPobeda}}</div>
+    <div>Broj neresenih : {{tim.nereseno}}</div>
+    <div>Broj poraza : {{tim.brojPoraza}}</div>
+    <div *ngIf="!loadingSlicni">Trenutna pozicija na tabeli : {{trenutnaPozicijaNaTabli+1}}</div>
+    <div>Trenutni broj poena : {{tim.brojPoenaTabela}}</div>
+    <div>Trenutni broj postiglih golova : {{tim.postignutiGolovi}}</div>
+    <div>Trenutni broj primljenjih golova : {{tim.primljeniGolovi}}</div>
+    <div>Lista igraca : 
+        <ul>
+            <li *ngFor="let igrac of tim.igraci"><a [routerLink]="[ '/pretraziigrace/igrac', igrac.Igrac.brojTelefona ]">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</a></li>
+        </ul>
+    </div>
+    <h4>Slicni timovi rangu na tabeli :
+        <ul *ngIf="slicniTimovi">
+            <li *ngFor="let tim of slicniTimovi"><a [routerLink]="[ '/pretrazitimove/tim', tim.naziv ]">{{tim.naziv}}</a></li>
+        </ul>
+    </h4>
+</div>
 <button (click)="goBack()">Nazad</button>

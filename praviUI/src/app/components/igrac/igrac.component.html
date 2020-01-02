@@ -1,7 +1,7 @@
 <div *ngIf="loadingIgrac">Podaci o Igracu se Ucitavaju</div>
 <div *ngIf="!loadingIgrac">
     <h3>{{igrac.ime}} {{igrac.prezime}}</h3>
-    <div>Tim za koji nastupa : {{igrac.tim[0].Tim.naziv}}</div>
+    <div>Tim za koji nastupa : <a [routerLink]="[ '/pretrazitimove/tim', igrac.tim[0].Tim.naziv ]">{{igrac.tim[0].Tim.naziv}}</a> </div>
     <div>Broj dresa : {{igrac.brojDresa}}</div>
     <div>Pozicija na kojoj igra : {{igrac.pozicija}}</div>
     <div>Broj Nastupa : {{igrac.utakmice.length}}</div>

@@ -53,8 +53,17 @@ export class TimoviService {
           postignutiGolovi,
           primljeniGolovi,
           brojPobeda,
+          brojPoenaTabela,
           brojPoraza,
-          nereseno
+          nereseno,
+          igraci{
+            Igrac{
+              ime,
+              prezime,
+              brojDresa,
+              brojTelefona
+            }
+          }
         }
       }`;
     this.query = this.apollo.watchQuery({
