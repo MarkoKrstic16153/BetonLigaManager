@@ -120,7 +120,8 @@ export class StadionService {
       }
     }`;
     this.query=this.apollo.watchQuery({
-      query:GET_STADION_STARTS_WITH
+      query:GET_STADION_STARTS_WITH,
+      variables:{word:word}
     });
     return this.query.valueChanges;
   }
@@ -139,8 +140,8 @@ export class StadionService {
         }
       }
     }`;
-    this.apollo.mutate({
-      mutation:GET_TIM_STADION,
+    this.apollo.watchQuery({
+      query:GET_TIM_STADION,
       variables:{
         nazivTima:nazivTima
       }
