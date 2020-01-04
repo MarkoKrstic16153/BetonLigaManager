@@ -102,10 +102,10 @@ export class UtakmicaService {
       }
     });
   }
-  getGoloviUtakmice() {
+  getGoloviUtakmice(datumUtakmice:string,vremeUtakmice:string) {
     let GET_GOLOVI_UTAKMICE = gql`
-      query GET_GOLOVI_UTAKMICE {
-        Utakmica {
+      query GET_GOLOVI_UTAKMICE($datumUtakmice:String!,$vremeUtakmice:String!){
+        Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
           datum,
           vreme,
           naziv
@@ -120,7 +120,112 @@ export class UtakmicaService {
         }
       }`;
     this.query= this.apollo.watchQuery({
-      query: GET_GOLOVI_UTAKMICE
+      query: GET_GOLOVI_UTAKMICE,
+      variables:{
+        datumUtakmice:datumUtakmice,
+        vremeUtakmice:vremeUtakmice
+      }
+    });
+    return this.query.valueChanges;
+  }
+  getUtakmica(datumUtakmice:string,vremeUtakmice:string){
+    let GET_UTAKMICA=gql`
+    query GET_UTAKMICA($datumUtakmice:String!,$vremeUtakmice:String!){
+      Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
+        naziv,
+        datum,
+        vreme,
+        opis,
+        stadion{
+          Stadion{
+            naziv
+          }
+        }
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:GET_UTAKMICA,
+      variables:{
+        datumUtakmice:datumUtakmice,
+        vremeUtakmice:vremeUtakmice
+      }
+    });
+    return this.query.valueChanges;
+  }
+  getBrGolovaDomGost(datumUtakmice:string,vremeUtakmice:string)
+  {
+    let BR_GOLOVA_DOM_GOST=gql`
+    query BR_GOLOVA_DOM_GOST($datumUtakmice:String!,$vremeUtakmice:String!){
+      Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
+        timovi{
+          uloga,
+          golovi,
+          Tim{
+            naziv
+          }
+        }
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:BR_GOLOVA_DOM_GOST,
+      variables:{
+        datumUtakmice:datumUtakmice,
+        vremeUtakmice:vremeUtakmice
+      }
+    });
+    return this.query.valueChanges;
+  }
+  getSastavGost(datumUtakmice:string,vremeUtakmice:string){
+    let GET_SASTAV_GOST=gql`
+    query GET_SASTAV_GOST($datumUtakmice:String!,$vremeUtakmice:String!){
+      Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
+        timovi(filter:{uloga:"gost"}){
+          Tim{
+            igraci{
+              Igrac{
+                ime,
+                prezime,
+                brojDresa,
+                brojTelefona
+              }
+            }
+          }
+        }
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:GET_SASTAV_GOST,
+      variables:{
+        datumUtakmice:datumUtakmice,
+        vremeUtakmice:vremeUtakmice
+      }
+    });
+    return this.query.valueChanges;
+  }
+  getSastavDomacin(datumUtakmice:string,vremeUtakmice:string){
+    let GET_SASTAV_DOMACIN=gql`
+    query GET_SASTAV_DOMACIN($datumUtakmice:String!,$vremeUtakmice:String!){
+      Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
+        timovi(filter:{uloga:"domacin"}){
+          Tim{
+            igraci{
+              Igrac{
+                ime,
+                prezime,
+                brojDresa,
+                brojTelefona
+              }
+            }
+          }
+        }
+      }
+    }`;
+    this.query=this.apollo.watchQuery({
+      query:GET_SASTAV_DOMACIN,
+      variables:{
+        datumUtakmice:datumUtakmice,
+        vremeUtakmice:vremeUtakmice
+      }
     });
     return this.query.valueChanges;
   }

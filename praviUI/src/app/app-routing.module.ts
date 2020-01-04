@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: "admin/dodajutakmicu", component: DodajutakmicuComponent },
   { path: "admin", component: AdminrouterComponent },
   { path: "tabela", component: TabelaComponent },
-  { path: "pretraziutakmice/utakmica/:utakmica", component: UtakmicaComponent },
+  { path: "pretraziutakmice/utakmica/:datum/:vreme", component: UtakmicaComponent },
   { path: "pretraziigrace/igrac/:id", component: IgracComponent },
   { path: "pretrazitimove/tim/:nazivTima", component: TimComponent },
   { path: "pretrazistadione/stadion/:nazivStadiona", component: StadionComponent },

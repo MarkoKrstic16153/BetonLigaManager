@@ -1,19 +1,24 @@
-<h3>Ime domacina Ime gosta</h3>
-<div>Opis utakmice : </div>
-<div>Datum odigranja utakmice : </div>
-<div>Vreme pocetka utakmice : </div>
-<div>Rezultat => Domaci brDomaci : brGosti Gosti </div>
-<div>Ishod => pobeda/nereseno/poraz</div>
-<h4>Sastav Domacih : 
+<div *ngIf="!loadingUtakmica && !loadingRezulatat">
+    <h3>{{domacin.Tim.naziv}} {{gost.Tim.naziv}}</h3>
+    <div>Opis utakmice : {{utakmica.opis}} </div>
+    <div>Datum odigranja utakmice : {{utakmica.datum}}</div>
+    <div>Vreme pocetka utakmice : {{utakmica.vreme}}</div>
+    <div>Rezultat => {{domacin.Tim.naziv}} {{domacin.golovi}} : {{gost.golovi}} {{gost.Tim.naziv}} </div>
+    <div *ngIf="ishodUtakmice">Ishod => {{ishodUtakmice}}</div>
+    <h4 *ngIf="!loadingDomaciSastav">Sastav Domacih : 
     <ul>
+        <li *ngFor="let igrac of domaciSastav">{{igrac.ime}} {{igrac.prezime}} {{igrac.brojDresa}}</li>
     </ul>
-</h4>
-<h4>Sastav Gostiju : 
-    <ul>
-    </ul>
-</h4>
-<h4>Strelci na mecu :
-    <ul>
-    </ul>
-</h4>
+    </h4>
+    <h4 *ngIf="!loadingGostujuciSastav">Sastav Gostiju : 
+        <ul>
+            <li *ngFor="let igrac of gostujuciSastav">{{igrac.ime}} {{igrac.prezime}} {{igrac.brojDresa}}</li>
+        </ul>
+    </h4>
+    <h4 *ngIf="!loadingStrelci">Strelci na mecu :
+        <ul>
+            <li *ngFor="let strelac of strelci">{{strelac.vreme}} {{strelac.Igrac.ime}} {{strelac.Igrac.prezime}} {{strelac.Igrac.brojDresa}}</li>
+        </ul>
+    </h4>
+    </div>
 <button (click)="goBack()">Nazad</button>

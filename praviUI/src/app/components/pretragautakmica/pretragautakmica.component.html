@@ -13,7 +13,7 @@
         <li 
             class="list-item" 
             *ngFor="let utakmica of utakmiceSaNajviseGolova">
-            Naziv : {{utakmica.naziv}}<a [routerLink]="[ '/pretraziutakmice/utakmica/', utakmica.vreme ]">, Datum : {{utakmica.datum}} </a>
+            Naziv : {{utakmica.naziv}}<a [routerLink]="[ '/pretraziutakmice/utakmica/', utakmica.datum,utakmica.vreme ]">, Datum : {{utakmica.datum}} </a>
             , Vreme : {{utakmica.vreme}} , Broj golova : {{utakmica.golovi.length}}
         </li>
     </ul>

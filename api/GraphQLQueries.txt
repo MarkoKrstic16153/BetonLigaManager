@@ -378,3 +378,59 @@ query GET_PO_KAPACITETU($minKapacitet:Int!,$maxKapacitet:Int!,$nazivStadiona:Str
     adresa
   }
 }
+query GET_UTAKMICA($datumUtakmice:String!,$vremeUtakmice:String!){
+  Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
+    naziv,
+    datum,
+    vreme,
+    opis,
+    stadion{
+      Stadion{
+				naziv
+      }
+    }
+  }
+}
+query BR_GOLOVA_DOM_GOST($datumUtakmice:String!,$vremeUtakmice:String!){
+  Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
+    timovi{
+      uloga,
+      golovi,
+      Tim{
+        naziv
+      }
+    }
+  }
+}
+query GET_SASTAV_DOMACIN($datumUtakmice:String!,$vremeUtakmice:String!){
+  Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
+    timovi(filter:{uloga:"domacin"}){
+      Tim{
+        igraci{
+          Igrac{
+            ime,
+            prezime,
+            brojDresa,
+            brojTelefona
+          }
+        }
+      }
+    }
+  }
+}
+query GET_SASTAV_GOST($datumUtakmice:String!,$vremeUtakmice:String!){
+      Utakmica(filter:{datum:$datumUtakmice,vreme:$vremeUtakmice}){
+        timovi(filter:{uloga:"gost"}){
+          Tim{
+            igraci{
+              Igrac{
+                ime,
+                prezime,
+                brojDresa,
+                brojTelefona
+              }
+            }
+          }
+        }
+      }
+    }
