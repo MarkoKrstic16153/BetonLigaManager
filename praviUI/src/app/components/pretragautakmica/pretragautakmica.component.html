@@ -23,7 +23,7 @@
         <li 
             class="list-item" 
             *ngFor="let pod of rezultatPretrage">
-            Naziv : {{pod.naziv}} <a [routerLink]="[ '/pretraziutakmice/utakmica/', pod.datum ]">, Datum : {{pod.datum}} </a>
+            Naziv : {{pod.naziv}} <a [routerLink]="[ '/pretraziutakmice/utakmica/', pod.datum,pod.vreme  ]">, Datum : {{pod.datum}} </a>
              , Vreme : {{pod.vreme}}
         </li>
     </ul>

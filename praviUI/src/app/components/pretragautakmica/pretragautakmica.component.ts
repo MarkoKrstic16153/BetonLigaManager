@@ -29,10 +29,10 @@ export class PretragautakmicaComponent implements OnInit {
     this.obsImeTimaUtakmice= this.timService.getAllTimovi();
     this.obsImeGostaUtakmice= this.timService.getAllTimovi();
     this.obsImeDomacinaUtakmice = this.timService.getAllTimovi();
-    // this.utakmicaService.getGoloviUtakmice().subscribe((data)=>{
-    //   this.utakmiceSaNajviseGolova=data.data.Utakmica;
-    //   console.log(this.utakmiceSaNajviseGolova);
-    // });
+    //this.utakmicaService.getGoloviUtakmice().subscribe((data)=>{
+    //this.utakmiceSaNajviseGolova=data.data.Utakmica;
+    // console.log(this.utakmiceSaNajviseGolova);
+    //});
   }
   goBack(){
     this.location.back();
