@@ -17,7 +17,7 @@
     </h4>
     <h4 *ngIf="!loadingStrelci">Strelci na mecu :
         <ul>
-            <li *ngFor="let strelac of strelci">{{strelac.vreme}} {{strelac.Igrac.ime}} {{strelac.Igrac.prezime}} {{strelac.Igrac.brojDresa}}</li>
+            <li *ngFor="let strelac of strelci">{{strelac.vreme}} {{strelac.Igrac.ime}} {{strelac.Igrac.prezime}} {{strelac.Igrac.brojDresa}} {{strelac.Igrac.tim[0].Tim.naziv}}</li>
         </ul>
     </h4>
     </div>

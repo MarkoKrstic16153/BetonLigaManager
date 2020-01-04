@@ -114,7 +114,12 @@ export class UtakmicaService {
             Igrac {
               ime,
               prezime,
-              brojDresa
+              brojDresa,
+              tim{
+                Tim{
+                  naziv
+                }
+              }
             }
           }
         }
