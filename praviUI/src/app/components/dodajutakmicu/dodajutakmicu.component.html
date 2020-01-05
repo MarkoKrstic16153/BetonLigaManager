@@ -1,3 +1,4 @@
+<h2>Dodajte novu utakmicu : </h2>
 <div class="form-group">
     <label for="vremeControl">Vreme odigravanja utakmice :</label>
    <input 
@@ -47,29 +48,30 @@
     <div *ngIf="daLiSuEkipeIste()">Ekipe Moraju Biti Razlicite</div>
 </div>
 <div *ngIf="!(daLiEkipeNisuIzabrane() || daLiSuEkipeIste())">
+    <div>Utakmica se igra na stadionu : {{stadionDomacih}}</div>
 <div class="form-group" *ngIf="sviIgraciDomaci">
     <label for="">Izaberite igrace domacih :</label>
     <select [formControl]="igraciDomaciControl">
-        <option *ngFor="let igrac of sviIgraciDomaci" [value] ="igrac.Igrac.ime+' '+igrac.Igrac.prezime +' '+ igrac.Igrac.brojDresa">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</option>
+        <option *ngFor="let igrac of sviIgraciDomaci" [ngValue] ="igrac.Igrac">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</option>
     </select>
     <button *ngIf="izabraniDomaci.length<5" (click)="dodajIgracaDomacih()">Dodaj igraca domacih</button>
     <ul *ngIf="izabraniDomaci.length>0">
         <div>Trenutni Sastav Domacih : </div>
         <li *ngFor="let ig of izabraniDomaci">
-            {{ig}} <button (click)="izbaciIzTima(ig,izabraniDomaci)">Izbaci</button> <button *ngIf="ekipeSetovane()" (click)="dajGolDomaci(ig)">Postigo Gol</button>
+            {{ig.ime}} {{ig.prezime}} {{ig.brojDresa}}<button (click)="izbaciIzTima(ig,izabraniDomaci)">Izbaci</button> <button *ngIf="ekipeSetovane()" (click)="dajGolDomaci(ig)">Postigo Gol</button>
         </li>
     </ul>
 </div>
 <div class="form-group" *ngIf="sviIgraciGosti">
     <label for="">Izaberite igrace gostujucih :</label>
     <select [formControl]="igraciGostiControl">
-        <option *ngFor="let igrac of sviIgraciGosti" [value] ="igrac.Igrac.ime+' '+ igrac.Igrac.prezime +' '+igrac.Igrac.brojDresa">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</option>
+        <option *ngFor="let igrac of sviIgraciGosti" [ngValue] ="igrac.Igrac">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</option>
     </select>
     <button *ngIf="izabraniGosti.length<5" (click)="dodajIgracaGostujucih()">Dodaj igraca gostujucih</button>
     <ul *ngIf="izabraniGosti.length>0">
         <div>Trenutni Sastav Gostiju : </div>
         <li *ngFor="let ig of izabraniGosti">
-            {{ig}} <button (click)="izbaciIzTima(ig,izabraniGosti)">Izbaci</button> <button *ngIf="ekipeSetovane()" (click)="dajGolGosti(ig)">Postigo Gol</button>
+            {{ig.ime}} {{ig.prezime}} {{ig.brojDresa}} <button (click)="izbaciIzTima(ig,izabraniGosti)">Izbaci</button> <button *ngIf="ekipeSetovane()" (click)="dajGolGosti(ig)">Postigo Gol</button>
         </li>
     </ul>
 </div>
@@ -77,7 +79,7 @@
     <div>Strelci Prvog Tima :</div>
     <ul>
         <li *ngFor="let ig of strelciDomaci">
-            {{ig}} 
+            {{ig.Igrac.ime}} {{ig.Igrac.prezime}} {{ig.Igrac.brojDresa}}
         </li>
     </ul>
 </div>
@@ -85,7 +87,7 @@
     <div>Strelci Drugog Tima :</div>
     <ul>
         <li *ngFor="let ig of strelciGosti">
-            {{ig}}
+            {{ig.Igrac.ime}} {{ig.Igrac.prezime}} {{ig.Igrac.brojDresa}}
         </li>
     </ul>
 </div>
@@ -98,7 +100,7 @@
        [formControl]="vremeGolControl"/>
 </div>
 <div>Trenutni Rezultat : {{domaciGolovi}} {{gostiGolovi}}</div>
-<button (click)="dodajUtakmicu()">
+<button *ngIf="ekipeSetovane()"(click)="dodajUtakmicu()">
     Dodaj Utakmicu
 </button>
 </div>

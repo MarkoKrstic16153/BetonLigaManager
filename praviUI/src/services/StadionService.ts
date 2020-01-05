@@ -140,7 +140,7 @@ export class StadionService {
         }
       }
     }`;
-    this.apollo.watchQuery({
+    this.query=this.apollo.watchQuery({
       query:GET_TIM_STADION,
       variables:{
         nazivTima:nazivTima

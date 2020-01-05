@@ -10,15 +10,15 @@ export class UtakmicaService {
   createUtakmica(nazivUtakmice: String,datumUtakmice: String,vremeUtakmice: String,opisUtakmice: String) {
     let CREATE_UTAKMICA = gql`
       mutation CREATE_UTAKMICA(
-        $nazivUtakmice: String!S
-        $datumUtakmice: String!
-        $vremeUtakmice: String!
+        $nazivUtakmice: String!,
+        $datumUtakmice: String!,
+        $vremeUtakmice: String!,
         $opisUtakmice: String!
       ) {
         CreateUtakmica(
-          naziv: $nazivUtakmice
-          datum: $datumUtakmice
-          vreme: $vremeUtakmice
+          naziv: $nazivUtakmice,
+          datum: $datumUtakmice,
+          vreme: $vremeUtakmice,
           opis: $opisUtakmice
         ) {
           naziv
@@ -50,15 +50,15 @@ export class UtakmicaService {
           data: { uloga: $uloga, golovi: $golovi }
         ) {
           from {
-            naziv
+            naziv,
             opis
           },
           to {
-            naziv
-            datum
+            naziv,
+            datum,
             vreme
           },
-          uloga
+          uloga,
           golovi
         }
       }
