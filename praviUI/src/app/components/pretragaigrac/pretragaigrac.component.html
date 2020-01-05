@@ -25,7 +25,7 @@
             class="list-item" 
             *ngFor="let igrac of topStrelci">
             <a [routerLink]="[ '/pretraziigrace/igrac/', igrac.brojTelefona ]">{{igrac.ime}} </a>
-            Broj golova:{{igrac.golovi.length}}
+            Broj golova : {{igrac.golovi.length}}
         </li>
     </ul>
 </div> 
@@ -35,7 +35,7 @@
             class="list-item" 
             *ngFor="let igrac of najIskusnijiIgraci">
             <a [routerLink]="[ '/pretraziigrace/igrac/', igrac.brojTelefona ]">{{igrac.ime}} </a>
-            Broj golova:{{igrac.golovi.length}}
+            Broj nastupa : {{igrac.utakmice.length}}
         </li>
     </ul>
 </div>

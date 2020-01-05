@@ -71,8 +71,8 @@ export class PretragaigracComponent implements OnInit {
       this.topStrelci = data.Igrac;
     });
     this.igracService.getTopIskustvo().subscribe(data => {
-      console.log(data.data.Igrac); //kod mene je prazna baza tako da ne mogu da testiram ovo ali msm da je ok;
-      this.najIskusnijiIgraci = data.data.Igrac;
+      console.log(data.data.Igrac); 
+      this.najIskusnijiIgraci = data.data.Igrac.reverse().splice(0,5);
     });
   }
   goBack() {
@@ -81,14 +81,11 @@ export class PretragaigracComponent implements OnInit {
 
   pretraziIgraceTima($tim: any) {
     this.rezultatPretrage = [];
-    console.log($tim);
     this.obsChild = this.igracService.getIgraciTim($tim);
     this.obsChild.subscribe(data => {
-      console.log(data.data.Tim);
       data.data.Tim[0].igraci.forEach(element => {
         this.rezultatPretrage.push(element.Igrac);
       });
-      console.log(this.rezultatPretrage);
     });
   }
 }
