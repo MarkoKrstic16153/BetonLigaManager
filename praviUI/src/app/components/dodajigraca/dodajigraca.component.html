@@ -1,65 +1,65 @@
-<h2>Dodajte novog Igraca : </h2>
-<div class="form-group">
-     <label for="imeControl">Ime :</label>
-    <input 
-        type ="text" 
-        name="imeControl"
-        class="form-control" 
-        [formControl]="imeControl"/>
-</div>
-<div class="form-group">
-    <label for="prezimeControl">Prezime :</label>
-   <input 
-       type ="text" 
-       name="prezimeControl"
-       class="form-control" 
-       [formControl]="prezimeControl"/>
-</div>
-<div class="form-group">
-    <label for="brojDresaControl">Broj dresa :</label>
-   <input 
-       type ="text" 
-       name="brojDresaControl"
-       class="form-control" 
-       [formControl]="brojDresaControl"/>
-</div>
-<div class="form-group">
-    <label for="godRodjenjaControl">Godina rodjenja :</label>
-   <input 
-       type ="text" 
-       name="godRodjenjaControl"
-       class="form-control" 
-       [formControl]="godRodjenjaControl"/>
-</div>
-<div class="form-group">
-    <label for="brojTelefonaControl">Broj telefona :</label>
-   <input 
-       type ="text" 
-       name="brojTelefonaControl"
-       class="form-control" 
-       [formControl]="brojTelefonaControl"/>
-</div>
-<div class="form-group">
-    <label for="opisControl">Opis :</label>
-   <input 
-       type ="text" 
-       name="opisControl"
-       class="form-control" 
-       [formControl]="opisControl"/>
-</div>
-<div class="form-group">
-    <label for="pozicijaControl">Pozicija :</label>
-    <select [formControl]="pozicijaControl">
-        <option *ngFor="let pozicija of pozicije" [value] ="pozicija">{{pozicija}}</option>
-    </select>
-</div>
-<div class="form-group" *ngIf="timovi">
+<h2>Dodajte novog Igraca :</h2>
+
+<div class="form-group container">
+  <img class="img-thumbnail" src="../../../assets/images/Igrac.png" />
+  <label for="imeControl">Ime :</label>
+  <input
+    type="text"
+    name="imeControl"
+    class="form-control"
+    [formControl]="imeControl"
+  />
+  <label for="prezimeControl">Prezime :</label>
+  <input
+    type="text"
+    name="prezimeControl"
+    class="form-control"
+    [formControl]="prezimeControl"
+  />
+  <label for="brojDresaControl">Broj dresa :</label>
+  <input
+    type="text"
+    name="brojDresaControl"
+    class="form-control"
+    [formControl]="brojDresaControl"
+  />
+  <label for="godRodjenjaControl">Godina rodjenja :</label>
+  <input
+    type="text"
+    name="godRodjenjaControl"
+    class="form-control"
+    [formControl]="godRodjenjaControl"
+  />
+  <label for="brojTelefonaControl">Broj telefona :</label>
+  <input
+    type="text"
+    name="brojTelefonaControl"
+    class="form-control"
+    [formControl]="brojTelefonaControl"
+  />
+  <label for="opisControl">Opis :</label>
+  <input
+    type="text"
+    name="opisControl"
+    class="form-control"
+    [formControl]="opisControl"
+  />
+  <label for="pozicijaControl">Pozicija :</label>
+  <select [formControl]="pozicijaControl">
+    <option *ngFor="let pozicija of pozicije" [value]="pozicija">{{
+      pozicija
+    }}</option>
+  </select>
+  <div *ngIf="timovi">
     <label for="timControl">Tim :</label>
     <select [formControl]="timControl">
-        <option *ngFor="let tim of timovi" [value] ="tim.naziv">{{tim.naziv}}</option>
+      <option *ngFor="let tim of timovi" [value]="tim.naziv">{{
+        tim.naziv
+      }}</option>
     </select>
-</div>
-<button (click)="dodajIgraca()">
+  </div>
+  <button (click)="dodajIgraca()">
     DodajIgraca
-</button>
-<button (click)="goBack()">Nazad</button>
+  </button>
+  <button (click)="goBack()">Nazad</button>
+</div>
