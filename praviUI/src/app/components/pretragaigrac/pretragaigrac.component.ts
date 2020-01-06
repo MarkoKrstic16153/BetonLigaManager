@@ -68,11 +68,16 @@ export class PretragaigracComponent implements OnInit {
     });
 
     this.igracService.getTopStrelci().subscribe(({ data, loading }) => {
-      this.topStrelci = data.Igrac;
+      this.topStrelci = data.Igrac.sort(function(igrac1,igrac2){
+        return igrac2.golovi.length-igrac1.golovi.length;
+      });
+      this.topStrelci.splice(5,this.topStrelci.length-1);
     });
     this.igracService.getTopIskustvo().subscribe(data => {
-      console.log(data.data.Igrac); 
-      this.najIskusnijiIgraci = data.data.Igrac.reverse().splice(0,5);
+      this.najIskusnijiIgraci = data.data.Igrac.sort(function(igrac1,igrac2){
+        return igrac2.utakmice.length-igrac1.utakmice.length;
+      });
+      this.najIskusnijiIgraci.splice(5,this.najIskusnijiIgraci.length-1);
     });
   }
   goBack() {

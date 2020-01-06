@@ -20,7 +20,7 @@
     </div>
 </div>
 <div>Najbolji strelci :
-    <ul class="list-group">
+    <ul class="list-group" *ngIf="topStrelci">
         <li 
             class="list-item" 
             *ngFor="let igrac of topStrelci">
@@ -30,7 +30,7 @@
     </ul>
 </div> 
 <div>Najiskusniji igraci: 
-    <ul class="list-group">
+    <ul class="list-group" *ngIf="najIskusnijiIgraci">
         <li 
             class="list-item" 
             *ngFor="let igrac of najIskusnijiIgraci">

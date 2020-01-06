@@ -35,7 +35,6 @@ export class DodajtimComponent implements OnInit {
     console.log(noviTim);
     this.timService.createTim(noviTim).subscribe(data => {
       this.timService.addTimLiga(noviTim.naziv, "Beton1").subscribe(data => {});
-      this.router.navigate(["/admin"]);
     });
   }
 

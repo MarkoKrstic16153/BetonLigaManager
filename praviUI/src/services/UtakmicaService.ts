@@ -133,6 +133,23 @@ export class UtakmicaService {
     });
     return this.query.valueChanges;
   }
+  getAllGoloviUtakmice() {
+    let GET_GOLOVI_UTAKMICE = gql`
+      query GET_GOLOVI_UTAKMICE{
+        Utakmica{
+          datum,
+          vreme,
+          naziv
+          golovi {
+            vreme
+          }
+        }
+      }`;
+    this.query= this.apollo.watchQuery({
+      query: GET_GOLOVI_UTAKMICE
+    });
+    return this.query.valueChanges;
+  }
   getUtakmica(datumUtakmice:string,vremeUtakmice:string){
     let GET_UTAKMICA=gql`
     query GET_UTAKMICA($datumUtakmice:String!,$vremeUtakmice:String!){

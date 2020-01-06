@@ -46,8 +46,8 @@ export class PretragastadionComponent implements OnInit {
   }
 
   pretragaStadiona($tim){
-    this.stadionService.getTimStadion($tim).subscribe((data)=>{
-      this.router.navigate(['/pretrazistadione/stadion/', data.data.Stadion[0].naziv]);
+    this.stadionService.getTimStadion($tim).subscribe(({data,loading})=>{
+      this.router.navigate(['/pretrazistadione/stadion/', data.Tim[0].stadion[0].Stadion.naziv]);
     });
   }
 }

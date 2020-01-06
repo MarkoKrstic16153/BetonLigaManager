@@ -18,7 +18,7 @@ export class IgracComponent implements OnInit {
   loadingSaigraci:boolean=true;
   poPoziciji:Igrac[];
   poBrojDresa:Igrac[];
-  saigraci:Igrac[];
+  saigraci:any[]=[];
   constructor(private location:Location,private active:ActivatedRoute,private igracService:IgracService) { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class IgracComponent implements OnInit {
         //povlaci sve saigrace iz tima
         this.igracService.getIgraciTim(this.igrac.tim[0].Tim.naziv).subscribe(({data,loading})=>{
           this.loadingSaigraci=loading;
-          this.saigraci=data.Tim[0].igraci;
+            this.saigraci=data.Tim[0].igraci.filter(x=>x.Igrac.brojTelefona!=this.igrac.brojTelefona);
         });
 
         //povlaci 5 igraca sa istom pozicijom bez igraca koji se prikazuje trenutno
@@ -41,12 +41,14 @@ export class IgracComponent implements OnInit {
         this.igracService.getIgracByNumber(this.igrac.brojDresa,this.igrac.brojTelefona).subscribe(({data,loading})=>{
           this.loadingByNumber=loading;
           this.poBrojDresa=data.Igrac.slice(0,5);
-        });
-;        
+        });        
       })
     })
   }
-  
+  izbaci(p){
+    if(p)
+    this.saigraci.splice(p,1);
+  }
   goBack(){
     this.location.back();
   }
