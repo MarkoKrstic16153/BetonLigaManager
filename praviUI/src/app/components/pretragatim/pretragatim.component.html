@@ -1,24 +1,49 @@
-<h2>Pretrazite Vase omiljene timove</h2>
-<div>
-    <app-smart-search-bar (onEnter)="pretraziTim($event)"  [titlePretrage]="pretragaPoImenu" [obsPretrage]="obsTimovi"></app-smart-search-bar>
-</div>
-<div>Lista svih timova :
-    <ul class="list-group">
-        <li 
-            class="list-item" 
-            *ngFor="let tim of listaSvihTimova">
-            <a [routerLink]="[ '/pretrazitimove/tim/', tim.naziv ]">{{tim.naziv}} </a>
-        </li>
-    </ul>
-</div> 
-<div>Lideri na tabeli : 
-    <ul class="list-group">
-        <li 
-            class="list-item" 
-            *ngFor="let tim of listaLidera">
-            <a [routerLink]="[ '/pretrazitimove/tim/', tim.naziv ]">{{tim.naziv}} </a>
-        </li>
-    </ul>
-</div>
+<div class="container shadow p-3">
+  <h2 class="text-center">Pretrazite Vase omiljene timove</h2>
 
-<button (click)="goBack()">Nazad</button>
+  <div class="offset-4 col-4">
+    <app-smart-search-bar
+      (onEnter)="pretraziTim($event)"
+      [titlePretrage]="pretragaPoImenu"
+      [obsPretrage]="obsTimovi"
+    ></app-smart-search-bar>
+  </div>
+  <div class="row">
+    <div class="col-6 ">
+      <div class="list-group list-group-item-action text-center shadow">
+        <a class="list-group-item list-group-item-action active"
+          >Lista svih timova :</a
+        >
+        <a
+          class="list-group-item list-group-item-action"
+          *ngFor="let tim of listaSvihTimova"
+          [routerLink]="['/pretrazitimove/tim/', tim.naziv]"
+        >
+          {{ tim.naziv }}
+        </a>
+      </div>
+    </div>
+    <div class="col-6 ">
+      <div class="list-group list-group-item-action text-center shadow">
+        <a class="list-group-item list-group-item-action active"
+          >Lideri na tabeli:</a
+        >
+        <a
+          class="list-group-item list-group-item-action"
+          *ngFor="let tim of listaLidera"
+          [routerLink]="['/pretrazitimove/tim/', tim.naziv]"
+        >
+          {{ tim.naziv }}
+        </a>
+      </div>
+    </div>
+
+    <button
+      (click)="goBack()"
+      style="position: relative;top: 90%;left: 92%;"
+      class="btn btn-secondary shadow"
+    >
+      Nazad
+    </button>
+  </div>
+</div>

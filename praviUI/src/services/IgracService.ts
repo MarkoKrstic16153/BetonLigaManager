@@ -257,22 +257,22 @@ export class IgracService {
     let GET_IGRAC = gql`
       query GET_IGRAC($brojTelefonaIgraca: String!) {
         Igrac(filter: { brojTelefona: $brojTelefonaIgraca }) {
-          ime,
-          prezime,
-          brojDresa,
-          brojTelefona,
-          opis,
-          pozicija,
+          ime
+          prezime
+          brojDresa
+          brojTelefona
+          opis
+          pozicija
           tim {
             Tim {
               naziv
             }
-          },
+          }
           utakmice {
             Utakmica {
               naziv
             }
-          },
+          }
           golovi {
             vreme
           }
@@ -292,6 +292,8 @@ export class IgracService {
       query TOP_STRELCI {
         Igrac(filter: { golovi_not: null }) {
           ime
+          prezime
+          brojDresa
           brojTelefona
           golovi {
             vreme
@@ -309,6 +311,7 @@ export class IgracService {
       query TOP_ISKUSTVO {
         Igrac(filter: { utakmice_not: null }) {
           ime
+          prezime
           utakmice {
             Utakmica {
               naziv

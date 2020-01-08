@@ -1,52 +1,73 @@
-<h2>Pretrazite Vase omiljene igrace</h2>
-<div>
-    <div>Pretrazite Igrace po imenu : </div>
-    <input [formControl]="imeControl" type="text" />
-</div>
-<div>
-    <div>Pretrazite Igrace po broju dresa : </div>
-    <input [formControl]="dresControl" type="number"/>
-</div>
-<div>
-    <app-smart-search-bar (onEnter)="pretraziIgraceTima($event)" [titlePretrage]="pretragaPoTimu" [obsPretrage]="obsTimIgraca"></app-smart-search-bar>
-</div>
-<div>
-    <div>Pretrazite Igrace po poziciji : </div>
-    <div class="form-group">
-        <label for="pozicijaControl">Pozicija :</label>
-        <select [formControl]="pozicijaControl">
-            <option *ngFor="let pozicija of pozicije" [value] ="pozicija">{{pozicija}}</option>
-        </select>
+<h2 class="text-center">Pretrazite Vase omiljene igrace</h2>
+<div class="row">
+  <div class="form-group col-6">
+    <div>Pretrazite Igrace po imenu :</div>
+    <input [formControl]="imeControl" class="form-control" type="text" />
+    <div>Pretrazite Igrace po broju dresa :</div>
+    <input [formControl]="dresControl" class="form-control" type="number" />
+    <app-smart-search-bar
+      (onEnter)="pretraziIgraceTima($event)"
+      [titlePretrage]="pretragaPoTimu"
+      [obsPretrage]="obsTimIgraca"
+    ></app-smart-search-bar>
+    <label for="pozicijaControl">Pretrazite Igrace po poziciji :</label>
+    <select [formControl]="pozicijaControl" class="form-control">
+      <option *ngFor="let pozicija of pozicije" [value]="pozicija">{{
+        pozicija
+      }}</option>
+    </select>
+  </div>
+  <div class="col-6 row">
+    <div class="col-6">
+      <ul class="list-group " *ngIf="topStrelci">
+        <li class="list-group-item list-group-item-action active text-center">
+          Najbolji strelci
+        </li>
+        <li
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover"
+          *ngFor="let igrac of topStrelci"
+          [routerLink]="['/pretraziigrace/igrac/', igrac.brojTelefona]"
+        >
+          {{ igrac.ime }} {{ igrac.prezime }}
+          <span class="badge badge-primary badge-pill">{{
+            igrac.golovi.length
+          }}</span>
+        </li>
+      </ul>
     </div>
-</div>
-<div>Najbolji strelci :
-    <ul class="list-group" *ngIf="topStrelci">
-        <li 
-            class="list-item" 
-            *ngFor="let igrac of topStrelci">
-            <a [routerLink]="[ '/pretraziigrace/igrac/', igrac.brojTelefona ]">{{igrac.ime}} </a>
-            Broj golova : {{igrac.golovi.length}}
+    <div class="col-6">
+      <ul class="list-group" *ngIf="najIskusnijiIgraci">
+        <li class="list-group-item list-group-item-action active text-center">
+          Najiskusniji igraci
         </li>
-    </ul>
-</div> 
-<div>Najiskusniji igraci: 
-    <ul class="list-group" *ngIf="najIskusnijiIgraci">
-        <li 
-            class="list-item" 
-            *ngFor="let igrac of najIskusnijiIgraci">
-            <a [routerLink]="[ '/pretraziigrace/igrac/', igrac.brojTelefona ]">{{igrac.ime}} </a>
-            Broj nastupa : {{igrac.utakmice.length}}
+
+        <li
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover"
+          *ngFor="let igrac of najIskusnijiIgraci"
+        >
+          {{ igrac.ime }} {{ igrac.prezime }}
+          <span class="badge badge-primary badge-pill">{{
+            igrac.utakmice.length
+          }}</span>
         </li>
-    </ul>
+      </ul>
+    </div>
+  </div>
 </div>
-<div>Rezultati koji odgovaraju pretrazi {{modPretrage}}
-    <ul class="list-group">
-        <li 
-            class="list-item" 
-            *ngFor="let igrac of rezultatPretrage">
-            Ime : <a [routerLink]="[ '/pretraziigrace/igrac/', igrac.brojTelefona ]">{{igrac.ime}} </a>
-           Prezime: {{igrac.prezime}} Broj dresa :{{igrac.brojDresa}}
-        </li>
-    </ul>
+<div *ngIf="rezultatPretrage" class="row">
+  <ul class="list-group list-group-flush col-6">
+    <li
+      class="list-group-item list-group-item-action list-group-item-info text-center"
+    >
+      Rezultati koji odgovaraju pretrazi {{ modPretrage }}
+    </li>
+    <li
+      class="list-group-item list-group-item-action text-center hover"
+      *ngFor="let igrac of rezultatPretrage"
+      [routerLink]="['/pretraziigrace/igrac/', igrac.brojTelefona]"
+    >
+      {{ igrac.ime }} {{ igrac.prezime }} {{ igrac.brojDresa }}
+    </li>
+  </ul>
 </div>
-<button (click)="goBack()">Nazad</button>
+<button class="btn btn-secondary" (click)="goBack()">Nazad</button>
