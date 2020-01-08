@@ -11,7 +11,6 @@ import { IgracService } from "src/services/IgracService";
 })
 export class IgracComponent implements OnInit {
   igrac;
-<<<<<<< HEAD
   loadingIgrac: boolean = true;
   loadingByPostion: boolean = true;
   loadingByNumber: boolean = true;
@@ -24,16 +23,6 @@ export class IgracComponent implements OnInit {
     private active: ActivatedRoute,
     private igracService: IgracService
   ) {}
-=======
-  loadingIgrac:boolean=true;
-  loadingByPostion:boolean=true;
-  loadingByNumber:boolean=true;
-  loadingSaigraci:boolean=true;
-  poPoziciji:Igrac[];
-  poBrojDresa:Igrac[];
-  saigraci:any[]=[];
-  constructor(private location:Location,private active:ActivatedRoute,private igracService:IgracService) { }
->>>>>>> 1de9730fa24bbb212fd6af6f67586d3bcf9af1da
 
   ngOnInit() {
     this.active.params.subscribe(params => {
@@ -41,19 +30,12 @@ export class IgracComponent implements OnInit {
         this.loadingIgrac = loading;
         this.igrac = data.Igrac[0];
         //povlaci sve saigrace iz tima
-<<<<<<< HEAD
         this.igracService
           .getIgraciTim(this.igrac.tim[0].Tim.naziv)
           .subscribe(({ data, loading }) => {
             this.loadingSaigraci = loading;
             this.saigraci = data.Tim[0].igraci;
           });
-=======
-        this.igracService.getIgraciTim(this.igrac.tim[0].Tim.naziv).subscribe(({data,loading})=>{
-          this.loadingSaigraci=loading;
-            this.saigraci=data.Tim[0].igraci.filter(x=>x.Igrac.brojTelefona!=this.igrac.brojTelefona);
-        });
->>>>>>> 1de9730fa24bbb212fd6af6f67586d3bcf9af1da
 
         //povlaci 5 igraca sa istom pozicijom bez igraca koji se prikazuje trenutno
         this.igracService
@@ -63,7 +45,6 @@ export class IgracComponent implements OnInit {
             this.poPoziciji = data.Igrac.slice(0, 5);
           });
         //povlaci 5 igraca sa istim brojem bez igraca koji se prikazuje trenutno
-<<<<<<< HEAD
         this.igracService
           .getIgracByNumber(this.igrac.brojDresa, this.igrac.brojTelefona)
           .subscribe(({ data, loading }) => {
@@ -75,20 +56,6 @@ export class IgracComponent implements OnInit {
   }
 
   goBack() {
-=======
-        this.igracService.getIgracByNumber(this.igrac.brojDresa,this.igrac.brojTelefona).subscribe(({data,loading})=>{
-          this.loadingByNumber=loading;
-          this.poBrojDresa=data.Igrac.slice(0,5);
-        });        
-      })
-    })
-  }
-  izbaci(p){
-    if(p)
-    this.saigraci.splice(p,1);
-  }
-  goBack(){
->>>>>>> 1de9730fa24bbb212fd6af6f67586d3bcf9af1da
     this.location.back();
   }
 }
