@@ -1,7 +1,6 @@
-<h2>Dodajte novog Igraca :</h2>
+<h2 class="text-center">Dodajte novog Igraca :</h2>
 
 <div class="form-group container">
-  <img class="img-thumbnail" src="../../../assets/images/Igrac.png" />
   <label for="imeControl">Ime :</label>
   <input
     type="text"
@@ -9,6 +8,12 @@
     class="form-control"
     [formControl]="imeControl"
   />
+  <div
+    *ngIf="imeControl.invalid && (imeControl.dirty || imeControl.touched)"
+    class="m-1 alert alert-danger"
+  >
+    Potrebno je uneti ime
+  </div>
   <label for="prezimeControl">Prezime :</label>
   <input
     type="text"
@@ -16,6 +21,14 @@
     class="form-control"
     [formControl]="prezimeControl"
   />
+  <div
+    *ngIf="
+      prezimeControl.invalid && (prezimeControl.dirty || prezimeControl.touched)
+    "
+    class="m-1 alert alert-danger"
+  >
+    Potrebno je uneti prezime
+  </div>
   <label for="brojDresaControl">Broj dresa :</label>
   <input
     type="text"
@@ -23,6 +36,15 @@
     class="form-control"
     [formControl]="brojDresaControl"
   />
+  <div
+    *ngIf="
+      brojDresaControl.invalid &&
+      (brojDresaControl.dirty || brojDresaControl.touched)
+    "
+    class="m-1 alert alert-danger"
+  >
+    Potrebno je uneti broj dresa
+  </div>
   <label for="godRodjenjaControl">Godina rodjenja :</label>
   <input
     type="text"
@@ -30,6 +52,15 @@
     class="form-control"
     [formControl]="godRodjenjaControl"
   />
+  <div
+    *ngIf="
+      godRodjenjaControl.invalid &&
+      (godRodjenjaControl.dirty || godRodjenjaControl.touched)
+    "
+    class="m-1 alert alert-danger"
+  >
+    Potrebno je uneti broj godinu rodjenja
+  </div>
   <label for="brojTelefonaControl">Broj telefona :</label>
   <input
     type="text"
@@ -37,6 +68,15 @@
     class="form-control"
     [formControl]="brojTelefonaControl"
   />
+  <div
+    *ngIf="
+      brojTelefonaControl.invalid &&
+      (brojTelefonaControl.dirty || brojTelefonaControl.touched)
+    "
+    class="m-1 alert alert-danger"
+  >
+    Potrebno je uneti broj telefona
+  </div>
   <label for="opisControl">Opis :</label>
   <input
     type="text"
@@ -45,21 +85,48 @@
     [formControl]="opisControl"
   />
   <label for="pozicijaControl">Pozicija :</label>
-  <select [formControl]="pozicijaControl">
+  <select class="form-control" [formControl]="pozicijaControl">
     <option *ngFor="let pozicija of pozicije" [value]="pozicija">{{
       pozicija
     }}</option>
   </select>
+  <div
+    *ngIf="
+      pozicijaControl.invalid &&
+      (pozicijaControl.dirty || pozicijaControl.touched)
+    "
+    class="m-1 alert alert-danger"
+  >
+    Potrebno je izabrati poziciju
+  </div>
   <div *ngIf="timovi">
     <label for="timControl">Tim :</label>
-    <select [formControl]="timControl">
+    <select [formControl]="timControl" class="form-control">
       <option *ngFor="let tim of timovi" [value]="tim.naziv">{{
         tim.naziv
       }}</option>
     </select>
+    <div
+      *ngIf="timControl.invalid && (timControl.dirty || timControl.touched)"
+      class="m-1 alert alert-danger"
+    >
+      Potrebno je izabrati tim
+    </div>
   </div>
-  <button (click)="dodajIgraca()">
+  <button
+    class="btn btn-primary"
+    (click)="dodajIgraca()"
+    [disabled]="
+      imeControl.invalid ||
+      prezimeControl.invalid ||
+      brojDresaControl.invalid ||
+      brojTelefonaControl.invalid ||
+      godRodjenjaControl.invalid ||
+      pozicijaControl.invalid ||
+      timControl.invalid
+    "
+  >
     DodajIgraca
   </button>
-  <button (click)="goBack()">Nazad</button>
+  <button class="btn btn-secondary" (click)="goBack()">Nazad</button>
 </div>

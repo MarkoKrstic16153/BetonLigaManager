@@ -1,22 +1,37 @@
-<h2>Dodajte novi Tim : </h2>
-<div class="form-group">
+<div class="container">
+  <h2 class="text-center">Dodajte novi Tim :</h2>
+  <div class="form-group">
     <label for="nazivControl">Naziv :</label>
-   <input 
-       type ="text" 
-       name="nazivControl"
-       class="form-control" 
-       [formControl]="nazivControl"/>
-</div>
-<div class="form-group">
+    <input
+      type="text"
+      name="nazivControl"
+      class="form-control"
+      [formControl]="nazivControl"
+    />
+    <div
+      *ngIf="
+        nazivControl.invalid && (nazivControl.dirty || nazivControl.touched)
+      "
+      class="m-1 alert alert-danger"
+    >
+      Potrebno je uneti naziv tima
+    </div>
     <label for="opisControl">Opis :</label>
-   <input 
-       type ="text" 
-       name="opisControl"
-       class="form-control" 
-       [formControl]="opisControl"/>
-</div>
+    <input
+      type="text"
+      name="opisControl"
+      class="form-control"
+      [formControl]="opisControl"
+    />
+  </div>
 
-<a (click)="dodajTim()" href="/admin" class="button">
+  <a
+    (click)="dodajTim()"
+    *ngIf="nazivControl.valid"
+    href="/admin"
+    class="btn btn-primary"
+  >
     Dodaj Tim
-</a>
-<button (click)="goBack()">Nazad</button>
+  </a>
+  <button (click)="goBack()">Nazad</button>
+</div>

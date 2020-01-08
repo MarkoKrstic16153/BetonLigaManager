@@ -1,44 +1,87 @@
-<h2>Dodajte novi Stadion : </h2>
-<div class="form-group">
+<div class="container">
+  <h2 class="text-center">Dodajte novi Stadion :</h2>
+  <div class="form-group">
     <label for="nazivControl">Naziv :</label>
-   <input 
-       type ="text" 
-       name="nazivControl"
-       class="form-control" 
-       [formControl]="nazivControl"/>
-</div>
-<div class="form-group">
+    <input
+      type="text"
+      name="nazivControl"
+      class="form-control"
+      [formControl]="nazivControl"
+    />
+    <div
+      *ngIf="
+        nazivControl.invalid && (nazivControl.dirty || nazivControl.touched)
+      "
+      class="m-1 alert alert-danger"
+    >
+      Potrebno je uneti kapacitet stadiona
+    </div>
     <label for="kapacitetControl">Kapacitet :</label>
-   <input 
-       type ="text" 
-       name="kapacitetControl"
-       class="form-control" 
-       [formControl]="kapacitetControl"/>
-</div>
-<div class="form-group">
+    <input
+      type="text"
+      name="kapacitetControl"
+      class="form-control"
+      [formControl]="kapacitetControl"
+    />
+    <div
+      *ngIf="
+        kapacitetControl.invalid &&
+        (kapacitetControl.dirty || kapacitetControl.touched)
+      "
+      class="m-1 alert alert-danger"
+    >
+      Potrebno je uneti kapacitet stadiona
+    </div>
     <label for="adresaControl">Adresa :</label>
-   <input 
-       type ="text" 
-       name="adresaControl"
-       class="form-control" 
-       [formControl]="adresaControl"/>
-</div>
-<div class="form-group">
+    <input
+      type="text"
+      name="adresaControl"
+      class="form-control"
+      [formControl]="adresaControl"
+    />
+    <div
+      *ngIf="
+        adresaControl.invalid && (adresaControl.dirty || adresaControl.touched)
+      "
+      class="m-1 alert alert-danger"
+    >
+      Potrebno je uneti adresu stadiona
+    </div>
     <label for="opisControl">Opis :</label>
-   <input 
-       type ="text" 
-       name="opisControl"
-       class="form-control" 
-       [formControl]="opisControl"/>
+    <input
+      type="text"
+      name="opisControl"
+      class="form-control"
+      [formControl]="opisControl"
+    />
+    <div *ngIf="timovi">
+      <label for="timControl">Izaberite Tim :</label>
+      <select [formControl]="timControl" class="form-control">
+        <option *ngFor="let tim of timovi" [value]="tim.naziv">{{
+          tim.naziv
+        }}</option>
+      </select>
+      <div
+        *ngIf="timControl.invalid && (timControl.dirty || timControl.touched)"
+        class="m-1 alert alert-danger"
+      >
+        Potrebno je uneti adresu stadiona
+      </div>
+    </div>
+    <button
+      (click)="dodajStadion()"
+      [disabled]="
+        nazivControl.invalid ||
+        kapacitetControl.invalid ||
+        timControl.invalid ||
+        adresaControl.invalid
+      "
+      class="btn btn-primary"
+    >
+      Dodaj Stadion
+    </button>
+    <button (click)="goBack()">
+      Nazad
+    </button>
+  </div>
 </div>
-<div class="form-group" *ngIf="timovi">
-    <label for="timControl">Izaberite Tim :</label>
-    <select [formControl]="timControl">
-        <option *ngFor="let tim of timovi" [value] ="tim.naziv">{{tim.naziv}}</option>
-    </select>
-</div>
-<button (click)="dodajStadion()">
-    Dodaj Stadion
-</button>
-<button (click)="goBack()">Nazad</button>
-

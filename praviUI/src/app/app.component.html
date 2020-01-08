@@ -1,1 +1,43 @@
+<nav class="navbar justify-content-center" style="height: 80px;">
+  <ul class="nav" *ngIf="!this.router.url.includes('admin')">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/pretrazitimove">Pretrazi Timove</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/pretraziigrace">Pretrazi Igraca</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/pretrazistadione">Pretrazi Stadione</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/pretraziutakmice">Pretrazi Utakmice</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/tabela">Pogledaj Tabelu</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin">Admin Strana</a>
+    </li>
+  </ul>
+  <ul
+    class="nav justify-content-center"
+    *ngIf="this.router.url.includes('admin')"
+  >
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/dodajutakmicu">Dodaj Utakmicu</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/dodajigraca">Dodaj Igraca</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/dodajtim">Dodaj Tim</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/dodajstadion">Dodaj Stadion</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="">Pocetna Strana</a>
+    </li>
+  </ul>
+</nav>
 <router-outlet></router-outlet>
