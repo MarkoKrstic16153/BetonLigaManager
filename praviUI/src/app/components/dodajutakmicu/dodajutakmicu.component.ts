@@ -58,50 +58,53 @@ export class DodajutakmicuComponent implements OnInit {
   }
   dodajUtakmicu() {
     this.utakmicaService.createUtakmica(this.nazivControl.value,this.datumControl.value,this.vremeControl.value,this.opisControl.value).subscribe((data)=>{
-      this.utakmicaService.addTeamToUtakmica(this.timDomaciControl.value,this.datumControl.value,this.vremeControl.value,"domacin",this.domaciGolovi+"").subscribe();
-      this.utakmicaService.addTeamToUtakmica(this.timGostiControl.value,this.datumControl.value,this.vremeControl.value,"gost",this.gostiGolovi+"").subscribe();
-      this.utakmicaService.addUtakmicaStadion(this.datumControl.value,this.vremeControl.value,this.stadionDomacih).subscribe();
-      this.ukupnoIzabraniDomaci.forEach((igrac:Igrac)=>{
-        this.igracService.addIgracToUtakmica(igrac.brojTelefona,this.datumControl.value,this.vremeControl.value).subscribe();
+      this.utakmicaService.addTeamToUtakmica(this.timDomaciControl.value,this.datumControl.value,this.vremeControl.value,"domacin",this.domaciGolovi+"").subscribe(()=>{
+        this.utakmicaService.addTeamToUtakmica(this.timGostiControl.value,this.datumControl.value,this.vremeControl.value,"gost",this.gostiGolovi+"").subscribe(()=>{
+          this.utakmicaService.addUtakmicaStadion(this.datumControl.value,this.vremeControl.value,this.stadionDomacih).subscribe(()=>{
+            this.ukupnoIzabraniDomaci.forEach((igrac:Igrac)=>{
+              this.igracService.addIgracToUtakmica(igrac.brojTelefona,this.datumControl.value,this.vremeControl.value).subscribe();
+            });
+            this.ukupnoIzabraniGosti.forEach((igrac:Igrac)=>{
+              this.igracService.addIgracToUtakmica(igrac.brojTelefona,this.datumControl.value,this.vremeControl.value).subscribe();
+            });
+            this.strelciDomaci.forEach((strelac:Strelac)=>{
+              this.igracService.addIgracGol(strelac.Igrac.brojTelefona,this.datumControl.value,this.vremeControl.value,strelac.vreme).subscribe();
+            });
+            this.strelciGosti.forEach((strelac:Strelac)=>{
+              this.igracService.addIgracGol(strelac.Igrac.brojTelefona,this.datumControl.value,this.vremeControl.value,strelac.vreme).subscribe();
+            });
+          });
+        });
       });
-      this.ukupnoIzabraniGosti.forEach((igrac:Igrac)=>{
-        this.igracService.addIgracToUtakmica(igrac.brojTelefona,this.datumControl.value,this.vremeControl.value).subscribe();
+      
+      this.timService.getTim(this.timDomaciControl.value).subscribe(({data})=>{
+        console.log(data.Tim[0]);
+        let updateTim:Tim = {brojPobeda:data.Tim[0].brojPobeda+this.pobedaDomacina(),
+                            brojPoraza:data.Tim[0].brojPoraza+this.porazDomacina(),
+                            nereseno:data.Tim[0].nereseno+this.nereseno(),
+                            brojPoenaTabela:data.Tim[0].brojPoenaTabela+this.updatePoeniDomaci(),
+                            opis:data.Tim[0].opis,
+                            postignutiGolovi:data.Tim[0].postignutiGolovi+this.domaciGolovi,
+                            primljeniGolovi:data.Tim[0].primljeniGolovi+this.gostiGolovi,
+                            naziv:data.Tim[0].naziv
+                          };
+      this.timService.updateTim(updateTim).subscribe(()=>{
+        this.timService.getTim(this.timGostiControl.value).subscribe(({data})=>{
+          console.log(data.Tim[0]);
+          let updateTim:Tim = {brojPobeda:data.Tim[0].brojPobeda+this.pobedaGosti(),
+                              brojPoraza:data.Tim[0].brojPoraza+this.porazGosti(),
+                              nereseno:data.Tim[0].nereseno+this.nereseno(),
+                              brojPoenaTabela:data.Tim[0].brojPoenaTabela+this.updatePoeniGosti(),
+                              opis:data.Tim[0].opis,
+                              postignutiGolovi:data.Tim[0].postignutiGolovi+this.gostiGolovi,
+                              primljeniGolovi:data.Tim[0].primljeniGolovi+this.domaciGolovi,
+                              naziv:data.Tim[0].naziv
+                            };
+          this.timService.updateTim(updateTim).subscribe(()=>{this.router.navigate(["/admin"])});
+        });
+      });
       });
     });
-    this.strelciDomaci.forEach((strelac:Strelac)=>{
-      this.igracService.addIgracGol(strelac.Igrac.brojTelefona,this.datumControl.value,this.vremeControl.value,strelac.vreme).subscribe();
-    });
-    this.strelciGosti.forEach((strelac:Strelac)=>{
-      this.igracService.addIgracGol(strelac.Igrac.brojTelefona,this.datumControl.value,this.vremeControl.value,strelac.vreme).subscribe();
-    });
-    this.timService.getTim(this.timDomaciControl.value).subscribe(({data})=>{
-      console.log(data.Tim[0]);
-      let updateTim:Tim = {brojPobeda:data.Tim[0].brojPobeda+this.pobedaDomacina(),
-                          brojPoraza:data.Tim[0].brojPoraza+this.porazDomacina(),
-                          nereseno:data.Tim[0].nereseno+this.nereseno(),
-                          brojPoenaTabela:data.Tim[0].brojPoenaTabela+this.updatePoeniDomaci(),
-                          opis:data.Tim[0].opis,
-                          postignutiGolovi:data.Tim[0].postignutiGolovi+this.domaciGolovi,
-                          primljeniGolovi:data.Tim[0].primljeniGolovi+this.gostiGolovi,
-                          naziv:data.Tim[0].naziv
-                        };
-    this.timService.updateTim(updateTim).subscribe();
-    });
-    this.timService.getTim(this.timGostiControl.value).subscribe(({data})=>{
-      console.log(data.Tim[0]);
-      let updateTim:Tim = {brojPobeda:data.Tim[0].brojPobeda+this.pobedaGosti(),
-                          brojPoraza:data.Tim[0].brojPoraza+this.porazGosti(),
-                          nereseno:data.Tim[0].nereseno+this.nereseno(),
-                          brojPoenaTabela:data.Tim[0].brojPoenaTabela+this.updatePoeniGosti(),
-                          opis:data.Tim[0].opis,
-                          postignutiGolovi:data.Tim[0].postignutiGolovi+this.gostiGolovi,
-                          primljeniGolovi:data.Tim[0].primljeniGolovi+this.domaciGolovi,
-                          naziv:data.Tim[0].naziv
-                        };
-      this.timService.updateTim(updateTim).subscribe();
-    });
-    console.log("Utakmica je dodata.");
-    this.router.navigate(["/admin"]);
   }
   pobedaDomacina():number{
     if(this.domaciGolovi>this.gostiGolovi)
