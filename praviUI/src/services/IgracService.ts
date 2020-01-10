@@ -69,20 +69,20 @@ export class IgracService {
     });
     return this.query.valueChanges;
   }
-  addIgracToTim(brojTelefonaIgraca: String, nazivTima: String) {
+  addIgracToTim(brojTelefonaIgraca: String, nazivTima: String,plata: String) {
     let ADD_IGRAC_TO_TIM = gql`
       mutation ADD_IGRAC_U_TIM(
         $brojTelefonaIgraca: String!
         $nazivTima: String!
+        $plata: String!
       ) {
         AddIgracTim(
           from: { brojTelefona: $brojTelefonaIgraca }
           to: { naziv: $nazivTima }
+          data: { plata: $plata }
         ) {
           from {
             ime
-            prezime
-            brojTelefona
           }
           to {
             naziv
@@ -94,7 +94,8 @@ export class IgracService {
       mutation: ADD_IGRAC_TO_TIM,
       variables: {
         brojTelefonaIgraca: brojTelefonaIgraca,
-        nazivTima: nazivTima
+        nazivTima: nazivTima,
+        plata:plata
       }
     });
   }

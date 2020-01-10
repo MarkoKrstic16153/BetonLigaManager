@@ -84,6 +84,13 @@
     class="form-control"
     [formControl]="opisControl"
   />
+  <label for="plataControl">Plata :</label>
+  <input
+    type="text"
+    name="plataControl"
+    class="form-control"
+    [formControl]="plataControl"
+  />
   <label for="pozicijaControl">Pozicija :</label>
   <select class="form-control" [formControl]="pozicijaControl">
     <option *ngFor="let pozicija of pozicije" [value]="pozicija">{{

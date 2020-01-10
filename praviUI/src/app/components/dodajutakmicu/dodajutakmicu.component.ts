@@ -19,6 +19,7 @@ export class DodajutakmicuComponent implements OnInit {
   timovi: any[] = [];
   vremeControl: FormControl = new FormControl("", Validators.required);
   datumControl: FormControl = new FormControl("", Validators.required);
+  brojPosetilacaControl: FormControl = new FormControl("", Validators.required);
   nazivControl: FormControl = new FormControl("", Validators.required);
   opisControl: FormControl = new FormControl("", Validators.required);
   timDomaciControl: FormControl = new FormControl("", Validators.required);
@@ -60,7 +61,7 @@ export class DodajutakmicuComponent implements OnInit {
     this.utakmicaService.createUtakmica(this.nazivControl.value,this.datumControl.value,this.vremeControl.value,this.opisControl.value).subscribe((data)=>{
       this.utakmicaService.addTeamToUtakmica(this.timDomaciControl.value,this.datumControl.value,this.vremeControl.value,"domacin",this.domaciGolovi+"").subscribe(()=>{
         this.utakmicaService.addTeamToUtakmica(this.timGostiControl.value,this.datumControl.value,this.vremeControl.value,"gost",this.gostiGolovi+"").subscribe(()=>{
-          this.utakmicaService.addUtakmicaStadion(this.datumControl.value,this.vremeControl.value,this.stadionDomacih).subscribe(()=>{
+          this.utakmicaService.addUtakmicaStadion(this.datumControl.value,this.vremeControl.value,this.stadionDomacih,this.brojPosetilacaControl.value).subscribe(()=>{
             this.ukupnoIzabraniDomaci.forEach((igrac:Igrac)=>{
               this.igracService.addIgracToUtakmica(igrac.brojTelefona,this.datumControl.value,this.vremeControl.value).subscribe();
             });

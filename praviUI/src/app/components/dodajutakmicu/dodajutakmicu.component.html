@@ -89,7 +89,16 @@
     <div *ngIf="daLiSuEkipeIste()">Ekipe Moraju Biti Razlicite</div>
   </div>
   <div *ngIf="!(daLiEkipeNisuIzabrane() || daLiSuEkipeIste())">
-    <div>Utakmica se igra na stadionu : {{ stadionDomacih }}</div>
+    <div>Utakmica se igra na stadionu : {{ stadionDomacih }}.</div>
+    <div class="form-group">
+      <label for="brojPosetilacaControl">Broj Posetilaca :</label>
+      <input
+        type="text"
+        name="brojPosetilacaControl"
+        class="form-control"
+        [formControl]="brojPosetilacaControl"
+      />
+    </div>
     <div class="form-group" *ngIf="sviIgraciDomaci">
       <label for="">Izaberite igrace domacih :</label>
       <select [formControl]="igraciDomaciControl" class="form-control">

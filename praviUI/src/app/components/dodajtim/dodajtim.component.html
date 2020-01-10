@@ -23,12 +23,25 @@
       class="form-control"
       [formControl]="opisControl"
     />
+    <div *ngIf="lige">
+      <label for="ligaControl">Liga :</label>
+      <select [formControl]="ligaControl" class="form-control">
+        <option *ngFor="let liga of lige" [value]="liga.naziv">{{
+          liga.naziv
+        }}</option>
+      </select>
+      <div
+        *ngIf="ligaControl.invalid && (ligaControl.dirty || ligaControl.touched)"
+        class="m-1 alert alert-danger"
+      >
+        Potrebno je izabrati ligu
+      </div>
+    </div>
   </div>
 
   <a
     (click)="dodajTim()"
-    *ngIf="nazivControl.valid"
-    href="/admin"
+    *ngIf="nazivControl.valid && ligaControl.valid"
     class="btn btn-primary"
   >
     Dodaj Tim

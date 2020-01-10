@@ -15,12 +15,14 @@ import { UtakmicaComponent } from './components/utakmica/utakmica.component';
 import { IgracComponent } from './components/igrac/igrac.component';
 import { TimComponent } from './components/tim/tim.component';
 import { StadionComponent } from './components/stadion/stadion.component';
+import { DodajliguComponent } from './components/dodajligu/dodajligu.component';
 
 const routes: Routes = [
   { path: "admin/dodajigraca", component: DodajigracaComponent },
   { path: "admin/dodajstadion", component: DodajstadionComponent },
   { path: "admin/dodajtim", component: DodajtimComponent },
   { path: "admin/dodajutakmicu", component: DodajutakmicuComponent },
+  { path: "admin/dodajligu", component: DodajliguComponent },
   { path: "admin", component: AdminrouterComponent },
   { path: "tabela", component: TabelaComponent },
   { path: "pretraziutakmice/utakmica/:datum/:vreme", component: UtakmicaComponent },

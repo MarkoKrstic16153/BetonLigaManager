@@ -20,6 +20,7 @@ export class DodajigracaComponent implements OnInit {
   godRodjenjaControl: FormControl = new FormControl("", Validators.required);
   brojTelefonaControl: FormControl = new FormControl("", Validators.required);
   opisControl: FormControl = new FormControl("", Validators.required);
+  plataControl: FormControl = new FormControl("", Validators.required);
   pozicijaControl: FormControl = new FormControl("", Validators.required);
   timControl: FormControl = new FormControl("", Validators.required);
 
@@ -53,7 +54,7 @@ export class DodajigracaComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.igracService
-          .addIgracToTim(noviIgrac.brojTelefona, this.timControl.value)
+          .addIgracToTim(noviIgrac.brojTelefona, this.timControl.value,this.plataControl.value)
           .subscribe(() => this.router.navigate(["/admin"]));
       });
   }

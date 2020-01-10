@@ -74,16 +74,18 @@ export class UtakmicaService {
       }
     });
   }
-  addUtakmicaStadion(datumUtakmice: String,vremeUtakmice: String,nazivStadiona: String) {
+  addUtakmicaStadion(datumUtakmice: String,vremeUtakmice: String,nazivStadiona: String,brojPosetilaca: String) {
     let ADD_UTAKMICA_STADION = gql`
       mutation ADD_UTAKMICA_STADION(
         $datumUtakmice: String!,
         $vremeUtakmice: String!,
-        $nazivStadiona: String!
+        $nazivStadiona: String!,
+        $brojPosetilaca: String!
       ) {
         AddUtakmicaStadion(
           from: { datum: $datumUtakmice, vreme: $vremeUtakmice },
           to: { naziv: $nazivStadiona }
+          data: {brojPosetilaca: $brojPosetilaca}
         ) {
           from {
             datum
@@ -98,7 +100,8 @@ export class UtakmicaService {
       variables: {
         datumUtakmice: datumUtakmice,
         vremeUtakmice: vremeUtakmice,
-        nazivStadiona: nazivStadiona
+        nazivStadiona: nazivStadiona,
+        brojPosetilaca: brojPosetilaca
       }
     });
   }

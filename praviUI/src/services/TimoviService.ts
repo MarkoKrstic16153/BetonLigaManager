@@ -138,6 +138,27 @@ export class TimoviService {
     return this.query.valueChanges;
   }
 
+  getSortTimoviLiga(nazivLige:String) {
+    const GET_ALLLIGA_TEAMS_SORT_POINTS = gql`
+     query GET_ALLLIGA_TEAMS_SORT_POINTS ($nazivLige:String!){
+  Tim(orderBy:brojPoenaTabela_desc,filter:{liga:{Liga:{naziv:$nazivLige}}}){
+    naziv,
+    opis,
+    postignutiGolovi,
+    primljeniGolovi,
+    brojPobeda,
+    brojPoraza,
+    nereseno,
+    brojPoenaTabela
+  }
+}`;
+    this.query = this.apollo.watchQuery({
+      query: GET_ALLLIGA_TEAMS_SORT_POINTS,
+      variables: {nazivLige: nazivLige}
+    });
+    return this.query.valueChanges;
+  }
+
   addTimLiga(nazivTima: String, nazivLige: String){
     let ADD_TIM_LIGA = gql`
         mutation ADD_TIM_LIGA($nazivTima:String!,$nazivLige:String!) {

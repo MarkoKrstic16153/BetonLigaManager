@@ -4,6 +4,8 @@ import { TimoviService } from "src/services/TimoviService";
 import { Tim } from "src/models/Tim";
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
+import { LigaService } from 'src/services/LigaService';
+import { Liga } from 'src/models/Liga';
 
 @Component({
   selector: "app-dodajtim",
@@ -13,13 +15,18 @@ import { Router } from "@angular/router";
 export class DodajtimComponent implements OnInit {
   nazivControl: FormControl = new FormControl("", Validators.required);
   opisControl: FormControl = new FormControl("", Validators.required);
+  ligaControl: FormControl = new FormControl("",Validators.required);
+  lige:Liga[]=[];
   constructor(
     private timService: TimoviService,
+    private ligaSevice: LigaService,
     private location: Location,
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ligaSevice.getAllLiga().subscribe(({data})=>this.lige=data.Liga);
+  }
 
   dodajTim() {
     let noviTim: Tim = {
@@ -33,8 +40,9 @@ export class DodajtimComponent implements OnInit {
       primljeniGolovi: 0
     };
     console.log(noviTim);
+    console.log(this.ligaControl.value);
     this.timService.createTim(noviTim).subscribe(data => {
-      this.timService.addTimLiga(noviTim.naziv, "Beton1").subscribe(data => {});
+      this.timService.addTimLiga(noviTim.naziv, this.ligaControl.value+"").subscribe(() => {this.router.navigate(["/admin"]);window.location.reload()});
     });
   }
 

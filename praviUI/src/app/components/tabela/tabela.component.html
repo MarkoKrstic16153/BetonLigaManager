@@ -1,5 +1,12 @@
-<h2 class="text-center">Trenutno stanje u Beton Ligi</h2>
-<h1 *ngIf="loading">Tabela se ucitava sacekajte</h1>
+<h2 class="text-center">Trenutno stanje u {{ligaControl.value +" "+ lig}} </h2>
+<div *ngIf="lige">
+  <label for="ligaControl">Selektujte ligu ciju tabelu zelite da pregledate :</label>
+  <select [formControl]="ligaControl" class="form-control" (change)="promenjenSelect()">
+    <option *ngFor="let liga of lige" [value]="liga.naziv">{{
+      liga.naziv
+    }}</option>
+  </select>
+</div>
 <table *ngIf="!loading" class="table table-hover offset-1 col-10 shadow">
   <thead class="thead-dark">
     <tr>

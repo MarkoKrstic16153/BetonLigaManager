@@ -24,6 +24,7 @@ import { TabelaComponent } from './components/tabela/tabela.component';
 import { SmartSearchBarComponent } from './components/smart-search-bar/smart-search-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { DodajliguComponent } from './components/dodajligu/dodajligu.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MaterialModule } from './material.module';
     PretragastadionComponent,
     PretragautakmicaComponent,
     TabelaComponent,
-    SmartSearchBarComponent
+    SmartSearchBarComponent,
+    DodajliguComponent
   ],
   imports: [
     MaterialModule,
