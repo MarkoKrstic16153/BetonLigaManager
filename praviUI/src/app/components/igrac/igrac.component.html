@@ -1,32 +1,85 @@
 <div *ngIf="loadingIgrac">Podaci o Igracu se Ucitavaju</div>
-<div *ngIf="!loadingIgrac">
-    <h3>{{igrac.ime}} {{igrac.prezime}}</h3>
-    <div>Tim za koji nastupa : <a [routerLink]="[ '/pretrazitimove/tim', igrac.tim[0].Tim.naziv ]">{{igrac.tim[0].Tim.naziv}}</a> </div>
-    <div>Broj dresa : {{igrac.brojDresa}}</div>
-    <div>Pozicija na kojoj igra : {{igrac.pozicija}}</div>
-    <div>Broj Nastupa : {{igrac.utakmice.length}}</div>
-    <div>Broj postiglih golova : {{igrac.golovi.length}}</div>
-    <div>Opis igraca : {{igrac.opis}}</div>
-    <h4>Slicni igraci :
-    <div>Njegovi saigraci : </div> 
-    <ul *ngIf="!loadingSaigraci">
-        <li *ngFor="let igrac of saigraci">
-            <a [routerLink]="[ '/pretraziigrace/igrac', igrac.Igrac.brojTelefona]">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</a>
-        </li>
-    </ul>
-    <div>Po poziciji : </div> 
-    <ul *ngIf="!loadingByPostion">
-        <li *ngFor="let igrac of poPoziciji">
-            <a [routerLink]="[ '/pretraziigrace/igrac', igrac.brojTelefona]">{{igrac.ime}} {{igrac.prezime}} {{igrac.brojDresa}}</a>
-        </li>
-    </ul>
-    <div>Po broju dresa : </div> 
-    <ul *ngIf="!loadingByNumber">
-        <li *ngFor="let igrac of poBrojDresa">
-            <a [routerLink]="[ '/pretraziigrace/igrac', igrac.brojTelefona ]">{{igrac.ime}} {{igrac.prezime}} {{igrac.brojDresa}}</a>
-        </li>
-    </ul>
-</h4>
 
+<div *ngIf="!loadingIgrac">
+  <div class="text-center">
+    <div class=" col border rounded" style="padding:20 ;">
+      <h3>{{ igrac.ime }} {{ igrac.prezime }}</h3>
+      <div>
+        Tim za koji nastupa :
+        <a [routerLink]="['/pretrazitimove/tim', igrac.tim[0].Tim.naziv]">{{
+          igrac.tim[0].Tim.naziv
+        }}</a>
+      </div>
+      <div>Broj dresa : {{ igrac.brojDresa }}</div>
+      <div>Pozicija na kojoj igra : {{ igrac.pozicija }}</div>
+      <div>Broj Nastupa : {{ igrac.utakmice.length }}</div>
+      <div>Broj postiglih golova : {{ igrac.golovi.length }}</div>
+      <div>Opis igraca : {{ igrac.opis }}</div>
+    </div>
+    <div>
+      <h4 class="col">
+        Slicni igraci :
+      </h4>
+      <div class=" col row">
+        <div class="col">
+          <div
+            class="list-group-item list-group-item-action active text-center"
+          >
+            Njegovi saigraci :
+          </div>
+          <ul *ngIf="!loadingSaigraci" class="list-group">
+            <li
+              *ngFor="let igrac of saigraci"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover"
+            >
+              <a
+                [routerLink]="[
+                  '/pretraziigrace/igrac',
+                  igrac.Igrac.brojTelefona
+                ]"
+              >
+                {{ igrac.Igrac.ime }} {{ igrac.Igrac.prezime }}
+                {{ igrac.Igrac.brojDresa }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <div
+            class="list-group-item list-group-item-action active text-center"
+          >
+            Po poziciji :
+          </div>
+          <ul *ngIf="!loadingByPostion" class="list-group">
+            <li
+              *ngFor="let igrac of poPoziciji"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover"
+            >
+              <a [routerLink]="['/pretraziigrace/igrac', igrac.brojTelefona]">
+                {{ igrac.ime }} {{ igrac.prezime }} {{ igrac.brojDresa }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <div
+            class="list-group-item list-group-item-action active text-center"
+          >
+            Po broju dresa :
+          </div>
+          <ul *ngIf="!loadingByNumber" class="list-group">
+            <li
+              *ngFor="let igrac of poBrojDresa"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover"
+            >
+              <a [routerLink]="['/pretraziigrace/igrac', igrac.brojTelefona]"
+                >{{ igrac.ime }} {{ igrac.prezime }} {{ igrac.brojDresa }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<button (click)="goBack()">Nazad</button>
+<button class="btn btn-secondary" (click)="goBack()">Nazad</button>
