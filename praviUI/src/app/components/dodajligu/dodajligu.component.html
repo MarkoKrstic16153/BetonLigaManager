@@ -1,5 +1,6 @@
-<h2>Dodaj Novu Ligu : </h2>
-<div class="form-group">
+<div class="container">
+  <h2 class="text-center">Dodaj Novu Ligu :</h2>
+  <div class="form-group">
     <label for="nazivControl"> Naziv Lige :</label>
     <input
       type="text"
@@ -23,24 +24,23 @@
       [formControl]="opisControl"
     />
     <div
-      *ngIf="
-        opisControl.invalid && (opisControl.dirty || opisControl.touched)
-      "
+      *ngIf="opisControl.invalid && (opisControl.dirty || opisControl.touched)"
       class="m-1 alert alert-danger"
     >
       Potrebno je uneti opis lige
     </div>
-    <button
-      (click)="dodajLigu()"
-      [disabled]="
-        nazivControl.invalid ||
-        opisControl.invalid
-      "
-      class="btn btn-primary"
-    >
-      Dodaj Ligu
-    </button>
-    <button (click)="goBack()">
-      Nazad
-    </button>
+    <div class="buttons">
+      <button
+        (click)="dodajLigu()"
+        [disabled]="nazivControl.invalid || opisControl.invalid"
+        class="btn btn-primary"
+      >
+        Dodaj Ligu
+      </button>
+      <button (click)="goBack()">
+        Nazad
+      </button>
+      <div></div>
+    </div>
   </div>
+</div>

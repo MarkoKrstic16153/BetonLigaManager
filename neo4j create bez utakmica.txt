@@ -1,0 +1,163 @@
+CREATE (Beton1:Liga {naziv:'Beton1', opis:'Poznatija kao Cipiripi kup ova liga ima dugu tradiciju i vrlo slab kvalitet'})
+CREATE (Beton2:Liga {naziv:'Beton2', opis:'Nekvalitetnija liga ali igraci koji igraju u njoj nece to da priznaju.'})
+
+CREATE (Stadion1:Stadion {naziv:'Skolsko',opis: 'Oce lopta da se busi, ali kvalitet terena je na visokom nivou.',adresa:'Vase Carapica 12',kapacitet:100.0})
+CREATE (Stadion2:Stadion {naziv:'Kula',opis: 'Malo je porusen ali je veliku, lopta oce da bezi nizbrdo.',adresa:'Njegoseva 3',kapacitet:2000.0})
+CREATE (Stadion3:Stadion {naziv:'Ciglana',opis: 'Kad pada kisa hoce da bude blatnjavo, lopta bezi u Gabrovacku reku.',adresa:'Bez broja 3',kapacitet:150.0})
+CREATE (Stadion4:Stadion {naziv:'Grobarska',opis: 'Stadion je veliki i uslovi su dobri ali nema mesta za sedenje',adresa:'Svetozara Markovica 7',kapacitet:50.0})
+CREATE (Stadion5:Stadion {naziv:'Dosa',opis: 'Jedan od retkih stadiona u ligi koji ima uslove za nocnu igru.',adresa:'Partizanskih heroja 13',kapacitet:70.0})
+CREATE (Stadion6:Stadion {naziv:'Tasina',opis: 'Jedan od boljih stadiona u ligi, ima pogled na Sabornu crkvu.',adresa:'Ucitelj Tase 10',kapacitet:800.0})
+CREATE (Stadion7:Stadion {naziv:'Radoje',opis: 'Skolski stadion ima problema kada deca imaju fizicko',adresa:'Aleksandra Medvedeva 17',kapacitet:300.0})
+CREATE (Stadion8:Stadion {naziv:'Dom',opis: 'Uslovi za igru su odlicni, i stadion zadovoljava sve kriterijume. Tesko je da se nadje voda',adresa:'Zdravke Vuckovic 24',kapacitet:200.0})
+
+CREATE (Tim1:Tim {naziv:'Gorica',opis: 'Luda ekipa sa najveceg brda.',postignutiGolovi: 0.0,brojPobeda: 0.0,brojPoraza: 0.0,primljeniGolovi: 0.0,brojPoenaTabela: 0.0,nereseno: 0.0})
+CREATE (Igrac1:Igrac {ime:'Marko', prezime:'Krstic',brojDresa:'1', godRodjenja:'1997', brojTelefona:'060555333',pozicija:'Golman', opis:'Medju najboljim golmanima u ligi'})
+CREATE (Igrac2:Igrac {ime:'Luka', prezime:'Brkljac',brojDresa:'9', godRodjenja:'1995', brojTelefona:'060211089',pozicija:'Napad', opis:'Brz i krakat igrac, dobar napadac.'})
+CREATE (Igrac3:Igrac {ime:'Bozidar' , prezime:'Videnovic',brojDresa:'4', godRodjenja:'1987', brojTelefona:'060322588',pozicija:'Rezerva', opis:'Nepouzdan kad popije.'})
+CREATE (Igrac4:Igrac {ime:'Nikola', prezime:'Krstic',brojDresa:'10', godRodjenja:'1995', brojTelefona:'060123456',pozicija:'Napad', opis:'Jedan od boljih kreatora u ligi.'})
+CREATE (Igrac5:Igrac {ime:'Nikola', prezime:'Stevanovic', brojDresa:'6', godRodjenja:'1998', brojTelefona:'060324002',pozicija:'Odbrana', opis:'Standardni odbrambeni igrac.'})
+CREATE (Igrac6:Igrac {ime:'Petar', prezime:'Mihajlov', brojDresa:'5', godRodjenja:'1995', brojTelefona:'061789255',pozicija:'Odbrana', opis:'Moze da igra i na poziciji golmana, najboljeigra kad mu prodje tiket.'})
+
+CREATE
+(Igrac1)-[:NASTUPA_ZA {plata:'tepsija bureka sa sirom'}]->(Tim1),
+(Igrac2)-[:NASTUPA_ZA {plata:'2 paklice cigareta'}]->(Tim1),
+(Igrac3)-[:NASTUPA_ZA {plata:'3 niska piva'}]->(Tim1),
+(Igrac4)-[:NASTUPA_ZA {plata:'igra za dzabe'}]->(Tim1),
+(Igrac5)-[:NASTUPA_ZA {plata:'3 konzerve sardina'}]->(Tim1),
+(Igrac6)-[:NASTUPA_ZA {plata:'zidarska salama'}]->(Tim1),
+(Tim1)-[:IGRA_NA]->(Stadion1),
+(Tim1)-[:NASTUPA_U]->(Beton1)
+
+CREATE (Tim2:Tim {naziv:'Kalac',opis: 'Malo ih je ali su opasni.',postignutiGolovi: 0.0,brojPobeda: 0.0,brojPoraza: 0.0,primljeniGolovi: 0.0,brojPoenaTabela: 0.0,nereseno: 0.0})
+CREATE (Igrac7:Igrac {ime:'Milos', prezime:'Mladenovic',brojDresa:'11', godRodjenja:'1994', brojTelefona:'060055384',pozicija:'Odbrana', opis:'Redovno dolazi na utakmice, pouzdan igrac.'})
+CREATE (Igrac8:Igrac {ime:'Nikola', prezime:'Stojanovic',brojDresa:'4', godRodjenja:'1995', brojTelefona:'060224511',pozicija:'Rezerva', opis:'Moze da bude brzi, treba da radi na kondiciji.'})
+CREATE (Igrac9:Igrac {ime:'Mladen' , prezime:'Petrovic',brojDresa:'22', godRodjenja:'1998', brojTelefona:'060111001',pozicija:'Odbrana', opis:'Bivsi igrac Radnickog, vrlo dobar igrac.'})
+CREATE (Igrac10:Igrac {ime:'Mihajlo', prezime:'Todorovic',brojDresa:'9', godRodjenja:'1994', brojTelefona:'060064064',pozicija:'Napad', opis:'Daje golove iz teskih pozicija, lake romasuje.'})
+CREATE (Igrac11:Igrac {ime:'Davor', prezime:'Mihajlovic', brojDresa:'1', godRodjenja:'1989', brojTelefona:'062054054',pozicija:'Golman', opis:'Solidni golman.'})
+CREATE (Igrac12:Igrac {ime:'Sava', prezime:'Stefanovic', brojDresa:'10', godRodjenja:'1998', brojTelefona:'060128256',pozicija:'Napad', opis:'Fantastican dribler.'})
+
+CREATE
+(Igrac7)-[:NASTUPA_ZA {plata:'tepsija bureka sa sirom'}]->(Tim2),
+(Igrac8)-[:NASTUPA_ZA {plata:'2 paklice cigareta'}]->(Tim2),
+(Igrac9)-[:NASTUPA_ZA {plata:'3 niska piva'}]->(Tim2),
+(Igrac10)-[:NASTUPA_ZA {plata:'igra za dzabe'}]->(Tim2),
+(Igrac11)-[:NASTUPA_ZA {plata:'3 konzerve sardina'}]->(Tim2),
+(Igrac12)-[:NASTUPA_ZA {plata:'zidarska salama'}]->(Tim2),
+(Tim2)-[:IGRA_NA]->(Stadion2),
+(Tim2)-[:NASTUPA_U]->(Beton1)
+
+CREATE (Tim3:Tim {naziv:'Apelovac',opis: 'Dolaze iz daleka i nisu za podcenjivanje.',postignutiGolovi: 0.0,brojPobeda: 0.0,brojPoraza: 0.0,primljeniGolovi: 0.0,brojPoenaTabela: 0.0,nereseno: 0.0})
+CREATE (Igrac13:Igrac {ime:'Milan', prezime:'Draganovic',brojDresa:'42', godRodjenja:'1997', brojTelefona:'062185100',pozicija:'Odbrana', opis:'Slabo tehnicki potkovan.'})
+CREATE (Igrac14:Igrac {ime:'Anderej', prezime:'Ilic',brojDresa:'21', godRodjenja:'1995', brojTelefona:'061100001',pozicija:'Napad', opis:'Busi lopte.'})
+CREATE (Igrac15:Igrac {ime:'Dragan' , prezime:'Janjic',brojDresa:'66', godRodjenja:'1992', brojTelefona:'062121533',pozicija:'Rezerva', opis:'Uvek je tu kad zatreba.'})
+CREATE (Igrac16:Igrac {ime:'Petar', prezime:'Kostadinovic',brojDresa:'7', godRodjenja:'2000', brojTelefona:'061888102',pozicija:'Napad', opis:'Visok igrac ali mogao bi da smanji cigarete.'})
+CREATE (Igrac17:Igrac {ime:'Andrija', prezime:'Kostic', brojDresa:'5', godRodjenja:'1995', brojTelefona:'061853100',pozicija:'Golman', opis:'Dobro brani penale.'})
+CREATE (Igrac18:Igrac {ime:'Dusan', prezime:'Maksimovic', brojDresa:'7', godRodjenja:'1997', brojTelefona:'061281152',pozicija:'Napad', opis:'Izuzetan tehnicar.'})
+
+CREATE
+(Igrac13)-[:NASTUPA_ZA {plata:'tepsija bureka sa sirom'}]->(Tim3),
+(Igrac14)-[:NASTUPA_ZA {plata:'2 paklice cigareta'}]->(Tim3),
+(Igrac15)-[:NASTUPA_ZA {plata:'3 niska piva'}]->(Tim3),
+(Igrac16)-[:NASTUPA_ZA {plata:'igra za dzabe'}]->(Tim3),
+(Igrac17)-[:NASTUPA_ZA {plata:'3 konzerve sardina'}]->(Tim3),
+(Igrac18)-[:NASTUPA_ZA {plata:'zidarska salama'}]->(Tim3),
+(Tim3)-[:IGRA_NA]->(Stadion3),
+(Tim3)-[:NASTUPA_U]->(Beton1)
+
+CREATE (Tim4:Tim {naziv:'Staro groblje',opis: 'Ekipa na prvi pogled deluje mrtvo, ali nije.',postignutiGolovi: 0.0,brojPobeda: 0.0,brojPoraza: 0.0,primljeniGolovi: 0.0,brojPoenaTabela: 0.0,nereseno: 0.0})
+CREATE (Igrac19:Igrac {ime:'Stevan', prezime:'Zivkovic',brojDresa:'5', godRodjenja:'1993', brojTelefona:'061255047',pozicija:'Rezerva', opis:'Nije u dobroj fizickoj spremi.'})
+CREATE (Igrac20:Igrac {ime:'Aleksa', prezime:'Cvetanovic',brojDresa:'1', godRodjenja:'1997', brojTelefona:'064324000',pozicija:'Golman', opis:'Gromada od coveka.'})
+CREATE (Igrac21:Igrac {ime:'Predrag' , prezime:'Stamenkovic',brojDresa:'6', godRodjenja:'1995', brojTelefona:'061228555',pozicija:'Napad', opis:'Ne dolazi cesto ali je dobar igrac.'})
+CREATE (Igrac22:Igrac {ime:'Dimitrije', prezime:'Ristic',brojDresa:'8', godRodjenja:'1997', brojTelefona:'061111517',pozicija:'Napad', opis:'Visok ima dobru skok igru.'})
+CREATE (Igrac23:Igrac {ime:'Milos', prezime:'Mladenovic', brojDresa:'3', godRodjenja:'1997', brojTelefona:'061411022',pozicija:'Odbrana', opis:'U odlicnoj fizickoj spremi.'})
+CREATE (Igrac24:Igrac {ime:'Dusan', prezime:'Vuckovic', brojDresa:'11', godRodjenja:'1998', brojTelefona:'061322322',pozicija:'Napad', opis:'Odlican sut iz daljine.'})
+
+CREATE
+(Igrac19)-[:NASTUPA_ZA {plata:'tepsija bureka sa sirom'}]->(Tim4),
+(Igrac20)-[:NASTUPA_ZA {plata:'2 paklice cigareta'}]->(Tim4),
+(Igrac21)-[:NASTUPA_ZA {plata:'3 niska piva'}]->(Tim4),
+(Igrac22)-[:NASTUPA_ZA {plata:'igra za dzabe'}]->(Tim4),
+(Igrac23)-[:NASTUPA_ZA {plata:'3 konzerve sardina'}]->(Tim4),
+(Igrac24)-[:NASTUPA_ZA {plata:'zidarska salama'}]->(Tim4),
+(Tim4)-[:IGRA_NA]->(Stadion4),
+(Tim4)-[:NASTUPA_U]->(Beton1)
+
+CREATE (Tim5:Tim {naziv:'Margerci',opis: 'Momci iz Dositeja i Bunkera.',postignutiGolovi: 0.0,brojPobeda: 0.0,brojPoraza: 0.0,primljeniGolovi: 0.0,brojPoenaTabela: 0.0,nereseno: 0.0})
+CREATE (Igrac25:Igrac {ime:'Radomir', prezime:'Popovic',brojDresa:'22', godRodjenja:'1997', brojTelefona:'062999999',pozicija:'Napad', opis:'Tehnicki potkovan ali mu treba masa.'})
+CREATE (Igrac26:Igrac {ime:'Dejan', prezime:'Todosijevic',brojDresa:'13', godRodjenja:'1997', brojTelefona:'062381951',pozicija:'Odbrana', opis:'Brzo trci.'})
+CREATE (Igrac27:Igrac {ime:'Stefan' , prezime:'Stojanovic',brojDresa:'4', godRodjenja:'1997', brojTelefona:'062333222',pozicija:'Rezerva', opis:'Visok, ima skok igru ali mu nedostaje masa.'})
+CREATE (Igrac28:Igrac {ime:'Milan', prezime:'Jankovic',brojDresa:'99', godRodjenja:'1997', brojTelefona:'062666666',pozicija:'Golman', opis:'Dolazi samo na petak 13.'})
+CREATE (Igrac29:Igrac {ime:'Marijo', prezime:'Stojanovic', brojDresa:'9', godRodjenja:'1998', brojTelefona:'062801522',pozicija:'Napad', opis:'Grub igrac.'})
+CREATE (Igrac30:Igrac {ime:'Dusan', prezime:'Jankovic', brojDresa:'10', godRodjenja:'1997', brojTelefona:'0645121024',pozicija:'Napad', opis:'Dobra kontrola lopte,i pregled lige.'})
+
+CREATE
+(Igrac25)-[:NASTUPA_ZA {plata:'tepsija bureka sa sirom'}]->(Tim5),
+(Igrac26)-[:NASTUPA_ZA {plata:'2 paklice cigareta'}]->(Tim5),
+(Igrac27)-[:NASTUPA_ZA {plata:'3 niska piva'}]->(Tim5),
+(Igrac28)-[:NASTUPA_ZA {plata:'igra za dzabe'}]->(Tim5),
+(Igrac29)-[:NASTUPA_ZA {plata:'3 konzerve sardina'}]->(Tim5),
+(Igrac30)-[:NASTUPA_ZA {plata:'zidarska salama'}]->(Tim5),
+(Tim5)-[:IGRA_NA]->(Stadion5),
+(Tim5)-[:NASTUPA_U]->(Beton2)
+
+CREATE (Tim6:Tim {naziv:'Tasa',opis: 'Ozboljna ekipa oko Saborne crkve',postignutiGolovi: 0.0,brojPobeda: 0.0,brojPoraza: 0.0,primljeniGolovi: 0.0,brojPoenaTabela: 0.0,nereseno: 0.0})
+CREATE (Igrac31:Igrac {ime:'Nikola', prezime:'Stojiljkovic',brojDresa:'9', godRodjenja:'1997', brojTelefona:'064105728',pozicija:'Napad', opis:'Dobar kreator igre'})
+CREATE (Igrac32:Igrac {ime:'Marko', prezime:'Misic',brojDresa:'16', godRodjenja:'1998', brojTelefona:'064455455',pozicija:'Rezerva', opis:'Student dif-a.'})
+CREATE (Igrac33:Igrac {ime:'Marijan' , prezime:'Stancic',brojDresa:'9', godRodjenja:'2000', brojTelefona:'064954433',pozicija:'Napad', opis:'Brz, odlican suter promasuje zicer.'})
+CREATE (Igrac34:Igrac {ime:'Stevan', prezime:'Djordjevic',brojDresa:'69', godRodjenja:'1993', brojTelefona:'064688222',pozicija:'Napad', opis:'Igrac koji radi dodatne kardio treninge.'})
+CREATE (Igrac35:Igrac {ime:'Vladan', prezime:'Mladenov', brojDresa:'32', godRodjenja:'1997', brojTelefona:'069121155',pozicija:'Golman', opis:'Kad se iznervira pretvara se u Hulka.'})
+CREATE (Igrac36:Igrac {ime:'Aleksandar', prezime:'Bozic', brojDresa:'3', godRodjenja:'1992', brojTelefona:'064754189',pozicija:'Odbrana', opis:'Solidan odbrambeni igrac.'})
+
+CREATE
+(Igrac31)-[:NASTUPA_ZA {plata:'tepsija bureka sa sirom'}]->(Tim6),
+(Igrac32)-[:NASTUPA_ZA {plata:'2 paklice cigareta'}]->(Tim6),
+(Igrac33)-[:NASTUPA_ZA {plata:'3 niska piva'}]->(Tim6),
+(Igrac34)-[:NASTUPA_ZA {plata:'igra za dzabe'}]->(Tim6),
+(Igrac35)-[:NASTUPA_ZA {plata:'3 konzerve sardina'}]->(Tim6),
+(Igrac36)-[:NASTUPA_ZA {plata:'zidarska salama'}]->(Tim6),
+(Tim6)-[:IGRA_NA]->(Stadion6),
+(Tim6)-[:NASTUPA_U]->(Beton2)
+
+CREATE (Tim7:Tim {naziv:'Sivara',opis: 'Igraju na betonu jer nemaju pare da plate Sivaru.',postignutiGolovi: 0.0,brojPobeda: 0.0,brojPoraza: 0.0,primljeniGolovi: 0.0,brojPoenaTabela: 0.0,nereseno: 0.0})
+CREATE (Igrac37:Igrac {ime:'Stefan', prezime:'Djordjevic',brojDresa:'19', godRodjenja:'1992', brojTelefona:'0690111271',pozicija:'Rezerva', opis:'Nije dobar igrac ali ostavlja srce na terenu.'})
+CREATE (Igrac38:Igrac {ime:'Dimitrije', prezime:'Antic',brojDresa:'15', godRodjenja:'1995', brojTelefona:'069292109',pozicija:'Odbrana', opis:'Odlican igrac ali ne dolazi cesto.'})
+CREATE (Igrac39:Igrac {ime:'Petar' , prezime:'Nikolic',brojDresa:'4', godRodjenja:'1994', brojTelefona:'069696969',pozicija:'Odbrana', opis:'Kada je trezan igra odlicno.'})
+CREATE (Igrac40:Igrac {ime:'Marin', prezime:'Markovic',brojDresa:'9', godRodjenja:'1995', brojTelefona:'069551555',pozicija:'Napad', opis:'Resava situacije 1 na 1 vrlo dobro.'})
+CREATE (Igrac41:Igrac {ime:'Lazar', prezime:'Pavlovic', brojDresa:'1', godRodjenja:'1997', brojTelefona:'069313855',pozicija:'Golman', opis:'Ne ume loptu da suten ali odlicno brani.'})
+CREATE (Igrac42:Igrac {ime:'Filip', prezime:'Denic', brojDresa:'11', godRodjenja:'1997', brojTelefona:'069374388',pozicija:'Odbrana', opis:'Bije po noge.'})
+
+CREATE
+(Igrac37)-[:NASTUPA_ZA {plata:'tepsija bureka sa sirom'}]->(Tim7),
+(Igrac38)-[:NASTUPA_ZA {plata:'2 paklice cigareta'}]->(Tim7),
+(Igrac39)-[:NASTUPA_ZA {plata:'3 niska piva'}]->(Tim7),
+(Igrac40)-[:NASTUPA_ZA {plata:'igra za dzabe'}]->(Tim7),
+(Igrac41)-[:NASTUPA_ZA {plata:'3 konzerve sardina'}]->(Tim7),
+(Igrac42)-[:NASTUPA_ZA {plata:'zidarska salama'}]->(Tim7),
+(Tim7)-[:IGRA_NA]->(Stadion7),
+(Tim7)-[:NASTUPA_U]->(Beton2)
+
+CREATE (Tim8:Tim {naziv:'Domci',opis: 'Ekipa iz nove zeleznicke kolonije.',postignutiGolovi: 0.0,brojPobeda: 0.0,brojPoraza: 0.0,primljeniGolovi: 0.0,brojPoenaTabela: 0.0,nereseno: 0.0})
+CREATE (Igrac43:Igrac {ime:'Dimitrije', prezime:'Stamenkovic',brojDresa:'2', godRodjenja:'1997', brojTelefona:'062017017',pozicija:'Odbrana', opis:'Nakon transfera iz Dinama Vranje doziveo je kompletan preokret.'})
+CREATE (Igrac44:Igrac {ime:'Miodrag', prezime:'Milicevic',brojDresa:'1', godRodjenja:'1991', brojTelefona:'064824284',pozicija:'Golman', opis:'Jedan od gorih igraca u ligi, vrlo nepouzdan.'})
+CREATE (Igrac45:Igrac {ime:'Jovan' , prezime:'Miljkovic',brojDresa:'14', godRodjenja:'1993', brojTelefona:'064333334',pozicija:'Odbrana', opis:'Ima problem sa tezinom.'})
+CREATE (Igrac46:Igrac {ime:'Lazar', prezime:'Nikolic',brojDresa:'8', godRodjenja:'1997', brojTelefona:'064511121',pozicija:'Rezerva', opis:'Kontrola lopte nije na zavidnom nivou.'})
+CREATE (Igrac47:Igrac {ime:'Srdjan', prezime:'Todorovic', brojDresa:'18', godRodjenja:'1993', brojTelefona:'062195384',pozicija:'Napad', opis:'Solidan igrac, nista karakteristicno.'})
+CREATE (Igrac48:Igrac {ime:'Milos', prezime:'Djordjevic', brojDresa:'20', godRodjenja:'1997', brojTelefona:'062343434',pozicija:'Napad', opis:'Nakon transfera iz Primere igra mnogo bolje, pronaso je motivaciju.'})
+
+CREATE
+(Igrac43)-[:NASTUPA_ZA {plata:'tepsija bureka sa sirom'}]->(Tim8),
+(Igrac44)-[:NASTUPA_ZA {plata:'2 paklice cigareta'}]->(Tim8),
+(Igrac45)-[:NASTUPA_ZA {plata:'3 niska piva'}]->(Tim8),
+(Igrac46)-[:NASTUPA_ZA {plata:'igra za dzabe'}]->(Tim8),
+(Igrac47)-[:NASTUPA_ZA {plata:'3 konzerve sardina'}]->(Tim8),
+(Igrac48)-[:NASTUPA_ZA {plata:'zidarska salama'}]->(Tim8),
+(Tim8)-[:IGRA_NA]->(Stadion8),
+(Tim8)-[:NASTUPA_U]->(Beton2)
+
+
+
+
+
+
+
+

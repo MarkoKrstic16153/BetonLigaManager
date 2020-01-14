@@ -1,33 +1,57 @@
-<h2>Pretrazite najinteresantnije utakmice</h2>
-<div>
-    <app-smart-search-bar (onEnter)="pretraziUtakmiceTima($event)" [titlePretrage]="pretragaPoImenuTima" [obsPretrage]="obsImeTimaUtakmice"></app-smart-search-bar>
-</div>
-<div>
-    <app-smart-search-bar (onEnter)="pretraziUtakmiceDomacina($event)" [titlePretrage]="pretragaPoImenuDomacina" [obsPretrage]="obsImeDomacinaUtakmice"></app-smart-search-bar>
-</div>
-<div>
-    <app-smart-search-bar (onEnter)="pretraziUtakmiceGosta($event)" [titlePretrage]="pretragaPoImenuGosta" [obsPretrage]="obsImeGostaUtakmice"></app-smart-search-bar>
-</div> 
-<div>Utakmice sa najvise golova :
+<div class="container shadow p-3 ">
+  <h2>Pretrazite najinteresantnije utakmice</h2>
+  <div>
+    <app-smart-search-bar
+      (onEnter)="pretraziUtakmiceTima($event)"
+      [titlePretrage]="pretragaPoImenuTima"
+      [obsPretrage]="obsImeTimaUtakmice"
+    ></app-smart-search-bar>
+  </div>
+  <div>
+    <app-smart-search-bar
+      (onEnter)="pretraziUtakmiceDomacina($event)"
+      [titlePretrage]="pretragaPoImenuDomacina"
+      [obsPretrage]="obsImeDomacinaUtakmice"
+    ></app-smart-search-bar>
+  </div>
+  <div>
+    <app-smart-search-bar
+      (onEnter)="pretraziUtakmiceGosta($event)"
+      [titlePretrage]="pretragaPoImenuGosta"
+      [obsPretrage]="obsImeGostaUtakmice"
+    ></app-smart-search-bar>
+  </div>
+  <div>
+    Utakmice sa najvise golova :
     <ul class="list-group">
-        <li 
-            class="list-item" 
-            *ngFor="let utakmica of utakmiceSaNajviseGolova">
-            Naziv : {{utakmica.naziv}}<a [routerLink]="[ '/pretraziutakmice/utakmica/', utakmica.datum,utakmica.vreme ]">, Datum : {{utakmica.datum}} </a>
-            , Vreme : {{utakmica.vreme}} , Broj golova : {{utakmica.golovi.length}}
-        </li>
+      <li class="list-item" *ngFor="let utakmica of utakmiceSaNajviseGolova">
+        Naziv : {{ utakmica.naziv
+        }}<a
+          [routerLink]="[
+            '/pretraziutakmice/utakmica/',
+            utakmica.datum,
+            utakmica.vreme
+          ]"
+          >, Datum : {{ utakmica.datum }}
+        </a>
+        , Vreme : {{ utakmica.vreme }} , Broj golova :
+        {{ utakmica.golovi.length }}
+      </li>
     </ul>
-</div> 
-<div>Rezultati koji odgovaraju pretrazi {{modPretrage}}
+  </div>
+  <div>
+    Rezultati koji odgovaraju pretrazi {{ modPretrage }}
     <ul class="list-group">
-        <li 
-            class="list-item" 
-            *ngFor="let pod of rezultatPretrage">
-            Naziv : {{pod.naziv}} <a [routerLink]="[ '/pretraziutakmice/utakmica/', pod.datum,pod.vreme  ]">, Datum : {{pod.datum}} </a>
-             , Vreme : {{pod.vreme}}
-        </li>
+      <li class="list-item" *ngFor="let pod of rezultatPretrage">
+        Naziv : {{ pod.naziv }}
+        <a [routerLink]="['/pretraziutakmice/utakmica/', pod.datum, pod.vreme]"
+          >, Datum : {{ pod.datum }}
+        </a>
+        , Vreme : {{ pod.vreme }}
+      </li>
     </ul>
-</div>
-<button (click)="goBack()">
+  </div>
+  <button (click)="goBack()">
     Nazad
-</button>
+  </button>
+</div>
