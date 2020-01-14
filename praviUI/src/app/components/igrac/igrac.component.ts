@@ -29,6 +29,7 @@ export class IgracComponent implements OnInit {
       this.igracService.getIgrac(params.id).subscribe(({ data, loading }) => {
         this.loadingIgrac = loading;
         this.igrac = data.Igrac[0];
+
         //povlaci sve saigrace iz tima
         this.igracService
           .getIgraciTim(this.igrac.tim[0].Tim.naziv)

@@ -1,25 +1,76 @@
 <div *ngIf="!loadingUtakmica && !loadingRezulatat">
-    <h3>{{domacin.Tim.naziv}} {{gost.Tim.naziv}}</h3>
-    <div>Naziv utakmice : {{utakmica.naziv}}</div>
-    <div>Opis utakmice : {{utakmica.opis}} </div>
-    <div>Datum odigranja utakmice : {{utakmica.datum}}</div>
-    <div>Vreme pocetka utakmice : {{utakmica.vreme}}</div>
-    <div>Rezultat => {{domacin.Tim.naziv}} {{domacin.golovi}} : {{gost.golovi}} {{gost.Tim.naziv}} </div>
-    <div *ngIf="ishodUtakmice">Ishod => {{ishodUtakmice}}</div>
-    <h4 *ngIf="!loadingDomaciSastav">Sastav Domacih : 
-    <ul>
-        <li *ngFor="let igrac of domaciSastav">{{igrac.ime}} {{igrac.prezime}} {{igrac.brojDresa}}</li>
-    </ul>
-    </h4>
-    <h4 *ngIf="!loadingGostujuciSastav">Sastav Gostiju : 
-        <ul>
-            <li *ngFor="let igrac of gostujuciSastav">{{igrac.ime}} {{igrac.prezime}} {{igrac.brojDresa}}</li>
-        </ul>
-    </h4>
-    <h4 *ngIf="!loadingStrelci">Strelci na mecu :
-        <ul>
-            <li *ngFor="let strelac of strelci">{{strelac.vreme}} {{strelac.Igrac.ime}} {{strelac.Igrac.prezime}} {{strelac.Igrac.brojDresa}} {{strelac.Igrac.tim[0].Tim.naziv}}</li>
-        </ul>
-    </h4>
+  <div class="container shadow p-3">
+    <div class=" col border rounded text-center shadow" style="padding:20 ;">
+      <h3>{{ domacin.Tim.naziv }} - {{ gost.Tim.naziv }}</h3>
+      <div>Naziv utakmice : {{ utakmica.naziv }}</div>
+      <div>Opis utakmice : {{ utakmica.opis }}</div>
+      <div>Datum odigranja utakmice : {{ utakmica.datum }}</div>
+      <div>Vreme pocetka utakmice : {{ utakmica.vreme }}</div>
+      <div>Broj posetilaca : {{ utakmica.stadion[0].brojPosetilaca }}</div>
+      <div>
+        Rezultat => {{ domacin.Tim.naziv }} {{ domacin.golovi }} :
+        {{ gost.golovi }} {{ gost.Tim.naziv }}
+      </div>
+      <div *ngIf="ishodUtakmice">Ishod => {{ ishodUtakmice }}</div>
     </div>
-<button (click)="goBack()">Nazad</button>
+    <div class="row">
+      <div class="col-4">
+        <div *ngIf="!loadingDomaciSastav">
+          <div
+            class="list-group-item list-group-item-action active text-center"
+          >
+            Sastav Domacih :
+          </div>
+          <ul class="list-group">
+            <li
+              *ngFor="let igrac of domaciSastav"
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              {{ igrac.ime }} {{ igrac.prezime }} {{ igrac.brojDresa }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-4">
+        <div *ngIf="!loadingGostujuciSastav">
+          <div
+            class="list-group-item list-group-item-action active text-center"
+          >
+            Sastav Gostiju :
+          </div>
+          <ul class="list-group">
+            <li
+              *ngFor="let igrac of gostujuciSastav"
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              {{ igrac.ime }} {{ igrac.prezime }} {{ igrac.brojDresa }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-4">
+        <div *ngIf="!loadingStrelci">
+          <div
+            class="list-group-item list-group-item-action active text-center"
+          >
+            Strelci na mecu :
+          </div>
+          <ul class="list-group">
+            <li
+              *ngFor="let strelac of strelci"
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <span class="badge badge-primary badge-pill">
+                {{ strelac.vreme }}'</span
+              >
+              {{ strelac.Igrac.ime }} {{ strelac.Igrac.prezime }}
+              {{ strelac.Igrac.brojDresa }}
+              {{ strelac.Igrac.tim[0].Tim.naziv }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-secondary shadow" (click)="goBack()">Nazad</button>
+  </div>
+</div>

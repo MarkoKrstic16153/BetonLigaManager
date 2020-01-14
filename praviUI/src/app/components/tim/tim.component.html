@@ -1,23 +1,58 @@
 <div *ngIf="!loadingTim">
-    <h3>{{tim.naziv}}</h3>
-    <div>Opis tima : {{tim.opis}}</div>
-    <div>Broj nastupa : {{tim.brojPobeda+tim.brojPoraza+tim.nereseno}} </div>
-    <div>Broj pobeda : {{tim.brojPobeda}}</div>
-    <div>Broj neresenih : {{tim.nereseno}}</div>
-    <div>Broj poraza : {{tim.brojPoraza}}</div>
-    <div *ngIf="!loadingSlicni">Trenutna pozicija na tabeli : {{trenutnaPozicijaNaTabli+1}}</div>
-    <div>Trenutni broj poena : {{tim.brojPoenaTabela}}</div>
-    <div>Trenutni broj postiglih golova : {{tim.postignutiGolovi}}</div>
-    <div>Trenutni broj primljenjih golova : {{tim.primljeniGolovi}}</div>
-    <div>Lista igraca : 
-        <ul>
-            <li *ngFor="let igrac of tim.igraci"><a [routerLink]="[ '/pretraziigrace/igrac', igrac.Igrac.brojTelefona ]">{{igrac.Igrac.ime}} {{igrac.Igrac.prezime}} {{igrac.Igrac.brojDresa}}</a></li>
-        </ul>
+  <div class="container shadow p-3">
+    <div class="tim">
+      <div class=" col border rounded text-center shadow">
+        <h3>{{ tim.naziv }}</h3>
+        <div>Opis tima : {{ tim.opis }}</div>
+        <div>
+          Broj nastupa : {{ tim.brojPobeda + tim.brojPoraza + tim.nereseno }}
+        </div>
+        <div>Broj pobeda : {{ tim.brojPobeda }}</div>
+        <div>Broj neresenih : {{ tim.nereseno }}</div>
+        <div>Broj poraza : {{ tim.brojPoraza }}</div>
+        <div *ngIf="!loadingSlicni">
+          Trenutna pozicija na tabeli : {{ trenutnaPozicijaNaTabli + 1 }}
+        </div>
+        <div>Trenutni broj poena : {{ tim.brojPoenaTabela }}</div>
+        <div>Trenutni broj postiglih golova : {{ tim.postignutiGolovi }}</div>
+        <div>Trenutni broj primljenjih golova : {{ tim.primljeniGolovi }}</div>
+      </div>
     </div>
-    <h4>Slicni timovi rangu na tabeli :
-        <ul *ngIf="slicniTimovi">
-            <li *ngFor="let tim of slicniTimovi"><a [routerLink]="[ '/pretrazitimove/tim', tim.naziv ]">{{tim.naziv}}</a></li>
+
+    <div class=" col row">
+      <div class="col">
+        <div class="list-group-item list-group-item-action active text-center">
+          Lista igraca :
+        </div>
+        <ul class="list-group">
+          <li
+            *ngFor="let igrac of tim.igraci"
+            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover"
+          >
+            <a
+              [routerLink]="['/pretraziigrace/igrac', igrac.Igrac.brojTelefona]"
+              >{{ igrac.Igrac.ime }} {{ igrac.Igrac.prezime }}
+              {{ igrac.Igrac.brojDresa }}</a
+            >
+          </li>
         </ul>
-    </h4>
+      </div>
+      <div class="col">
+        <div class="list-group-item list-group-item-action active text-center">
+          Slicni timovi po rangu na tabeli :
+        </div>
+        <ul *ngIf="slicniTimovi" class="list-group">
+          <li
+            *ngFor="let tim of slicniTimovi"
+            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover"
+          >
+            <a [routerLink]="['/pretrazitimove/tim', tim.naziv]">{{
+              tim.naziv
+            }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button class="btn btn-secondary" (click)="goBack()">Nazad</button>
+  </div>
 </div>
-<button (click)="goBack()">Nazad</button>

@@ -1,72 +1,74 @@
-<h2 class="text-center">Pretrazite Vase omiljene stadione</h2>
-<div class="container">
-  <div class="row">
-    <div class="col-5">
-      <label>Pretrazite stadione po imenu : </label>
-      <input [formControl]="imeControl" class="form-control" type="text" />
-      <app-smart-search-bar
-        (onEnter)="pretragaStadiona($event)"
-        [titlePretrage]="pretragaPoTimu"
-        [obsPretrage]="obsImeTimStadiona"
-      ></app-smart-search-bar>
-      <div>
-        <ul class="list-group list-group-item-action text-center shadow">
-          <li class="list-group-item list-group-item-action active">
-            Rezultati koji odgovaraju pretrazi :
-          </li>
-          <li
-            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-            *ngFor="let stadion of rezultatPretrage"
-            [routerLink]="['/pretrazistadione/stadion/', stadion.naziv]"
-          >
-            {{ stadion.naziv }}
-            <span class="badge badge-primary badge-pill">{{
-              stadion.kapacitet
-            }}</span>
-          </li>
-        </ul>
+<div class="container shadow p-3">
+  <h2 class="text-center">Pretrazite Vase omiljene stadione</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-5">
+        <label>Pretrazite stadione po imenu : </label>
+        <input [formControl]="imeControl" class="form-control" type="text" />
+        <app-smart-search-bar
+          (onEnter)="pretragaStadiona($event)"
+          [titlePretrage]="pretragaPoTimu"
+          [obsPretrage]="obsImeTimStadiona"
+        ></app-smart-search-bar>
+        <div>
+          <ul class="list-group list-group-item-action text-center shadow">
+            <li class="list-group-item list-group-item-action active">
+              Rezultati koji odgovaraju pretrazi :
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+              *ngFor="let stadion of rezultatPretrage"
+              [routerLink]="['/pretrazistadione/stadion/', stadion.naziv]"
+            >
+              {{ stadion.naziv }}
+              <span class="badge badge-primary badge-pill">{{
+                stadion.kapacitet
+              }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-7 row">
+        <div class="col-6">
+          <ul class="list-group list-group-item-action text-center shadow">
+            <li class="list-group-item list-group-item-action active">
+              Stadioni sa najvise utakmica :
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+              *ngFor="let stadion of najviseUtakmica"
+              [routerLink]="['/pretrazistadione/stadion/', stadion.naziv]"
+            >
+              {{ stadion.naziv }}
+              <span class="badge badge-primary badge-pill">{{
+                stadion.utakmica.length
+              }}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <ul class="list-group list-group-item-action text-center shadow">
+            <li class="list-group-item list-group-item-action active">
+              Stadioni sa najvecim kapacitetom
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+              *ngFor="let stadion of najviseKapaciteta"
+              [routerLink]="['/pretrazistadione/stadion/', stadion.naziv]"
+            >
+              {{ stadion.naziv }}
+              <span class="badge badge-primary badge-pill">{{
+                stadion.kapacitet
+              }}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="col-7 row">
-      <div class="col-6">
-        <ul class="list-group list-group-item-action text-center shadow">
-          <li class="list-group-item list-group-item-action active">
-            Stadioni sa najvise utakmica :
-          </li>
-          <li
-            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-            *ngFor="let stadion of najviseUtakmica"
-            [routerLink]="['/pretrazistadione/stadion/', stadion.naziv]"
-          >
-            {{ stadion.naziv }}
-            <span class="badge badge-primary badge-pill">{{
-              stadion.utakmica.length
-            }}</span>
-          </li>
-        </ul>
-      </div>
-      <div class="col-6">
-        <ul class="list-group list-group-item-action text-center shadow">
-          <li class="list-group-item list-group-item-action active">
-            Stadioni sa najvecim kapacitetom
-          </li>
-          <li
-            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-            *ngFor="let stadion of najviseKapaciteta"
-            [routerLink]="['/pretrazistadione/stadion/', stadion.naziv]"
-          >
-            {{ stadion.naziv }}
-            <span class="badge badge-primary badge-pill">{{
-              stadion.kapacitet
-            }}</span>
-          </li>
-        </ul>
-      </div>
+    <div class="row justify-content-end m-1">
+      <button class="btn btn-secondary m-2 shadow" (click)="goBack()">
+        Nazad
+      </button>
     </div>
-  </div>
-  <div class="row justify-content-end m-1">
-    <button class="btn btn-secondary m-2" (click)="goBack()">
-      Nazad
-    </button>
   </div>
 </div>
