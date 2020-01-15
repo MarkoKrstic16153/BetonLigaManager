@@ -1,5 +1,10 @@
+CREATE (Nis:Grad {naziv:'Nis', brojStanovnika:'186000'})
 CREATE (Beton1:Liga {naziv:'Beton1', opis:'Poznatija kao Cipiripi kup ova liga ima dugu tradiciju i vrlo slab kvalitet'})
 CREATE (Beton2:Liga {naziv:'Beton2', opis:'Nekvalitetnija liga ali igraci koji igraju u njoj nece to da priznaju.'})
+
+CREATE
+(Beton1)-[:LIGA_GRAD]->(Nis),
+(Beton2)-[:LIGA_GRAD]->(Nis)
 
 CREATE (Stadion1:Stadion {naziv:'Skolsko',opis: 'Oce lopta da se busi, ali kvalitet terena je na visokom nivou.',adresa:'Vase Carapica 12',kapacitet:100.0})
 CREATE (Stadion2:Stadion {naziv:'Kula',opis: 'Malo je porusen ali je veliku, lopta oce da bezi nizbrdo.',adresa:'Njegoseva 3',kapacitet:2000.0})

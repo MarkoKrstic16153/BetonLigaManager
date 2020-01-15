@@ -42,7 +42,7 @@ This will start the GraphQL API in the foreground, so in another terminal sessio
 cd ./praviUI && ng serve
 ```
 
-![](praviUI/BetonMangerUI.jpg)
+![](praviUI/BetonManagerUI.png)
 
 See [the project releases](https://github.com/grand-stack/grand-stack-starter/releases) for the changelog.
 

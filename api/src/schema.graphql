@@ -1,8 +1,14 @@
+type Grad {
+  naziv: String
+  brojStanovnika: String
+  lige: [LIGA_GRAD]
+}
 type Liga {
   naziv: String
   opis: String
+  grad: [LIGA_GRAD]
   timovi(limit: Int = 10): [NASTUPA_U]
-  utakmice(limit: Int = 10): [ODIGRANA]
+  utakmice: [ODIGRANA]
 }
 
 type Tim {
@@ -73,7 +79,7 @@ type NASTUPA_U @relation(name: "NASTUPA_U") {
 type NASTUPA_ZA @relation(name: "NASTUPA_ZA") {
   from: Igrac
   to: Tim
-  plata:String
+  plata: String
 }
 
 type POSTIGO_GOL @relation(name: "POSTIGO_GOL") {
@@ -102,9 +108,13 @@ type IGRA_NA @relation(name: "IGRA_NA") {
 type ODIGRANA_NA @relation(name: "ODIGRANA_NA") {
   from: Utakmica
   to: Stadion
-  brojPosetilaca:String
+  brojPosetilaca: String
 }
 type UCESTVUJE @relation(name: "UCESTVUJE") {
   from: Igrac
   to: Utakmica
+}
+type LIGA_GRAD @relation(name: "LIGA_GRAD") {
+  from: Liga
+  to: Grad
 }
