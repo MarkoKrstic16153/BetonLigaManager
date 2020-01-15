@@ -35,7 +35,9 @@ export class IgracComponent implements OnInit {
           .getIgraciTim(this.igrac.tim[0].Tim.naziv)
           .subscribe(({ data, loading }) => {
             this.loadingSaigraci = loading;
-            this.saigraci = data.Tim[0].igraci;
+            this.saigraci = data.Tim[0].igraci.filter(
+              s => s.Igrac.brojTelefona != this.igrac.brojTelefona
+            );
           });
 
         //povlaci 5 igraca sa istom pozicijom bez igraca koji se prikazuje trenutno
