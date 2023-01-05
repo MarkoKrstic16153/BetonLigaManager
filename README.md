@@ -1,6 +1,6 @@
 # Beton Liga Manager
 
-This project is a built with [GRANDstack](https://grandstack.io) (GraphQL, Angular, Apollo, Neo4j Database). There are two components, the UI application (a Angluar app) and the API app (GraphQL server).
+This project is a built with [GAANDstack](https://grandstack.io) (GraphQL, Angular, Apollo, Neo4j Database). There are two components, the UI application (a Angluar app) and the API app (GraphQL server).
 
 ### Dobrodosli u Beton Liga Manager-a, sajt koji je dizajniran da omoguci lako pretrazivanje igraca, timova i desavanja u lokalnoj prijateljskoj amaterskoj fudbalskoj ligi.
 ### Isto tako, ova platforma ima mogucnost dodavanja novih timova, igraca, utakmica, stadiona... 
